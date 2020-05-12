@@ -1,17 +1,43 @@
 import React, { Component } from "react";
 
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
+import { modifyData } from "../../../Actions/modifyData";
+import { connect } from "react-redux";
 
-export class DataPreview extends Component {
+export class DataPreviewRaw extends Component {
+  state = {
+    editable: false,
+  };
+  modifyData = (e) => {
+    let input = e.currentTarget;
+    this.props.modifyData({
+      section: "auto",
+      dataId: input.id,
+      data: input.value,
+      num: this.props.data.key,
+    });
+  };
+  toggleEdit = () => {
+    this.setState({
+      editable: !this.state.editable,
+    });
+  };
   render() {
     return (
       <Row style={topMargin}>
         <Card style={formWidth}>
-          <Card.Title>{this.props.data.teamNum}</Card.Title>
+          <Card.Title>
+            {this.props.data.teamNum}
+
+            <Button style={buttonStyle} size="small" onClick={this.toggleEdit}>
+              {this.state.editable ? "Save" : "Edit"}
+            </Button>
+          </Card.Title>
+
           <Card.Subtitle className="mb-2 text-muted">
             {this.props.data.scout}
           </Card.Subtitle>
@@ -28,8 +54,18 @@ export class DataPreview extends Component {
                       return (
                         <div>
                           {autoHeaders[data.id]}
-                          {JSON.stringify(data.value)}
-                          {/* Since sometimes its a boolean */}
+                          {this.state.editable ? (
+                            <Input
+                              type="text"
+                              className="mr-sm-2"
+                              section="auto"
+                              value={JSON.stringify(data.value)}
+                              onChange={this.modifyData}
+                              id={data.id}
+                            />
+                          ) : (
+                            JSON.stringify(data.value)
+                          )}
                         </div>
                       );
                     })
@@ -47,8 +83,18 @@ export class DataPreview extends Component {
                     return (
                       <div>
                         {teleopHeaders[data.id]}
-                        {JSON.stringify(data.value)}
-                        {/* Since sometimes its a boolean */}
+                        {this.state.editable ? (
+                          <Input
+                            type="text"
+                            className="mr-sm-2"
+                            section="teleop"
+                            value={JSON.stringify(data.value)}
+                            onChange={this.modifyData}
+                            id={data.id}
+                          />
+                        ) : (
+                          JSON.stringify(data.value)
+                        )}
                       </div>
                     );
                   })}
@@ -65,8 +111,18 @@ export class DataPreview extends Component {
                     return (
                       <div>
                         {endgameHeaders[data.id - 12]}
-                        {JSON.stringify(data.value)}
-                        {/* Since sometimes its a boolean */}
+                        {this.state.editable ? (
+                          <Input
+                            type="text"
+                            className="mr-sm-2"
+                            section="endgame"
+                            value={JSON.stringify(data.value)}
+                            onChange={this.modifyData}
+                            id={data.id}
+                          />
+                        ) : (
+                          JSON.stringify(data.value)
+                        )}
                       </div>
                     );
                   })}
@@ -81,6 +137,13 @@ export class DataPreview extends Component {
     );
   }
 }
+const buttonStyle = {
+  width: "7%",
+  position: "absolute",
+  textAlign: "center",
+  float: "right",
+  marginLeft: "41%",
+};
 const autoHeaders = [
   "Starting Position: ",
   "Crossed Initiation Line: ",
@@ -118,4 +181,20 @@ const formWidth = {
 const topMargin = {
   paddingTop: "20px",
 };
-export default DataPreview;
+const mapStateToProps = (state) => {
+  return {
+    importer: state.importer,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  // propName: (parameters) => dispatch(action)
+  return {
+    // addData: (data) => dispatch(addData(data)),
+    modifyData: (data) => dispatch(modifyData(data)),
+    // Upload Data
+  };
+};
+export const DataPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DataPreviewRaw);

@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import DataPreview from "./DataPreview";
+import { DataPreview } from "./DataPreview";
 import { connect } from "react-redux";
 import { InputBar } from "./InputBar";
 import { clearData } from "../../../Actions/clearData";
@@ -12,6 +12,7 @@ export class ImportRaw extends Component {
   state = {
     showSuccess: false,
     showFail: false,
+    editable: true,
   };
   importHandle = () => {
     this.props.clearData();
@@ -19,8 +20,15 @@ export class ImportRaw extends Component {
   };
   setShow = (success) => {
     this.setState({
+      ...this.state,
       showSuccess: success,
       showFail: !success,
+    });
+  };
+  toggleEdit = () => {
+    this.setState({
+      ...this.state,
+      editable: !this.state.editable,
     });
   };
   render() {
@@ -39,6 +47,7 @@ export class ImportRaw extends Component {
                 variant="success"
                 onClose={() => this.setShow(false)}
                 dismissible
+                style={noBotMargin}
               >
                 Success! The data was successfully imported.
               </Alert>
@@ -51,7 +60,7 @@ export class ImportRaw extends Component {
             <InputBar style={formWidth} />
           </Row>
           {this.props.importer.data.map((data) => {
-            return <DataPreview data={data}></DataPreview>;
+            return <DataPreview data={data} editable={false}></DataPreview>;
           })}
           <Row>
             <Button block onClick={this.importHandle}>
@@ -82,7 +91,9 @@ const formWidth = {
 const spacer = {
   padding: "2vh",
 };
-
+const noBotMargin = {
+  marginBottom: "0px",
+};
 const spacerSmall = {
   padding: "1vh",
 };

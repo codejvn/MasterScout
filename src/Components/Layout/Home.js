@@ -6,7 +6,6 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
 import {
   Dropdown,
   DropdownToggle,
@@ -19,7 +18,8 @@ import { setTeam } from "../../Actions/setTeam";
 import { setEvent } from "../../Actions/setEvent";
 import { setEvents } from "../../Actions/UpdateEvent";
 import { setSchedule } from "../../Actions/setSchedule";
-import Tab from "react-bootstrap/Tab";
+import { setTeams } from "../../Actions/setTeams";
+
 let tba;
 export class Home extends Component {
   constructor(props) {
@@ -42,6 +42,7 @@ export class Home extends Component {
   };
   createCompetition = (e) => {
     console.log(tba.event.key);
+    this.props.setTeams(tba.event.key);
     this.props.setSchedule(tba.event.key);
   };
   eventSelectHandle = (e) => {
@@ -121,6 +122,7 @@ const createCompButton = {
 const mapStateToProps = (state) => {
   return {
     thebluealliance: state.thebluealliance,
+    dataReducer: state.dataReducer,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -130,6 +132,7 @@ const mapDispatchToProps = (dispatch) => {
     setEvents: (teamNum) => dispatch(setEvents(teamNum)),
     setEvent: (event) => dispatch(setEvent(event)),
     setSchedule: (eventCode) => dispatch(setSchedule(eventCode)),
+    setTeams: (eventCode) => dispatch(setTeams(eventCode)),
   };
 };
 export const HomeCom = connect(mapStateToProps, mapDispatchToProps)(Home);

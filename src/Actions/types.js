@@ -7,3 +7,5 @@ export const SET_MATCH_DATA = "setMatchData";
 export const ADD_DATA = "addData";
 export const MODIFY_DATA = "modifyData";
 export const CLEAR_DATA = "clearData";
+export const SET_TEAMS = "setTeams";
+export const CREATE_TEAMS = "createTeams";

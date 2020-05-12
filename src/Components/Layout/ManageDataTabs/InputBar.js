@@ -14,6 +14,7 @@ export class InputBarRaw extends Component {
     console.log(data);
     this.props.addData(data);
     this._input.value = "";
+    window.scrollTo(0, 0);
   };
   render() {
     return (
@@ -26,7 +27,6 @@ export class InputBarRaw extends Component {
               ref={(el) => {
                 this._input = el;
               }}
-              column
               style={inputWidth}
             />
             <Form.Label column sm={100}>

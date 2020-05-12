@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import Container from "react-bootstrap/Container";
 import { Provider } from "react-redux";
@@ -60,22 +58,6 @@ export class App extends Component {
 }
 const fixedPos = {
   position: "fixed",
-  textAlign: "center",
-};
-const fullWidth = {
-  width: "100%",
-};
-const center = {
-  textAlign: "center",
-};
-const rightBorder = {
-  position: "sticky",
-  borderRight: "1px",
-  borderRightStyle: "solid",
-  borderColor: "rgb(225,225,225)",
-  backgroundColor: "rgb(250,250,250)",
-  height: "300vw",
-  width: "15.5%",
   textAlign: "center",
 };
 const jumbotronStyle = {
