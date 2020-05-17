@@ -85,19 +85,16 @@ class Team {
       let operation;
       switch (prop.aggre) {
         case "mode":
-          operation = this.mode;
-          break;
+          console.log(organizedSet[prop.id]);
+          console.log("Mode lol");
+          return this.mode(organizedSet[prop.id]).value;
         case "avg":
-          operation = this.average;
-          break;
+          return this.average(organizedSet[prop.id]);
         case "boolavg":
-          operation = this.boolAverage;
-          break;
+          return this.boolAverage(organizedSet[prop.id]);
         case "max":
-          operation = this.max;
-          break;
+          return this.max(organizedSet[prop.id]);
       }
-      return operation(organizedSet[prop.id]);
     });
   };
 
@@ -121,11 +118,6 @@ class Team {
     );
     return data.reduce((a, b) => a + b.value, 0) / data.length;
   };
-  /*
-  function average(nums) {
-    return nums.reduce((a, b) => (a + b)) / nums.length;
-}
-  */
   boolAverage = (data) => {
     return (
       data.reduce((a, b) => {
