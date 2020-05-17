@@ -21,11 +21,19 @@ class Team {
     this.comments = [];
 
     this.aggregated = [];
+    this.matchNums = [];
 
     this.totaldata = [this.autoData, this.teleopData, this.endgameData];
     this.organizedDataSets = [[], [], []];
   }
-  addSet = (set) => {};
+  appendData = (set) => {
+    console.log("This is the set thats being added!!");
+    this.comments.push(set.comment);
+    this.autoData.push(set.data.auto);
+    this.teleopData.push(set.data.teleop);
+    this.endgameData.push(set.data.endgame);
+    console.log(set);
+  };
   /**
    * Input section of match data and the index of the data you want
    * @returns arrayy of data from a specific category from all matches
@@ -72,6 +80,7 @@ class Team {
       return operation(organizedSet);
     });
   };
+
   aggregate = () => {
     this.sets.forEach((set, i, a) => {
       this.organizedDataSets[i] = this.organizeSet(
@@ -81,6 +90,7 @@ class Team {
       this.aggregated[i] = this.aggregateSet(this.organizedDataSets[i]);
     });
   };
+
   average = (data) => {
     return data.reduce((a, b) => a + b, 0) / data.length;
   };

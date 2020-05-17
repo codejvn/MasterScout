@@ -8,6 +8,7 @@ import { DataPreview } from "./DataPreview";
 import { connect } from "react-redux";
 import { InputBar } from "./InputBar";
 import { clearData } from "../../../Actions/clearData";
+import { appendMatchData } from "../../../Actions/appendMatchData";
 export class ImportRaw extends Component {
   state = {
     showSuccess: false,
@@ -17,6 +18,7 @@ export class ImportRaw extends Component {
   importHandle = () => {
     this.props.clearData();
     this.setShow(true);
+    this.props.appendMatchData(this.props.importer.data);
   };
   setShow = (success) => {
     this.setState({
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {
     clearData: (data) => dispatch(clearData()),
+    appendMatchData: (data) => dispatch(appendMatchData(data)),
     // modifyData: (data) => dispatch(modifyData(modifyData)),
     // Upload Data
   };
