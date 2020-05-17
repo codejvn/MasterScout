@@ -27,6 +27,7 @@ const dataReducer = (state = dataInitState, action = {}) => {
           (team) => team.teamNumber == matchDataObj.teamNum
         );
         teams[index].appendData(matchDataObj);
+        teams[index].aggregate();
       }
       return {
         ...state,

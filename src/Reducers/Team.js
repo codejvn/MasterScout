@@ -7,8 +7,27 @@ const autoDataProps = [
   { aggre: "avg", name: "Init Line Attmpeted Auto", id: 5 },
   { aggre: "avg", name: "Near Trench Attmpeted Auto", id: 6 },
 ];
-const teleopDataProps = [];
-const endgameDataProps = [];
+const teleopDataProps = [
+  { aggre: "avg", name: "Bottom Scored", id: 0 },
+  { aggre: "avg", name: "Outer Scored", id: 1 },
+  { aggre: "avg", name: "Inner Scored", id: 2 },
+  { aggre: "avg", name: "Missed", id: 3 },
+  { aggre: "avg", name: "Cycles", id: 4 },
+  { aggre: "boolavg", name: "CP Rotation", id: 5 },
+  { aggre: "boolavg", name: "CP Position", id: 6 },
+  { aggre: "avg", name: "T-Zone Attempted", id: 7 },
+  { aggre: "avg", name: "Init-Line Attempted", id: 8 },
+  { aggre: "avg", name: "Near Trench Attmpeted", id: 9 },
+  { aggre: "avg", name: "Far Trench Attempted", id: 10 },
+  { aggre: "avg", name: "Defense", id: 11 },
+];
+const endgameDataProps = [
+  { aggre: "boolavg", name: "Climbed?", id: 0 },
+  { aggre: "boolavg", name: "Leveled?", id: 1 },
+  { aggre: "mode", name: "Most Common Climb Location", id: 2 },
+  { aggre: "boolavg", name: "Parked?", id: 3 },
+  { aggre: "avg", name: "Time Left", id: 4 },
+];
 const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
 class Team {
   constructor(num, arrayPos) {
@@ -44,7 +63,7 @@ class Team {
     return set.reduce((totalData, matchData) => {
       totalData.push(matchData[index]);
       return totalData;
-    });
+    }, []);
   };
   /**
    * Input a whole set of data from a section (like the whole auto data)
@@ -53,8 +72,9 @@ class Team {
    */
   organizeSet = (set, numOfDataPoints) => {
     let ret = [];
+    console.log(set);
     for (let i = 0; i < numOfDataPoints; i++) {
-      ret.push(this.organizeIntoSet(set), i);
+      ret.push(this.organizeIntoSet(set, i));
     }
     return ret;
   };
@@ -68,43 +88,55 @@ class Team {
           operation = this.mode;
           break;
         case "avg":
-          operation = this.mode;
+          operation = this.average;
           break;
         case "boolavg":
-          operation = this.mode;
+          operation = this.boolAverage;
           break;
         case "max":
-          operation = this.mode;
+          operation = this.max;
           break;
       }
-      return operation(organizedSet);
+      return operation(organizedSet[prop.id]);
     });
   };
 
   aggregate = () => {
-    this.sets.forEach((set, i, a) => {
-      this.organizedDataSets[i] = this.organizeSet(
-        set[i],
-        aggreProps[i].length
+    this.totaldata.forEach((set, i, a) => {
+      console.log(set);
+      this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);
+      this.aggregated[i] = this.aggregateSet(
+        this.organizedDataSets[i],
+        aggreProps[i]
       );
-      this.aggregated[i] = this.aggregateSet(this.organizedDataSets[i]);
     });
   };
 
   average = (data) => {
-    return data.reduce((a, b) => a + b, 0) / data.length;
+    console.log(data);
+    console.log(
+      data.reduce((acc, current) => acc + current.value, 0) +
+        " : " +
+        data.length
+    );
+    return data.reduce((a, b) => a + b.value, 0) / data.length;
   };
+  /*
+  function average(nums) {
+    return nums.reduce((a, b) => (a + b)) / nums.length;
+}
+  */
   boolAverage = (data) => {
     return (
       data.reduce((a, b) => {
-        a = a ? 1 : 0; // evaluates the value to 0 or 1
-        b = b ? 1 : 0;
+        a = a.value ? 1 : 0; // evaluates the value to 0 or 1
+        b = b.value ? 1 : 0;
         return a + b;
       }) / data.length
     );
   };
   max = (data) => {
-    return (data) => Math.max(...data);
+    return (data) => Math.max(...data.value);
   };
   mode = (data) =>
     data.reduce(
