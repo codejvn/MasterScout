@@ -4,7 +4,7 @@ import { SET_TEAMS } from "../Actions/types";
 import { ADDPEND_MATCHDATA } from "../Actions/types";
 
 const dataInitState = {
-  teams: [],
+  teams: [new Team(2590, 0)],
 };
 const dataReducer = (state = dataInitState, action = {}) => {
   switch (action.type) {

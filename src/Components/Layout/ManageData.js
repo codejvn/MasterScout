@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { Import } from "./ManageDataTabs/Import";
+import { Raw } from "./ManageDataTabs/Raw";
+import { Analyzed } from "./ManageDataTabs/Analyzed";
+// import { Analyzed } from "./ManageDataTabs/Analyzed";
+// import { TeamBreakdown } from "./ManageDataTabs/TeamBreakdown";
 export class ManageData extends Component {
   render() {
     return (
-      <Tabs defaultActiveKey="Import" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="Raw" id="uncontrolled-tab-example">
         <Tab eventKey="Import" title="Import">
           <Import />
         </Tab>
         <Tab eventKey="Raw" title="Raw">
-          <p>Raw</p>
+          <Raw />
         </Tab>
         <Tab eventKey="Analyzed" title="Analyzed">
-          <p>Analyzed</p>
+          <Analyzed />
         </Tab>
         <Tab eventKey="Team Breakdown" title="Team Breakdown">
           <p>Team Breakdown</p>
