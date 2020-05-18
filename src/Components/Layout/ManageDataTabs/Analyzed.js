@@ -14,7 +14,7 @@ export class AnalyzedRaw extends Component {
             <h2>Analyzed</h2>
           </Row>
           <Row>
-            <Table>
+            <Table style={center}>
               <thead>
                 <tr>
                   <td>#</td>
@@ -23,12 +23,22 @@ export class AnalyzedRaw extends Component {
                   <td>Average Bottom Scored Auto</td>
                   <td>Average Outer Scored Auto</td>
                   <td>Average Inner Scored Auto</td>
-                  <td>Average Shots Attempted Init Line Auto</td>
-                  <td>Average Shots Attempted Near Trench Auto</td>
+                  <td>Avg Shots Attempted Init Line Auto</td>
+                  <td>Avg Shots Attempted Near Trench Auto</td>
                 </tr>
               </thead>
               <tbody>
                 {/* loop through teams, within teams loop through aggregate */}
+                {this.props.dataReducer.teams.map((team) => {
+                  return (
+                    <tr>
+                      <td>{team.teamNumber}</td>
+                      {team.aggregated[0].map((data) => {
+                        return <td>{data}</td>;
+                      })}
+                    </tr>
+                  );
+                })}
                 {/* {this.props.dataReducer.teams.map((team) => {
                   return <tr>{team.aggregated}</tr>;
                 })} */}
@@ -40,6 +50,9 @@ export class AnalyzedRaw extends Component {
     );
   }
 }
+const center = {
+  textAlign: "center",
+};
 const mapStateToProps = (state) => {
   return {
     dataReducer: state.dataReducer,
