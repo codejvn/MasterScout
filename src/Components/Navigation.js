@@ -11,12 +11,12 @@ export class Navigation extends Component {
   render() {
     return (
       <Navbar
-        sticky="top"
         bg="dark"
         variant="dark"
         className="shadow justify-content-between"
+        style={positioning}
       >
-        <Container fluid>
+        <Container fluid style={positioning}>
           <Row>
             <Col>
               <Navbar.Brand style={brandWidth}>NEMƎSIS</Navbar.Brand>
@@ -40,6 +40,12 @@ export class Navigation extends Component {
     );
   }
 }
+const positioning = {
+  position: "sticky",
+  left: "0",
+  top: "0",
+  zIndex: "100",
+};
 const searchWidth = {
   width: "70vw",
 };

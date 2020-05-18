@@ -39,7 +39,7 @@ class Team {
     this.endgameData = [];
     this.comments = [];
 
-    this.aggregated = [];
+    this.aggregated = [[], [], []];
     this.matchNums = [];
 
     this.totaldata = [this.autoData, this.teleopData, this.endgameData];
@@ -121,10 +121,9 @@ class Team {
   boolAverage = (data) => {
     return (
       data.reduce((a, b) => {
-        a = a.value ? 1 : 0; // evaluates the value to 0 or 1
         b = b.value ? 1 : 0;
         return a + b;
-      }) / data.length
+      }, 0) / data.length
     );
   };
   max = (data) => {
