@@ -18,13 +18,13 @@ export class AnalyzedRaw extends Component {
               <thead>
                 <tr>
                   <td>#</td>
-                  <td>lol</td>
-                  <td>lol</td>
-                  <td>lol</td>
-                  <td>lol</td>
-                  <td>lol</td>
-                  <td>lol</td>
-                  <td>lol</td>
+                  <td>Most Common Starting Position</td>
+                  <td>% Crossed Init Line</td>
+                  <td>Average Bottom Scored Auto</td>
+                  <td>Average Outer Scored Auto</td>
+                  <td>Average Inner Scored Auto</td>
+                  <td>Average Shots Attempted Init Line Auto</td>
+                  <td>Average Shots Attempted Near Trench Auto</td>
                 </tr>
               </thead>
               <tbody>

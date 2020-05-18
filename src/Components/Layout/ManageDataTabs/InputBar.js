@@ -7,6 +7,7 @@ import FormGroup from "react-bootstrap/FormGroup";
 import { connect } from "react-redux";
 import { addData } from "../../../Actions/addData";
 export class InputBarRaw extends Component {
+  componentWillMount() {}
   submitHandle = (e) => {
     console.log("SUBMITTING");
     e.preventDefault();
