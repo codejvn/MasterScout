@@ -34,7 +34,8 @@ export class RawDataTable extends Component {
                   <tbody>
                     {team.autoData.map((match) => (
                       <tr>
-                        <td>{match.matchNum}</td>
+                        <td>{team.matchNums[team.autoData.indexOf(match)]}</td>
+                        {console.log(match)}
                         {match.map((matchData) => (
                           <td>{JSON.stringify(matchData.value)}</td>
                         ))}
@@ -61,7 +62,9 @@ export class RawDataTable extends Component {
                   <tbody>
                     {team.teleopData.map((match) => (
                       <tr>
-                        <td>{match.matchNum}</td>
+                        <td>
+                          {team.matchNums[team.teleopData.indexOf(match)]}
+                        </td>
                         {match.map((matchData) => (
                           <td>{JSON.stringify(matchData.value)}</td>
                         ))}
@@ -81,7 +84,9 @@ export class RawDataTable extends Component {
                   <tbody>
                     {team.endgameData.map((match) => (
                       <tr>
-                        <td>{match.matchNum}</td>
+                        <td>
+                          {team.matchNums[team.endgameData.indexOf(match)]}
+                        </td>
                         {match.map((matchData) => (
                           <td>{JSON.stringify(matchData.value)}</td>
                         ))}

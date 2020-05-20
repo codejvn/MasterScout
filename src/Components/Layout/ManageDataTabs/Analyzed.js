@@ -14,7 +14,7 @@ export class AnalyzedRaw extends Component {
             <h2>Analyzed</h2>
           </Row>
           <Row>
-            <Table style={center} responsive>
+            <Table style={center} responsive striped>
               <thead>
                 <tr>
                   <td>#</td>

@@ -51,6 +51,7 @@ class Team {
     this.autoData.push(set.data.auto);
     this.teleopData.push(set.data.teleop);
     this.endgameData.push(set.data.endgame);
+    this.matchNums.push(set.matchNum);
     console.log(set);
   };
   /**
