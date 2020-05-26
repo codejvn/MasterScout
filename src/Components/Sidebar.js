@@ -18,29 +18,22 @@ export class Sidebar extends Component {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="4" disabled>
-                Compare Teams
+                Compare
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="5" disabled>
-                Team Draft
-              </Nav.Link>
+              <Nav.Link eventKey="5">Export</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6">Export to Dashboard</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="7" disabled>
-                Ranking Lookup
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="8" disabled>
+              <Nav.Link eventKey="6" disabled>
                 Pit Scouting
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="9" disabled>
+              <Nav.Link eventKey="7"> Rankings </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="8" disabled>
                 Settings
               </Nav.Link>
             </Nav.Item>
@@ -60,6 +53,6 @@ const rightBorder = {
   backgroundColor: "rgb(250,250,250)",
   height: "100vw",
   width: "15.5%",
-  textAlign: "center",
+  textAlign: "left",
 };
 export default Sidebar;
