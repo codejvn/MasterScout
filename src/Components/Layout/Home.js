@@ -146,6 +146,9 @@ const blueAlliance = {
   backgroundColor: "rgb(150, 175, 255)",
   textAlign: "center",
 };
+const center = {
+  textAlign: "center",
+};
 const redAlliance = {
   backgroundColor: "rgb(255, 149, 149)",
   textAlign: "center",

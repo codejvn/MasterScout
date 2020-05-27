@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import Team from "../../../Reducers/Team.js";
+import Button from "react-bootstrap/Button";
+
 
 export class AutoChart extends Component {
     constructor(props) {
@@ -48,6 +50,7 @@ export class AutoChart extends Component {
         )
     }
 }
+
 const spacer = {
     padding: "2vh",
 };

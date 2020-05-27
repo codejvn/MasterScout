@@ -36,7 +36,7 @@ export class EndgameChart extends Component {
     }
     render() {
         return (
-            <div style={{ position: "relatuve", width: "400", height: "200" }}>
+            <div style={{ position: "relative", width: "400", height: "200" }}>
                 <Bar
                     options={{
                         responsive: true

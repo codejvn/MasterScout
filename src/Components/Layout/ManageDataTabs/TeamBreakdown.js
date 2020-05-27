@@ -3,6 +3,10 @@ import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
+import AutoChart from "./AutoChart.js";
+import EndgameChart from "./EndgameChart.js";
+import TeleopChart from "./TeleopChart.js";
+
 
 import Accordion from "react-bootstrap/Accordion";
 
