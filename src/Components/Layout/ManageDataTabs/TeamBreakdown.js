@@ -1,10 +1,15 @@
-
+import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+
+import Accordion from "react-bootstrap/Accordion";
 
 export class TeamBreakdownRaw extends Component {
   render() {
     let searchedTeam = this.props.search.teamSearched; // this is the boy
+    console.log(searchedTeam);
     return (
       <Container style={containerWidth}>
         {/* AUTONOMOUS */}
