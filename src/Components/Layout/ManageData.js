@@ -4,8 +4,8 @@ import Tabs from "react-bootstrap/Tabs";
 import { Import } from "./ManageDataTabs/Import";
 import { Raw } from "./ManageDataTabs/Raw";
 import { Analyzed } from "./ManageDataTabs/Analyzed";
-// import { Analyzed } from "./ManageDataTabs/Analyzed";
-// import { TeamBreakdown } from "./ManageDataTabs/TeamBreakdown";
+import { TeamBreakdown } from "./ManageDataTabs/TeamBreakdown";
+
 export class ManageData extends Component {
   render() {
     return (
@@ -20,7 +20,7 @@ export class ManageData extends Component {
           <Analyzed />
         </Tab>
         <Tab eventKey="Team Breakdown" title="Team Breakdown">
-          <p>Team Breakdown</p>
+          <TeamBreakdown />
         </Tab>
       </Tabs>
     );

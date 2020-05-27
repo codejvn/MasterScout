@@ -5,16 +5,17 @@ export class Matches extends Component {
   render() {
     return (
       <div style={fw}>
-        <Table striped borderless hover variant="light">
+        
+        <Table striped borderless hover variant="light" style={{marginTop:"2%"}}>
           <thead>
             <tr>
-              <th>Match #</th>
-              <th className="danger">Team 1</th>
-              <th>Team 2</th>
-              <th>Team 3</th>
-              <th>Team 4</th>
-              <th>Team 5</th>
-              <th>Team 6</th>
+              <th style={match}>Match #</th>
+              <th style={blueAlliance}>Team 1</th>
+              <th style={blueAlliance}>Team 2</th>
+              <th style={blueAlliance}>Team 3</th>
+              <th style={redAlliance}>Team 4</th>
+              <th style={redAlliance}>Team 5</th>
+              <th style={redAlliance}>Team 6</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +28,22 @@ export class Matches extends Component {
     );
   }
 }
+const spacer = {
+ padding: "2vh",
+};
+const match = {
+ backgroundColor: "rgb(200,200,200)",
+ textAlign: "center",
+};
+const blueAlliance = {
+  backgroundColor: "rgb(100, 100, 255)",
+  textAlign: "center",
+}
+const redAlliance = {
+  backgroundColor: "rgb(255, 149, 149)",
+  textAlign: "center",
+};
 const fw = {
-  width: "90%",
+  width: "100%",
 };
 export default Matches;

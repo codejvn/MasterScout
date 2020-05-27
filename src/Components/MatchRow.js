@@ -16,12 +16,12 @@ export class MatchRow extends Component {
     return (
       <tr style={this.currentStyle()}>
         <th>{match.match_number}</th>
-        <td className="primary">{match.alliances.blue.team_keys[0].slice(3)}</td>
-        <td className="primary">{match.alliances.blue.team_keys[1].slice(3)}</td>
-        <td className="primary">{match.alliances.blue.team_keys[2].slice(3)}</td>
-        <td className="danger">{match.alliances.red.team_keys[0].slice(3)}</td>
-        <td className="danger">{match.alliances.red.team_keys[1].slice(3)}</td>
-        <td className="danger">{match.alliances.red.team_keys[2].slice(3)}</td>
+        <td>{match.alliances.blue.team_keys[0].slice(3)}</td>
+        <td>{match.alliances.blue.team_keys[1].slice(3)}</td>
+        <td>{match.alliances.blue.team_keys[2].slice(3)}</td>
+        <td>{match.alliances.red.team_keys[0].slice(3)}</td>
+        <td>{match.alliances.red.team_keys[1].slice(3)}</td>
+        <td>{match.alliances.red.team_keys[2].slice(3)}</td>
       </tr>
     );
   }

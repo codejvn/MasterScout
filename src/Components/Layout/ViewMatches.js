@@ -19,8 +19,7 @@ export class ViewMatches extends Component {
           <Row className="border-bottom">
             <h2 className="h2">Matches</h2>
           </Row>
-          <Row>
-            <p>Here you can go to the next match and view the match schedule</p>
+          <Row style={spacer}>
           </Row>
           <Row>
             <h4 style={center}>Current Match</h4>
@@ -56,6 +55,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {};
+};
+const spacer = {
+  padding: "1vh",
 };
 export const ViewMatchesConn = connect(
   mapStateToProps,

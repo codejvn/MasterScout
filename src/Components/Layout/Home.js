@@ -63,6 +63,8 @@ export class Home extends Component {
               <h2 style={homeHeader}>Home</h2>
             </Col>
           </Row>
+          <Row style={spacer}>
+          </Row>
           <Row>
             <Col style={teamColumn}>
               <Label>Current Team: {tba.currentTeam}</Label>
@@ -110,6 +112,9 @@ const teamColumn = {
 const eventColumn = {
   width: "30%",
   fontWeight: "bold",
+};
+const spacer = {
+  padding: "1vh",
 };
 const homeDescription = {
   marginTop: "2%",

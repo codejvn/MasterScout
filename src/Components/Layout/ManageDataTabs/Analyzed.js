@@ -17,6 +17,7 @@ export class AnalyzedRaw extends Component {
             <Table style={center} responsive striped>
               <thead>
                 <tr>
+                  <td>Team</td>
                   <td>Common Pos</td>
                   <td>Init</td>
                   <td>Bottom Auto</td>

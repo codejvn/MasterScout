@@ -6,8 +6,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { Input } from "reactstrap";
 
 export class Navigation extends Component {
+
   render() {
     return (
       <Navbar
@@ -23,13 +25,18 @@ export class Navigation extends Component {
             </Col>
             <Col sm={13}>
               <Form inline style={rightFloat}>
-                <FormControl
+                <input
+                  name="search"
+                  ref="title"
                   type="text"
                   placeholder="Search"
                   className="mr-sm-2"
                   style={searchWidth}
                 />
-                <Button variant="outline-light" style={btnWidth}>
+                <Button
+                  variant="outline-light"
+                  style={btnWidth}
+                >
                   Search
                 </Button>
               </Form>
@@ -48,6 +55,7 @@ const positioning = {
 };
 const searchWidth = {
   width: "70vw",
+  padding: ".65%",
 };
 const rightFloat = {
   float: "right",
@@ -58,4 +66,5 @@ const brandWidth = {
 const btnWidth = {
   width: "10vw",
 };
+
 export default Navigation;
