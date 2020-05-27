@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-import Container from "react-bootstrap/Container";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
+
 import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
 
