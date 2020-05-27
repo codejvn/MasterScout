@@ -15,13 +15,13 @@ export class MatchRow extends Component {
     match = this.props.match;
     return (
       <tr style={this.currentStyle()}>
-        <th>{match.match_number}</th>
-        <td>{match.alliances.blue.team_keys[0].slice(3)}</td>
-        <td>{match.alliances.blue.team_keys[1].slice(3)}</td>
-        <td>{match.alliances.blue.team_keys[2].slice(3)}</td>
-        <td>{match.alliances.red.team_keys[0].slice(3)}</td>
-        <td>{match.alliances.red.team_keys[1].slice(3)}</td>
-        <td>{match.alliances.red.team_keys[2].slice(3)}</td>
+        <th style={center}>{match.match_number}</th>
+        <td style={center}>{match.alliances.blue.team_keys[0].slice(3)}</td>
+        <td style={center}>{match.alliances.blue.team_keys[1].slice(3)}</td>
+        <td style={center}>{match.alliances.blue.team_keys[2].slice(3)}</td>
+        <td style={center}>{match.alliances.red.team_keys[0].slice(3)}</td>
+        <td style={center}>{match.alliances.red.team_keys[1].slice(3)}</td>
+        <td style={center}>{match.alliances.red.team_keys[2].slice(3)}</td>
       </tr>
     );
   }
@@ -30,4 +30,8 @@ const plain = {};
 const selected = {
   backgroundColor: "rgb(200,200,255)",
 };
+const center = {
+  textAlign: "center",
+}
+
 export default MatchRow;
