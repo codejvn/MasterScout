@@ -1,179 +1,162 @@
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
-import Modal from "react-bootstrap/Modal";
+import { MatchNum } from "../MatchNum";
+import MatchRow from "../MatchRow";
+import RawDataTable from "./ManageDataTabs/RawDataTable";
+import AnalyzedTable from "./ManageDataTabs/AnalyzedTable";
+import { GetStartedPopup } from "../GetStartedPopup";
 import { connect } from "react-redux";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Label,
-} from "reactstrap";
-// actions
-import { setTeam } from "../../Actions/setTeam";
-import { setEvent } from "../../Actions/setEvent";
-import { setEvents } from "../../Actions/UpdateEvent";
-import { setSchedule } from "../../Actions/setSchedule";
-import { setTeams } from "../../Actions/setTeams";
+
+import Table from "react-bootstrap/Table";
 
 let tba;
-export class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.inputRef = React.createRef();
-    this.state = {
-      dropDownOpen: false,
-      modalDisplay: true,
-    };
-  }
+let matches;
 
-  toggleDropdown = () => {
-    this.setState({ ...this.state, dropDownOpen: !this.state.dropDownOpen });
-  };
-  closeModal = () => {
-    this.setState({
-      ...this.state,
-      modalDisplay: false,
-    });
-  };
-  teamSubmitHandle = (e) => {
-    e.preventDefault();
-    this.props.setTeam(this._input.value);
-    this.props.setEvents(this._input.value);
-    return false;
-  };
-  createCompetition = (e) => {
-    console.log(tba.event.key);
-    this.props.setTeams(tba.event.key);
-    this.props.setSchedule(tba.event.key);
-    this.closeModal();
-  };
-  eventSelectHandle = (e) => {
-    this.props.setEvent(tba.events[0]); // HARD CODED FOR NOW
-  };
+export class Home extends Component {
   componentDidMount() {
     // this.props.setTeam(2590);
     // this.props.setEvents(2590);
     // this.props.setSchedule(tba.event.key);
   }
+  getBlueTeams = () => {
+    return tba.schedule[matches.currentMatch - 1].alliances.blue.team_keys.map(
+      (teamNum) => {
+        let teamElement = this.props.dataReducer.teams.find(
+          (team) => team.teamNumber == teamNum.slice(3)
+        );
+        return teamElement;
+      }
+    );
+  };
+  getRedTeams = () => {
+    return tba.schedule[matches.currentMatch - 1].alliances.red.team_keys.map(
+      (teamNum) => {
+        let teamElement = this.props.dataReducer.teams.find(
+          (team) => team.teamNumber == teamNum.slice(3)
+        );
+        return teamElement;
+      }
+    );
+  };
+  getTeams = () => {
+    let teams = [];
+    teams.push(...this.getBlueTeams());
+    teams.push(...this.getRedTeams());
+    console.log("THESE ARE THE TEAMS");
+    console.log(teams);
+    return teams;
+  };
   render() {
     tba = this.props.thebluealliance;
+    matches = this.props.matches;
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-        <Container></Container>
-        <Modal
-          show={this.state.modalDisplay}
-          onHide={this.closeModal}
-          style={modalStyle}
-          size="sm"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Getting Started</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Container>
-              <Row>
-                <Col style={teamColumn}>
-                  <Label>Team Number: {tba.currentTeam}</Label>
-                </Col>
-              </Row>
-              <Row>
-                <Col style={teamColumn}>
-                  <Form onSubmit={this.teamSubmitHandle} style={center}>
-                    <FormControl
-                      type="text"
-                      placeholder="My Team Number"
-                      className="mr-sm-2"
-                      ref={(el) => {
-                        this._input = el;
-                      }}
-                    />
-                  </Form>
-                </Col>
-              </Row>
-              <Row style={spacer}></Row>
-              <Row>
-                <Col style={teamColumn}>
-                  <Label>Event: {tba.event.name}</Label>
-                  <Dropdown
-                    isOpen={this.state.dropDownOpen}
-                    toggle={this.toggleDropdown}
-                  >
-                    <DropdownToggle caret>Dropdown</DropdownToggle>
-                    <DropdownMenu>
-                      {tba.events.map((event) => (
-                        <DropdownItem onClick={this.eventSelectHandle}>
-                          {event.name}
-                        </DropdownItem>
-                      ))}
-                    </DropdownMenu>
-                  </Dropdown>
-                </Col>
-              </Row>
-
-              <Row style={spacer}></Row>
-            </Container>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="primary"
-              onClick={this.createCompetition}
-              style={startButton}
-            >
-              Start
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <Container>
+          <Row className="border-bottom">
+            <Col>
+              <h2 style={homeHeader}>Home</h2>
+            </Col>
+          </Row>
+          <Row style={spacer}></Row>
+          <Row>
+            <MatchNum matchNum={matches.currentMatch} />
+          </Row>
+          <Row>
+            {tba.schedule.length > 0 && (
+              <Table
+                striped
+                borderless
+                hover
+                variant="light"
+                style={{ marginTop: "2%" }}
+              >
+                <thead>
+                  <tr>
+                    <th style={match}>Match #</th>
+                    <th style={blueAlliance}>Team 1</th>
+                    <th style={blueAlliance}>Team 2</th>
+                    <th style={blueAlliance}>Team 3</th>
+                    <th style={redAlliance}>Team 4</th>
+                    <th style={redAlliance}>Team 5</th>
+                    <th style={redAlliance}>Team 6</th>
+                  </tr>
+                </thead>
+                <MatchRow
+                  match={tba.schedule[matches.currentMatch - 1]}
+                  currentMatch="no highlight"
+                />
+              </Table>
+            )}
+          </Row>
+          <Row>
+            {tba.schedule.length > 0 && (
+              <Table>
+                {tba.schedule[
+                  matches.currentMatch - 1
+                ].alliances.blue.team_keys.map((teamNum) => {
+                  let teamElement = this.props.dataReducer.teams.find(
+                    (team) => team.teamNumber == teamNum.slice(3)
+                  );
+                  return <RawDataTable team={teamElement} />;
+                })}
+              </Table>
+            )}
+          </Row>
+          <Row>
+            {tba.schedule.length > 0 && (
+              <Table>
+                {tba.schedule[
+                  matches.currentMatch - 1
+                ].alliances.red.team_keys.map((teamNum) => {
+                  let teamElement = this.props.dataReducer.teams.find(
+                    (team) => team.teamNumber == teamNum.slice(3)
+                  );
+                  return <RawDataTable team={teamElement} />;
+                })}
+              </Table>
+            )}
+          </Row>
+          <Row>
+            {tba.schedule.length > 0 && (
+              <AnalyzedTable teams={this.getTeams()} />
+            )}
+          </Row>
+          <Row></Row>
+        </Container>
+        <GetStartedPopup />
       </div>
     );
   }
 }
-const teamColumn = {
-  width: "70%",
-  textAlign: "center",
-  fontWeight: "500",
-  margin: "auto",
-};
-const modalStyle = {
-  textAlign: "center",
-  width: "100%",
-};
-const startButton = {
-  width: "90%",
-  margin: "auto",
-  textAlign: "center",
-};
-const center = {
-  textAlign: "center",
-};
 const spacer = {
   padding: "1vh",
 };
-const homeDescription = {
-  marginTop: "2%",
-};
 const homeHeader = {
   marginBottom: "2%",
+};
+const match = {
+  backgroundColor: "rgb(200,200,200)",
+  textAlign: "center",
+};
+const blueAlliance = {
+  backgroundColor: "rgb(150, 175, 255)",
+  textAlign: "center",
+};
+const redAlliance = {
+  backgroundColor: "rgb(255, 149, 149)",
+  textAlign: "center",
 };
 const mapStateToProps = (state) => {
   return {
     thebluealliance: state.thebluealliance,
     dataReducer: state.dataReducer,
+    matches: state.matches,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
-  return {
-    setTeam: (num) => dispatch(setTeam(num)),
-    setEvents: (teamNum) => dispatch(setEvents(teamNum)),
-    setEvent: (event) => dispatch(setEvent(event)),
-    setSchedule: (eventCode) => dispatch(setSchedule(eventCode)),
-    setTeams: (eventCode) => dispatch(setTeams(eventCode)),
-  };
+  return {};
 };
 export const HomeCom = connect(mapStateToProps, mapDispatchToProps)(Home);
