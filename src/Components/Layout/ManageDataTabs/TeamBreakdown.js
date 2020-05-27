@@ -9,6 +9,7 @@ import Accordion from "react-bootstrap/Accordion";
 export class TeamBreakdownRaw extends Component {
   render() {
     let searchedTeam = this.props.search.teamSearched; // this is the boy
+    console.log(searchedTeam);
     return (
       <Container style={containerWidth}>
         {/* AUTONOMOUS */}

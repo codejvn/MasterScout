@@ -13,6 +13,7 @@ import Table from "react-bootstrap/Table";
 
 let tba;
 let matches;
+let data;
 
 export class Home extends Component {
   componentDidMount() {
@@ -51,6 +52,7 @@ export class Home extends Component {
   render() {
     tba = this.props.thebluealliance;
     matches = this.props.matches;
+    data = this.props.dataReducer;
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
@@ -64,7 +66,7 @@ export class Home extends Component {
             <MatchNum matchNum={matches.currentMatch} />
           </Row>
           <Row>
-            {tba.schedule.length > 0 && (
+            {tba.schedule.length > 10 && (
               <Table
                 striped
                 borderless
@@ -91,7 +93,7 @@ export class Home extends Component {
             )}
           </Row>
           <Row>
-            {tba.schedule.length > 0 && (
+            {tba.schedule.length > 10 && (
               <Table>
                 {tba.schedule[
                   matches.currentMatch - 1
@@ -105,7 +107,7 @@ export class Home extends Component {
             )}
           </Row>
           <Row>
-            {tba.schedule.length > 0 && (
+            {tba.schedule.length > 10 && (
               <Table>
                 {tba.schedule[
                   matches.currentMatch - 1
@@ -119,7 +121,7 @@ export class Home extends Component {
             )}
           </Row>
           <Row>
-            {tba.schedule.length > 0 && (
+            {tba.schedule.length > 10 && (
               <AnalyzedTable teams={this.getTeams()} />
             )}
           </Row>

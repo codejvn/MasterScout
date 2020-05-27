@@ -32,6 +32,7 @@ export class GetStartedPopupRaw extends Component {
     this.state = {
       dropDownOpen: false,
       modalDisplay: true,
+      buttonActive: false,
     };
   }
 
@@ -51,7 +52,7 @@ export class GetStartedPopupRaw extends Component {
     return false;
   };
   createCompetition = (e) => {
-    console.log(tba.event.key);
+    console.log("THIS IS THE EVENT KEY");
     this.props.setTeams(tba.event.key);
     this.props.setSchedule(tba.event.key);
     this.closeModal();
@@ -121,6 +122,7 @@ export class GetStartedPopupRaw extends Component {
             variant="primary"
             onClick={this.createCompetition}
             style={startButton}
+            disabled={tba.event == ""}
           >
             Start
           </Button>
