@@ -36,16 +36,16 @@ export class MatchNumRaw extends Component {
     return (
       <div style={center}>
         <Container>
-          <Row>
+          <Row style={spacer}>
             <Col></Col>
             <Col>
-              <Button onClick={this.decrement}>Back</Button>
+              <Button style={ButtonColors} onClick={this.decrement}>Back</Button>
             </Col>
             <Col sm={0}>
               <h2>{this.props.matchNum}</h2>
             </Col>
             <Col>
-              <Button onClick={this.increment}>Next</Button>
+              <Button style={ButtonColors} onClick={this.increment}>Next</Button>
             </Col>
             <Col></Col>
           </Row>
@@ -63,6 +63,13 @@ const mapStateToProps = (state) => {
     matches: state.matches,
     tba: state.thebluealliance,
   };
+};
+const spacer = {
+ marginTop: "1vh",
+};
+const ButtonColors = {
+  backgroundColor: "lightGray",
+  color: "black",
 };
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)

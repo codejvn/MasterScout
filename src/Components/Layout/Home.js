@@ -59,16 +59,14 @@ export class Home extends Component {
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
           <Row className="border-bottom">
-            <h2>Home</h2>
-          </Row>
-          <Row>
-            <p>
-              Here's where you can get a general brief overview of the current
-              competiton and manage various parts
-            </p>
-          </Row>
-          <Row>
             <Col>
+              <h2 style={homeHeader}>Home</h2>
+            </Col>
+          </Row>
+          <Row style={spacer}>
+          </Row>
+          <Row>
+            <Col style={teamColumn}>
               <Label>Current Team: {tba.currentTeam}</Label>
               <Form inline onSubmit={this.teamSubmitHandle}>
                 <FormControl
@@ -84,7 +82,7 @@ export class Home extends Component {
                 </Button>
               </Form>
             </Col>
-            <Col>
+            <Col style={eventColumn}>
               <Label>Current Event: {tba.event.name}</Label>
               <Dropdown
                 isOpen={this.state.dropDownOpen}
@@ -100,24 +98,29 @@ export class Home extends Component {
                 </DropdownMenu>
               </Dropdown>
             </Col>
-            <Col>
-              <Label>Create a Competiton</Label> <br></br>
-              <Button
-                variant="dark"
-                style={createCompButton}
-                onClick={this.createCompetition}
-              >
-                Create
-              </Button>
-            </Col>
           </Row>
         </Container>
       </div>
     );
   }
 }
-const createCompButton = {
-  width: "10vw",
+
+const teamColumn = {
+  width: "70%",
+  fontWeight: "bold",
+};
+const eventColumn = {
+  width: "30%",
+  fontWeight: "bold",
+};
+const spacer = {
+  padding: "1vh",
+};
+const homeDescription = {
+  marginTop: "2%",
+};
+const homeHeader = {
+  marginBottom: "2%",
 };
 const mapStateToProps = (state) => {
   return {

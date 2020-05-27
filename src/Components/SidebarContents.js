@@ -20,10 +20,9 @@ export class SidebarContents extends Component {
           </Tab.Pane>
           <Tab.Pane eventKey="4">Compare Teams</Tab.Pane>
           <Tab.Pane eventKey="5">Team Draft</Tab.Pane>
-          <Tab.Pane eventKey="6">Match Plan</Tab.Pane>
-          <Tab.Pane eventKey="7">Ranking Lookup</Tab.Pane>
-          <Tab.Pane eventKey="8">Pit Scouting</Tab.Pane>
-          <Tab.Pane eventKey="9">Settings</Tab.Pane>
+          <Tab.Pane eventKey="6">Pit Scouting</Tab.Pane>
+          <Tab.Pane eventKey="7">Rankings</Tab.Pane>
+          <Tab.Pane eventKey="8">Settings</Tab.Pane>
         </Tab.Content>
       </Col>
     );

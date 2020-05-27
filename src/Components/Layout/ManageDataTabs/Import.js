@@ -82,21 +82,6 @@ export class ImportRaw extends Component {
           <Row className="border-bottom">
             <h2>Import Data</h2>
           </Row>
-          {this.state.showSuccess && (
-            <div>
-              <Row>
-                <div style={spacerSmall}></div>
-              </Row>
-              <Alert
-                variant="success"
-                onClose={() => this.setShow(false)}
-                dismissible
-                style={noBotMargin}
-              >
-                Success! The data was successfully imported.
-              </Alert>
-            </div>
-          )}
           <Row>
             <div style={spacer}></div>
           </Row>
@@ -107,10 +92,23 @@ export class ImportRaw extends Component {
             return <DataPreview data={data} editable={false}></DataPreview>;
           })}
           <Row>
-            <Button block onClick={this.importHandle}>
+            <Button style={importStyle} block onClick={this.importHandle}>
               Import
             </Button>
           </Row>
+          <Row>
+            <div style={spacer}></div>
+          </Row>
+          {this.state.showSuccess && (
+            <Alert
+              variant="success"
+              onClose={() => this.setShow(false)}
+              dismissible 
+              style = {alertStyle}
+            >
+              Success! The data was successfully imported.
+            </Alert>
+          )}
         </Container>
       </div>
     );
@@ -121,6 +119,7 @@ const mapStateToProps = (state) => {
     importer: state.importer,
   };
 };
+
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {
@@ -129,6 +128,15 @@ const mapDispatchToProps = (dispatch) => {
     // modifyData: (data) => dispatch(modifyData(modifyData)),
     // Upload Data
   };
+};
+
+const importStyle = {
+  marginTop: "5%",
+  width: "25%",
+};
+const alertStyle = {
+  marginTop: "1%",
+  width: "100%",
 };
 const formWidth = {
   width: "100%",

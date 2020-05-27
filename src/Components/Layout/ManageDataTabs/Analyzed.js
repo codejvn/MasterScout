@@ -17,31 +17,31 @@ export class AnalyzedRaw extends Component {
             <Table style={center} responsive striped>
               <thead>
                 <tr>
-                  <td>#</td>
-                  <td>Most Common Starting Position</td>
-                  <td>% Crossed Init Line</td>
-                  <td>Average Bottom Scored Auto</td>
-                  <td>Average Outer Scored Auto</td>
-                  <td>Average Inner Scored Auto</td>
-                  <td>Avg Attempted Init Line Auto</td>
-                  <td>Avg Attempted Near Trench Auto</td>
-                  <td>Avg Bottom Teleop</td>
-                  <td>Avg Outer Teleop</td>
-                  <td>Avg Inner Teleop</td>
-                  <td>Avg Missed Teleop</td>
-                  <td>Avg Cycles Teleop</td>
-                  <td>% CP Rotation</td>
-                  <td>% CP Position</td>
-                  <td>T-Zone Attempted</td>
-                  <td>Init Line Attempted</td>
-                  <td>Near Trench Attempted</td>
-                  <td>Far Trench Attempted</td>
-                  <td>Average Defense Rating</td>
-                  <td>% Climbed</td>
-                  <td>% Leveled</td>
-                  <td>Most Common Climb Location</td>
+                  <td>Team</td>
+                  <td>Common Pos</td>
+                  <td>Init</td>
+                  <td>Bottom Auto</td>
+                  <td>Outer Auto</td>
+                  <td>Inner Auto</td>
+                  <td>Attempt Init A</td>
+                  <td>Attempt Near Trench A</td>
+                  <td>Bottom Teleop</td>
+                  <td>Outer Teleop</td>
+                  <td>Inner Teleop</td>
+                  <td>Missed Teleop</td>
+                  <td>Cycles Teleop</td>
+                  <td>% CPR</td>
+                  <td>% CPP</td>
+                  <td>T-Zone Attempt</td>
+                  <td>Init Attempt</td>
+                  <td>N Trench Attempt</td>
+                  <td>Far Trench Attempt</td>
+                  <td>Defense</td>
+                  <td>% Climb</td>
+                  <td>% Level</td>
+                  <td>Common Climb Location</td>
                   <td>% Parked</td>
-                  <td>Average Time Left</td>
+                  <td>Climb Time Left</td>
                 </tr>
               </thead>
               <tbody>

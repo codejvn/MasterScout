@@ -10,3 +10,4 @@ export const CLEAR_DATA = "clearData";
 export const SET_TEAMS = "setTeams";
 export const CREATE_TEAMS = "createTeams";
 export const ADDPEND_MATCHDATA = "appendMatchData";
+export const SEARCH_TEAM = "searchTeam";
