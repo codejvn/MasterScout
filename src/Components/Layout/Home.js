@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
 import { connect } from "react-redux";
 import {
   Dropdown,
@@ -27,15 +28,21 @@ export class Home extends Component {
     this.inputRef = React.createRef();
     this.state = {
       dropDownOpen: false,
+      modalDisplay: true,
     };
   }
 
   toggleDropdown = () => {
-    this.setState({ dropDownOpen: !this.state.dropDownOpen });
+    this.setState({ ...this.state, dropDownOpen: !this.state.dropDownOpen });
+  };
+  closeModal = () => {
+    this.setState({
+      ...this.state,
+      modalDisplay: false,
+    });
   };
   teamSubmitHandle = (e) => {
     e.preventDefault();
-    console.log("Submitting " + this._input.value);
     this.props.setTeam(this._input.value);
     this.props.setEvents(this._input.value);
     return false;
@@ -44,6 +51,7 @@ export class Home extends Component {
     console.log(tba.event.key);
     this.props.setTeams(tba.event.key);
     this.props.setSchedule(tba.event.key);
+    this.closeModal();
   };
   eventSelectHandle = (e) => {
     this.props.setEvent(tba.events[0]); // HARD CODED FOR NOW
@@ -57,61 +65,91 @@ export class Home extends Component {
     tba = this.props.thebluealliance;
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-        <Container>
-          <Row className="border-bottom">
-            <Col>
-              <h2 style={homeHeader}>Home</h2>
-            </Col>
-          </Row>
-          <Row style={spacer}>
-          </Row>
-          <Row>
-            <Col style={teamColumn}>
-              <Label>Current Team: {tba.currentTeam}</Label>
-              <Form inline onSubmit={this.teamSubmitHandle}>
-                <FormControl
-                  type="text"
-                  placeholder="My Team Number"
-                  className="mr-sm-2"
-                  ref={(el) => {
-                    this._input = el;
-                  }}
-                />
-                <Button variant="outline-dark" type="submit">
-                  Set
-                </Button>
-              </Form>
-            </Col>
-            <Col style={eventColumn}>
-              <Label>Current Event: {tba.event.name}</Label>
-              <Dropdown
-                isOpen={this.state.dropDownOpen}
-                toggle={this.toggleDropdown}
-              >
-                <DropdownToggle caret>Dropdown</DropdownToggle>
-                <DropdownMenu>
-                  {tba.events.map((event) => (
-                    <DropdownItem onClick={this.eventSelectHandle}>
-                      {event.name}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            </Col>
-          </Row>
-        </Container>
+        <Container></Container>
+        <Modal
+          show={this.state.modalDisplay}
+          onHide={this.closeModal}
+          style={modalStyle}
+          size="sm"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Getting Started</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col style={teamColumn}>
+                  <Label>Team Number: {tba.currentTeam}</Label>
+                </Col>
+              </Row>
+              <Row>
+                <Col style={teamColumn}>
+                  <Form onSubmit={this.teamSubmitHandle} style={center}>
+                    <FormControl
+                      type="text"
+                      placeholder="My Team Number"
+                      className="mr-sm-2"
+                      ref={(el) => {
+                        this._input = el;
+                      }}
+                    />
+                  </Form>
+                </Col>
+              </Row>
+              <Row style={spacer}></Row>
+              <Row>
+                <Col style={teamColumn}>
+                  <Label>Event: {tba.event.name}</Label>
+                  <Dropdown
+                    isOpen={this.state.dropDownOpen}
+                    toggle={this.toggleDropdown}
+                  >
+                    <DropdownToggle caret>Dropdown</DropdownToggle>
+                    <DropdownMenu>
+                      {tba.events.map((event) => (
+                        <DropdownItem onClick={this.eventSelectHandle}>
+                          {event.name}
+                        </DropdownItem>
+                      ))}
+                    </DropdownMenu>
+                  </Dropdown>
+                </Col>
+              </Row>
+
+              <Row style={spacer}></Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="primary"
+              onClick={this.createCompetition}
+              style={startButton}
+            >
+              Start
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
 }
-
 const teamColumn = {
   width: "70%",
-  fontWeight: "bold",
+  textAlign: "center",
+  fontWeight: "500",
+  margin: "auto",
 };
-const eventColumn = {
-  width: "30%",
-  fontWeight: "bold",
+const modalStyle = {
+  textAlign: "center",
+  width: "100%",
+};
+const startButton = {
+  width: "90%",
+  margin: "auto",
+  textAlign: "center",
+};
+const center = {
+  textAlign: "center",
 };
 const spacer = {
   padding: "1vh",
