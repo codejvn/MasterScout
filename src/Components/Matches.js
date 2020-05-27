@@ -36,11 +36,11 @@ const match = {
  textAlign: "center",
 };
 const blueAlliance = {
-  backgroundColor: "rgb(100, 100, 255)",
+  backgroundColor:'rgba(54, 162, 235, 0.7)',
   textAlign: "center",
 }
 const redAlliance = {
-  backgroundColor: "rgb(255, 149, 149)",
+  backgroundColor: 'rgba(255, 99, 132, 0.7)',
   textAlign: "center",
 };
 const fw = {
