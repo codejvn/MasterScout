@@ -6,10 +6,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { searchTeam } from "../Actions/searchTeam";
 import { Input } from "reactstrap";
+import { connect } from "react-redux";
 
-export class Navigation extends Component {
-
+export class NavigationRaw extends Component {
+  searchHandle = (e) => {
+    this.props.searchTeam(this._input.value);
+    e.preventDefault();
+  };
   render() {
     return (
       <Navbar
@@ -24,19 +29,17 @@ export class Navigation extends Component {
               <Navbar.Brand style={brandWidth}>NEMƎSIS</Navbar.Brand>
             </Col>
             <Col sm={13}>
-              <Form inline style={rightFloat}>
+              <Form inline style={rightFloat} onSubmit={this.searchHandle}>
                 <input
-                  name="search"
-                  ref="title"
                   type="text"
-                  placeholder="Search"
                   className="mr-sm-2"
+                  ref={(el) => {
+                    this._input = el;
+                  }}
+                  placeholder="Search"
                   style={searchWidth}
                 />
-                <Button
-                  variant="outline-light"
-                  style={btnWidth}
-                >
+                <Button variant="outline-light" style={btnWidth}>
                   Search
                 </Button>
               </Form>
@@ -66,5 +69,19 @@ const brandWidth = {
 const btnWidth = {
   width: "10vw",
 };
+const mapStateToProps = (state) => {
+  return {
+    // nothing i think
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  // propName: (parameters) => dispatch(action)
+  return {
+    searchTeam: (teamNum) => dispatch(searchTeam(teamNum)),
+  };
+};
 
-export default Navigation;
+export const Navigation = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavigationRaw);
