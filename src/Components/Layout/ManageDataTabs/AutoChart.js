@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import Team from "../../../Reducers/Team.js";
 
 export class AutoChart extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export class AutoChart extends Component {
     }
     render() {
         return (
-            <div style={{ position: "relatuve", width: "400", height: "200" }}>
+            <div style={{ position: "relative", width: "400", height: "200" }}>
                 <Bar
                     options={{
                         responsive: true

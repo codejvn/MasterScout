@@ -10,6 +10,8 @@ import EndgameChart from "./EndgameChart.js";
 export class TeamBreakdownRaw extends Component {
     render() {
         let searchedTeam = this.props.search.teamSearched; // this is the boy
+        
+
         return (
             <Container style={containerWidth}>
                 {/* AUTONOMOUS */}
@@ -19,7 +21,7 @@ export class TeamBreakdownRaw extends Component {
                             AUTONOMOUS
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><AutoChart /></div>
+                            <div><AutoChart team={searchedTeam}/></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -31,7 +33,7 @@ export class TeamBreakdownRaw extends Component {
                             TELEOPERATED
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><TeleopChart /></div>
+                            <div><TeleopChart team={searchedTeam}/></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -43,7 +45,7 @@ export class TeamBreakdownRaw extends Component {
                             ENDGAME
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><EndgameChart /></div>
+                            <div><EndgameChart team={searchedTeam}/></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -57,7 +59,7 @@ const chart = {
     backgroundColor: "red",
 };
 const spacer = {
-    padding: "0.5vh",
+    padding: "0.8vh",
 };
 const containerWidth = {
     width: "100%",
@@ -65,6 +67,7 @@ const containerWidth = {
 const mapStateToProps = (state) => {
     return {
         search: state.search,
+        teams: state.dataReducer
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -73,6 +76,7 @@ const mapDispatchToProps = (dispatch) => {
         // put actions here
     };
 };
+
 export const TeamBreakdown = connect(
     mapStateToProps,
     mapDispatchToProps
