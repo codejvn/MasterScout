@@ -17,25 +17,19 @@ export class Sidebar extends Component {
               <Nav.Link eventKey="3">View Matches</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="4" disabled>
-                Compare
-              </Nav.Link>
+              <Nav.Link eventKey="4" disabled>Compare</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="5">Export</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6" disabled>
-                Pit Scouting
-              </Nav.Link>
+              <Nav.Link eventKey="6" disabled> Pit Scouting</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="7"> Rankings </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="8" disabled>
-                Settings
-              </Nav.Link>
+              <Nav.Link eventKey="8" disabled>Settings</Nav.Link>
             </Nav.Item>
             <Nav.Item></Nav.Item>
           </Nav>

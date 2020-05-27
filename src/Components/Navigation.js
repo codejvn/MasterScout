@@ -35,9 +35,8 @@ export class Navigation extends Component {
                 />
                 <Button
                   variant="outline-light"
-                  style={btnWidth}
-                >
-                  Search
+                  style={btnWidth}>
+                    Search
                 </Button>
               </Form>
             </Col>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import {Bar} from "react-chartjs-2";
+import Chart from "./Chart.js";
 
 export class TeamBreakdown extends Component {
     render() {
@@ -15,9 +15,7 @@ export class TeamBreakdown extends Component {
                             AUTONOMOUS
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div>
-                                <canvas style={chart}></canvas>
-                            </div>
+                            <h2><Chart /></h2>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -53,12 +51,10 @@ export class TeamBreakdown extends Component {
             </Container>
         );
     }
-
 }
 const chart = {
     width: "400",
     height: "200",
-    backgroundColor: "red",
 };
 const spacer = {
     padding: "0.5vh",
