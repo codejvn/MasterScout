@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
+import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
+import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import AutoChart from "./AutoChart.js";
-import TeleopChart from "./TeleopChart.js";
-import EndgameChart from "./EndgameChart.js";
+
+import Accordion from "react-bootstrap/Accordion";
 
 export class TeamBreakdownRaw extends Component {
-    render() {
-        let searchedTeam = this.props.search.teamSearched; // this is the boy
-        
-
-        return (
-            <Container style={containerWidth}>
-                {/* AUTONOMOUS */}
-                <Accordion style={spacer} defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            AUTONOMOUS
+  render() {
+    let searchedTeam = this.props.search.teamSearched; // this is the boy
+    console.log(searchedTeam);
+    return (
+      <Container style={containerWidth}>
+        {/* AUTONOMOUS */}
+        <Accordion style={spacer} defaultActiveKey="1">
+          <Card>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              AUTONOMOUS
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                             <div><AutoChart team={searchedTeam}/></div>
