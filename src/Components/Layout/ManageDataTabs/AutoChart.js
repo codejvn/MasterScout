@@ -1,58 +1,101 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
 import Team from "../../../Reducers/Team.js";
 import Button from "react-bootstrap/Button";
 
-
-export class AutoChart extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: {
-                labels: ["AUTO INNER", "AUTO OUTER", "AUTO BOTTOM", "AUTO MISSED", "AUTO ATTEMPTED"],
-                datasets: [
-                    {
-                        data: [4, 5, 3, 5, 2, 3],
-                        label: "POWER CELLS SCORED IN AUTONOMOUS",
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-
-                    }
-                ]
-            }
+export class AutoChartRaw extends Component {
+  getChartData = () => {
+    // this is hard coded for now, import auto props from team.js later
+    try {
+      let chartData = [];
+      if (this.props.team.aggregated[0].length > 0) {
+        for (let i = 2; i < 6; i++) {
+          console.log("SOME CHART DATA: " + this.props.team.aggregated[0][i]);
+          chartData.push(this.props.team.aggregated[0][i]);
         }
+      }
+      return chartData;
+    } catch (err) {
+      return [];
     }
-    render() {
-        return (
-            <div style={{ position: "relative", width: "400", height: "200" }}>
-                <Bar
-                    options={{
-                        responsive: true
-                    }}
-                    data={this.state.data}
-                />
-            </div>
-        )
-    }
+  };
+  getChartInfo = () => {
+    return {
+      data: {
+        labels: ["BOTTOM", "OUTER", "INNER", "ATTEMPTED", "MISSED"],
+        datasets: [
+          {
+            data: this.getChartData(),
+            label: "AUTONOMOUS",
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)",
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+    };
+  };
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <Bar
+        options={{
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        }}
+        data={this.getChartInfo().data}
+        style={chart}
+      />
+    );
+  }
 }
-
+const chart = {
+  width: "20%",
+};
 const spacer = {
-    padding: "2vh",
+  padding: "2vh",
+};
+const mapStateToProps = (state) => {
+  return {
+    search: state.search,
+    teams: state.dataReducer,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  // propName: (parameters) => dispatch(action)
+  return {
+    // put actions here
+  };
 };
 
-export default AutoChart;
+export const AutoChart = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AutoChartRaw);

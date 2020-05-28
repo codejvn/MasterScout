@@ -9,7 +9,7 @@ import { TeamBreakdown } from "./ManageDataTabs/TeamBreakdown";
 export class ManageData extends Component {
   render() {
     return (
-      <Tabs defaultActiveKey="Raw" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="Team Breakdown" id="uncontrolled-tab-example">
         <Tab eventKey="Import" title="Import">
           <Import />
         </Tab>

@@ -11,7 +11,7 @@ import { Sidebar } from "./Components/Sidebar";
 import { SidebarContents } from "./Components/SidebarContents";
 export class App extends Component {
   state = {
-    activePage: 0,
+    activePage: 1,
   };
   render() {
     if (this.state.activePage == 0) {
@@ -50,7 +50,7 @@ export class App extends Component {
           <div>
             <Navigation />
             <Tab.Container
-              defaultActiveKey="1"
+              defaultActiveKey="2"
               className="justify-content-between"
             >
               <Row>
@@ -83,6 +83,7 @@ const jumbotronStyle = {
   textAlign: "center",
   height: "100vh",
   color: "white",
+  backgroundColor: "black",
   backgroundImage:
     "linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),url(https://source.unsplash.com/collection/8536824/1600x900)",
 };
