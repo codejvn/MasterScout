@@ -5,6 +5,7 @@ import { MultipleChoice } from '../MultipleChoice.js';
 import { Boolean } from '../Boolean.js';
 import Col from 'react-bootstrap/Col';
 import PlusMinus from "../PlusMinus.js";
+import Button from 'react-bootstrap/Button';
 
 export class PitScouting extends Component {
     state = {
@@ -293,6 +294,12 @@ export class PitScouting extends Component {
 const spacer = {
     paddingTop: "3vh",
     textAlign: "center"
+};
+const submitButton = {
+    paddingTop: "3vh",
+    textAlign: "center",
+    width:"20%",
+
 };
 const enlarge = {
     fontSize: "230%",

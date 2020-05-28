@@ -6,7 +6,7 @@ export class Sidebar extends Component {
     return (
       <Col style={rightBorder}>
         <div>
-          <Nav variant="pills" className="flex-column">
+          <Nav variant="pills" className="flex-column" >
             <Nav.Item>
               <Nav.Link eventKey="1">Home</Nav.Link>
             </Nav.Item>
@@ -45,7 +45,7 @@ const rightBorder = {
   borderRightStyle: "solid",
   borderColor: "rgb(225,225,225)",
   backgroundColor: "rgb(250,250,250)",
-  height: "100vw",
+  height: "350vw",
   width: "15.5%",
   textAlign: "left",
 };
