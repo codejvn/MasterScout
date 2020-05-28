@@ -11,19 +11,19 @@ import TeleopChart from "./TeleopChart.js";
 import Accordion from "react-bootstrap/Accordion";
 
 export class TeamBreakdownRaw extends Component {
-  render() {
-    let searchedTeam = this.props.search.teamSearched; // this is the boy
-    console.log(searchedTeam);
-    return (
-      <Container style={containerWidth}>
-        {/* AUTONOMOUS */}
-        <Accordion style={spacer} defaultActiveKey="1">
-          <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              AUTONOMOUS
+    render() {
+        let searchedTeam = this.props.search.teamSearched; // this is the boy
+        return (
+            <Container style={containerWidth}>
+                <h1>Team {searchedTeam}</h1>
+                {/* AUTONOMOUS */}
+                <Accordion style={spacer} defaultActiveKey="1">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                            AUTONOMOUS
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><AutoChart team={searchedTeam}/></div>
+                            <div><AutoChart team={searchedTeam} /></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -35,7 +35,7 @@ export class TeamBreakdownRaw extends Component {
                             TELEOPERATED
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><TeleopChart team={searchedTeam}/></div>
+                            <div><TeleopChart team={searchedTeam} /></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -47,7 +47,7 @@ export class TeamBreakdownRaw extends Component {
                             ENDGAME
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><EndgameChart team={searchedTeam}/></div>
+                            <div><EndgameChart team={searchedTeam} /></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>

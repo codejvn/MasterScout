@@ -8,6 +8,7 @@ import { Settings } from "./Layout/Settings";
 import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
 import { PitScouting } from "./Layout/PitScouting.js";
+import { Rankings } from "./Layout/Rankings.js";
 
 export class SidebarContents extends Component {
   render() {
@@ -32,7 +33,9 @@ export class SidebarContents extends Component {
           <Tab.Pane eventKey="6">
             <PitScouting />
           </Tab.Pane>
-          <Tab.Pane eventKey="7">Rankings</Tab.Pane>
+          <Tab.Pane eventKey="7">
+            <Rankings />
+          </Tab.Pane>
           <Tab.Pane eventKey="8">
             <Settings />
           </Tab.Pane>

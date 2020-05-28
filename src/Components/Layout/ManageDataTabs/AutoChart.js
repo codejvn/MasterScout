@@ -37,6 +37,7 @@ export class AutoChart extends Component {
             }
         }
     }
+
     render() {
         return (
             <div style={{ position: "relative", width: "400", height: "200" }}>
@@ -46,6 +47,7 @@ export class AutoChart extends Component {
                     }}
                     data={this.state.data}
                 />
+                <h1>{x}</h1>
             </div>
         )
     }

@@ -19,11 +19,11 @@ export class Boolean extends Component {
             </div>
         )
     }
-    // changeHandle = (value) =>{
-    //     this.setState({value:value}, () => {
-    //         this.props.send(this.state);
-    //     });
-    // }
+    changeHandle = (value) =>{
+        this.setState({value:value}, () => {
+            this.props.send(this.state);
+        });
+    }
 }
 const enlarge = {
     fontSize: "150%",
