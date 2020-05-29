@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class CommentBox extends Component {
   getComments = () => {
     try {
-      return this.props.team.comments.map((comment) => <p>{comment}</p>);
+      return this.props.team.comments.map((comment) => <h4>{comment}</h4>);
     } catch (err) {
       return [];
     }

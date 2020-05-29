@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
+import Team from "../../../Reducers/Team.js";
+import Button from "react-bootstrap/Button";
 
-export class TeleopChart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export default class TeleopChart extends Component {
+  getChartData = () => {
+    // this is hard coded for now, import auto props from team.js later
+    try {
+      let chartData = [];
+      if (this.props.team.aggregated[1].length > 0) {
+        for (let i = 0; i < 5; i++) {
+          chartData.push(this.props.team.aggregated[1][i]);
+        }
+      }
+      return chartData;
+    } catch (err) {
+      return [];
+    }
+  };
+  getChartInfo = () => {
+    return {
       data: {
-        labels: [" INNER", " OUTER", " BOTTOM", " MISSED", " ATTEMPTED"],
+        labels: ["BOTTOM", "OUTER", "INNER", "MISSED", "CYCLES"],
         datasets: [
           {
-            data: [5, 6, 3, 6, 3],
+            data: this.getChartData(),
             label: "TELEOPERATED",
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
@@ -32,6 +48,10 @@ export class TeleopChart extends Component {
         ],
       },
     };
+  };
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
   render() {
     return (
@@ -39,14 +59,25 @@ export class TeleopChart extends Component {
         options={{
           responsive: true,
           maintainAspectRatio: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
         }}
-        data={this.state.data}
+        data={this.getChartInfo().data}
+        style={chart}
       />
     );
   }
 }
+const chart = {
+  width: "20%",
+};
 const spacer = {
   padding: "2vh",
 };
-
-export default TeleopChart;

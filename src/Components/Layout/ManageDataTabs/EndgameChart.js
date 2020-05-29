@@ -1,16 +1,32 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
+import Team from "../../../Reducers/Team.js";
+import Button from "react-bootstrap/Button";
 
-export class EndgameChart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export default class EndgameChart extends Component {
+  getChartData = () => {
+    // this is hard coded for now, import auto props from team.js later
+    try {
+      let chartData = [];
+      if (this.props.team.aggregated[2].length > 0) {
+        for (let i = 0; i < 2; i++) {
+          chartData.push(this.props.team.aggregated[2][i]);
+        }
+      }
+      return chartData;
+    } catch (err) {
+      return [];
+    }
+  };
+  getChartInfo = () => {
+    return {
       data: {
-        labels: ["AVG CLIMB TIME", "CLIMB SUCCESS (%)"],
+        labels: ["CLIMB %", "LEVEL %"],
         datasets: [
           {
-            data: [12, 56],
-            label: "ENDGAME STATS",
+            data: this.getChartData(),
+            label: "ENDGAME",
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -32,6 +48,10 @@ export class EndgameChart extends Component {
         ],
       },
     };
+  };
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
   render() {
     return (
@@ -39,18 +59,25 @@ export class EndgameChart extends Component {
         options={{
           responsive: true,
           maintainAspectRatio: true,
-          style: { chart },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
         }}
-        data={this.state.data}
+        data={this.getChartInfo().data}
+        style={chart}
       />
     );
   }
 }
+const chart = {
+  width: "20%",
+};
 const spacer = {
   padding: "2vh",
 };
-
-const chart = {
-  width: "10%",
-};
-export default EndgameChart;

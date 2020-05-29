@@ -25,19 +25,41 @@ export class TeamBreakdownRaw extends Component {
           <h1>{searchedTeamNum}</h1>
         </Row>
         <Row style={chart}>
-          <Col>Some Auto Stuff</Col>
+          <Col>
+            <h4>Auto</h4>
+            <p>Consistency Rating: </p>
+            <p>Trends: (upwards or downwards)</p>
+            <p>Specialty: (like bottom port, top port, etc)</p>
+            <p>Max Ball Auto: </p>
+            <p>Other Things: </p>
+          </Col>
           <Col>
             <AutoChart team={searchedTeam} />
           </Col>
         </Row>
         <Row style={chart}>
-          <Col>Some Teleop Stuff</Col>
+          <Col>
+            <h4>Teleop</h4>
+            <p>Consistency Rating: </p>
+            <p>Scoring Trends: (upwards or downwards)</p>
+            <p>Specialty: (like bottom port, shooting, defense, etc)</p>
+            <p>Can Do Defense?: </p>
+            <p>Accuracy: </p>
+            <p>Other: </p>
+          </Col>
           <Col>
             <TeleopChart team={searchedTeam} />
           </Col>
         </Row>
         <Row style={chart}>
-          <Col>Some Endgame Stuff</Col>
+          <Col>
+            <h4>Endgame</h4>
+            <p>Can Climb?: </p>
+            <p>Consistent Climb?: </p>
+            <p>Consistent Level?: </p>
+            <p>Can Climb In Multiple Positions?: </p>
+            <p>Other: </p>
+          </Col>
           <Col>
             <EndgameChart team={searchedTeam} />
           </Col>
