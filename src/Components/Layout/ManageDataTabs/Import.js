@@ -82,6 +82,16 @@ export class ImportRaw extends Component {
           <Row className="border-bottom">
             <h2>Import Data</h2>
           </Row>
+          {this.state.showSuccess && (
+            <Alert
+              variant="success"
+              onClose={() => this.setShow(false)}
+              dismissible
+              style={alertStyle}
+            >
+              Success! The data was successfully imported.
+            </Alert>
+          )}
           <Row>
             <div style={spacer}></div>
           </Row>
@@ -92,23 +102,13 @@ export class ImportRaw extends Component {
             return <DataPreview data={data} editable={false}></DataPreview>;
           })}
           <Row>
-            <Button style={importStyle} block onClick={this.importHandle}>
+            <Button style={importStyle} onClick={this.importHandle}>
               Import
             </Button>
           </Row>
           <Row>
             <div style={spacer}></div>
           </Row>
-          {this.state.showSuccess && (
-            <Alert
-              variant="success"
-              onClose={() => this.setShow(false)}
-              dismissible 
-              style = {alertStyle}
-            >
-              Success! The data was successfully imported.
-            </Alert>
-          )}
         </Container>
       </div>
     );
@@ -132,7 +132,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const importStyle = {
   marginTop: "5%",
-  width: "25%",
+  width: "100%",
 };
 const alertStyle = {
   marginTop: "1%",
