@@ -233,7 +233,7 @@ export class PitScouting extends Component {
                         <Boolean title="Shoot from Anywhere?" id={15} entryName={"shootFromAnywhere"} />
                     </Row>
                     <Row style={spacer}>
-                        <PlusMinus value = {1} title="How many cells can be stored?" id={16} entryName={"howManyBallsHold"}/>
+                        <PlusMinus value={1} title="How many cells can be stored?" id={16} entryName={"howManyBallsHold"} />
                     </Row>
                     <Row style={spacer}>
                         <Boolean title="Can this robot level?" id={17} entryName={"canLevel"} />
@@ -278,13 +278,8 @@ export class PitScouting extends Component {
                         <Boolean title="Start Right in Autonomous?" id={29} entryName={"autoStartRight"} />
                     </Row>
                     <Row style={spacer}>
-                        <PlusMinus value = {0} title="How many power cells in autonomous?" id={30} entryName={"howManyBallsAuto"}/>
+                        <PlusMinus value={0} title="How many power cells in autonomous?" id={30} entryName={"howManyBallsAuto"} />
                     </Row>
-                    {/* insert another row for comments */}
-                    {/* <Row>
-                        <Checkbox title="Bottom port"/>
-                    </Row> */}
-
                 </form>
             </Container >
         )
@@ -298,7 +293,7 @@ const spacer = {
 const submitButton = {
     paddingTop: "3vh",
     textAlign: "center",
-    width:"20%",
+    width: "20%",
 
 };
 const enlarge = {
