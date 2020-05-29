@@ -19,14 +19,27 @@ export class App extends Component {
       return (
         <Provider store={store}>
           <div style={jumbotronStyle}>
-            <Jumbotron className="container-full-bg" fluid>
-              <h1 className="display-3">Nemesis Scouting</h1>
-              <p>lol</p>
-              <p>
-                <Button variant="primary" onClick={this.goToDashboard}>
-                  Get Started
-                </Button>
-              </p>
+            <Jumbotron
+              className="container-full-bg"
+              fluid
+              style={jumbotronStyle}
+            >
+              <div style={bigSpacer}></div>
+              <div style={center}>
+                <h1 className="display-3" style={center}>
+                  Nemesis Scouting
+                </h1>
+                <div style={smallSpacer}></div>
+                <p>
+                  <Button
+                    variant="primary"
+                    onClick={this.goToDashboard}
+                    style={center}
+                  >
+                    Start Scouting
+                  </Button>
+                </p>
+              </div>
             </Jumbotron>
           </div>
         </Provider>
@@ -37,7 +50,7 @@ export class App extends Component {
           <div>
             <Navigation />
             <Tab.Container
-              defaultActiveKey="1"
+              defaultActiveKey="2"
               className="justify-content-between"
             >
               <Row>
@@ -60,8 +73,21 @@ const fixedPos = {
   position: "fixed",
   textAlign: "center",
 };
+const bigSpacer = {
+  padding: "8%",
+};
+const smallSpacer = {
+  padding: "1%",
+};
 const jumbotronStyle = {
   textAlign: "center",
-  height: "100%",
+  height: "100vh",
+  color: "white",
+  backgroundColor: "black",
+  backgroundImage:
+    "linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),url(https://source.unsplash.com/collection/8536824/1600x900)",
+};
+const center = {
+  margin: "auto",
 };
 export default App;
