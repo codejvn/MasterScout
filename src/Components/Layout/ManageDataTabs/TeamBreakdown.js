@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
-import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,7 +7,6 @@ import { AutoChart } from "./AutoChart.js";
 import EndgameChart from "./EndgameChart.js";
 import TeleopChart from "./TeleopChart.js";
 import CommentBox from "./CommentBox.js";
-import Accordion from "react-bootstrap/Accordion";
 
 export class TeamBreakdownRaw extends Component {
   render() {

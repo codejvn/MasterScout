@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 export class NavigationRaw extends Component {
   searchHandle = (e) => {
     this.props.searchTeam(this._input.value);
+    this._input.value = "";
     e.preventDefault();
   };
   render() {
