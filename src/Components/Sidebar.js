@@ -6,7 +6,7 @@ export class Sidebar extends Component {
     return (
       <Col style={rightBorder}>
         <div>
-          <Nav variant="pills" className="flex-column">
+          <Nav variant="pills" className="flex-column" >
             <Nav.Item>
               <Nav.Link eventKey="1">Home</Nav.Link>
             </Nav.Item>
