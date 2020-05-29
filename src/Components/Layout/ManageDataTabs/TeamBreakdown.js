@@ -9,6 +9,44 @@ import TeleopChart from "./TeleopChart.js";
 import CommentBox from "./CommentBox.js";
 
 export class TeamBreakdownRaw extends Component {
+  //ALWAYS RETURNS UNDEFINED FIX THIS SOME TIME
+  getAccuracy = (team) => {
+    var accuracy = 0;
+    try {
+      accuracy = parseInt(
+        100 -
+          (team.aggregated[1][3] /
+            (team.aggregated[1][7] +
+              team.aggregated[1][8] +
+              team.aggregated[1][9] +
+              team.aggregated[1][10])) *
+            100
+      );
+      return accuracy;
+    } catch (err) {
+      return "NA";
+    }
+  };
+
+  //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT
+  getDefenseLevel = (team) => {
+    var defense = 0;
+    try {
+      defense = team.aggregated[1][11];
+      return defense;
+    } catch (err) {
+      return "NA";
+    }
+  };
+  //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT
+  estimatedPoints = () => {
+    var points = 0;
+    try {
+      //bunch of calculations not in the mood.
+    } catch (err) {
+      return 0;
+    }
+  };
   render() {
     let searchedTeamNum = this.props.search.teamSearched; // this is the boy
     let searchedTeam = this.props.teams.teams.find(
@@ -16,48 +54,12 @@ export class TeamBreakdownRaw extends Component {
       (team) => team.teamNumber == searchedTeamNum
     );
 
-
-    //ALWAYS RETURNS UNDEFINED FIX THIS SOME TIME
-    var getAccuracy = () => {
-      var accuracy = 0;
-      try {
-        accuracy = parseInt(100 - (searchedTeam.aggregated[1][3] / (searchedTeam.aggregated[1][7] +
-          searchedTeam.aggregated[1][8] +
-          searchedTeam.aggregated[1][9] +
-          searchedTeam.aggregated[1][10]) * 100));
-        return accuracy;
-      } catch (err) {
-        return 'NA';
-      }
-    };
-
-    //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT 
-    var getDefenseLevel = () => {
-      var defense = 0;
-      try {
-        defense = searchedTeam.aggregated[1][11];
-        return defense;
-      } catch (err) {
-        return 'NA';
-      }
-    };
-    console.log(this.getDefenseLevel, this.getAccuracy);
-    console.log(searchedTeam);
-    //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT 
-    var estimatedPoints = () => {
-      var points = 0;
-      try {
-        //bunch of calculations not in the mood.
-      } catch(err) { 
-        return 0;
-      }
-    };
-
-    
     return (
-      <Container style={containerWidth} >
+      <Container style={containerWidth}>
         <Row>
-          <h1 style={{ textAlign: "center", width: "100%" }} >Team {searchedTeamNum} / Estimated Points: </h1>
+          <h1 style={{ textAlign: "center", width: "100%" }}>
+            Team {searchedTeamNum} / Estimated Points:{" "}
+          </h1>
         </Row>
         <Row style={chart}>
           <Col>
@@ -78,8 +80,8 @@ export class TeamBreakdownRaw extends Component {
             <p>Consistency Rating: </p>
             <p>Scoring Trends: (upwards or downwards)</p>
             <p>Specialty: (like bottom port, shooting, defense, etc)</p>
-            <p>Avg Defense Level: {this.getDefenseLevel} </p>
-            <p>Accuracy:  {this.getAccuracy} %</p>
+            <p>Avg Defense Level: {this.getDefenseLevel(searchedTeam)} </p>
+            <p>Accuracy: {this.getAccuracy(searchedTeam)} %</p>
             <p>Other: </p>
           </Col>
           <Col>
