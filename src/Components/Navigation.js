@@ -30,7 +30,7 @@ export class NavigationRaw extends Component {
               <Navbar.Brand style={brandWidth}>NEMƎSIS</Navbar.Brand>
             </Col>
             <Col sm={13}>
-              <Form inline style={rightFloat} onSubmit={this.searchHandle}>
+              <Form inline onSubmit={this.searchHandle}>
                 <input
                   type="text"
                   className="mr-sm-2"
@@ -60,9 +60,6 @@ const positioning = {
 const searchWidth = {
   width: "70vw",
   padding: ".65%",
-};
-const rightFloat = {
-  float: "right",
 };
 const brandWidth = {
   width: "13.5vw",
