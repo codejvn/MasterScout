@@ -5,8 +5,11 @@ import Container from "react-bootstrap/Container";
 import { Line } from "react-chartjs-2";
 
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
 import FormGroup from "react-bootstrap/FormGroup";
+import { RawDataTable } from "./ManageDataTabs/RawDataTable";
 
 import { clearTeams } from "../../Actions/CompareActions/clearTeams";
 import { removeTeam } from "../../Actions/CompareActions/removeTeam";
@@ -19,7 +22,20 @@ export class CompareRaw extends Component {
     this.props.selectTeam(this._input.value);
     this._input.value = "";
   };
+  clearTeams = (e) => {
+    this.props.clearTeams();
+  };
+  removeTeam = (num) => {
+    this.props.removeTeam(num);
+  };
   render() {
+    let selectedTeams = [];
+    for (const teamNum of this.props.compare.selectedTeams) {
+      selectedTeams.push(
+        this.props.data.teams.find((team) => team.teamNumber == teamNum)
+      );
+    }
+    console.log(selectedTeams);
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
@@ -31,7 +47,7 @@ export class CompareRaw extends Component {
           <Row style={spacer}>
             <Form inline style={formWidth} onSubmit={this.submitHandle}>
               <FormGroup as={Row} style={formWidth}>
-                <Form.Label column>Team Number:</Form.Label>
+                <Form.Label column>Team:</Form.Label>
                 <Col sm="10">
                   <FormControl
                     type="text"
@@ -43,16 +59,37 @@ export class CompareRaw extends Component {
                     style={inputWidth}
                   />
                 </Col>
+                <Col>
+                  <Button onClick={this.clearTeams}>Clear</Button>
+                </Col>
               </FormGroup>
             </Form>
           </Row>
-          <Row></Row>
+          <Row style={spacer}>
+            {this.props.compare.selectedTeams.map((teamnum) => (
+              <div>
+                <Button
+                  variant="danger"
+                  style={spacer}
+                  onClick={this.removeTeam}
+                >
+                  - {teamnum}
+                </Button>
+              </div>
+            ))}
+          </Row>
+          {selectedTeams.map((team) => {
+            return <RawDataTable team={team} style={formWidth} />;
+          })}
         </Container>
       </div>
     );
   }
 }
-
+const floatRight = {
+  float: "right",
+  padding: "1vh",
+};
 const formWidth = {
   width: "100%",
 };
@@ -63,11 +100,12 @@ const homeHeader = {
   marginBottom: "2%",
 };
 const spacer = {
-  padding: "2vh",
+  padding: "1vh",
 };
 const mapStateToProps = (state) => {
   return {
-    importer: state.importer,
+    compare: state.compare,
+    data: state.dataReducer,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -26,7 +26,7 @@ const compareReducer = (state = searchInit, action = {}) => {
       );
       return {
         ...state,
-        selectedTeams: current,
+        selectedTeams: now,
       };
     default:
       return state;
