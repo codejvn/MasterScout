@@ -1,48 +1,25 @@
 import React, { Component } from "react";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import { connect } from "react-redux";
-import Table from 'react-bootstrap/Table';
-import Col from 'react-bootstrap/Col';
-// import Raw from './Layout/ManageDataTabs/Raw';
 
 export class RankRow extends Component {
     render() {
         let team = this.props.team;
-        // console.log(team.Team.teleopDataProps);
         return (
             <Container>
-                <h3 style={mainHead}>Team Rankings</h3>
-                <Table hover borderless style={noTop} striped>
-                    <thead>
-                        <tr>
-                            <th style={center}>Team Ranking</th>
-                            <th style={center}>Team</th>
-                            <th style={center}>Inner</th>
-                            <th style={center}>Outer</th>
-                            <th style={center}>Bottom</th>
-                            <th style={center}>Missed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style={center}>
-                            <td style={teamRanking}>team ranking</td>
-                            <td>variable team num</td>
-                            <td>avg inner cells</td>
-                            <td>avg outer cells</td>
-                            <td>avg bottom cells</td>
-                            <td>avg missed cells</td>
-                        </tr>
-                    </tbody>
-                </Table>
+                <tr style={{textAlign:"center", width:"100%", marginTop: "50%"}}>
+                    <td style={teamRanking}>Team Rank</td>
+                    <td style={center}>Team: {this.props.dataReducer.teams[0].teamNumber}</td>
+                    <td style={center}>Inner: {this.props.dataReducer.teams[0].aggregated[0][4] + this.props.dataReducer.teams[0].aggregated[1][2]}</td>
+                    <td style={center}>Outer: {this.props.dataReducer.teams[0].aggregated[0][3] + this.props.dataReducer.teams[0].aggregated[1][1]}</td>
+                    <td style={center}>Bottom: {this.props.dataReducer.teams[0].aggregated[0][2] + this.props.dataReducer.teams[0].aggregated[1][0]}</td>
+                    <td style={center}>Missed: {this.props.dataReducer.teams[0].aggregated[1][3]}</td>
+                </tr>
             </Container>
         )
     }
 }
-const mainHead = {
-    textAlign: "center",
-    marginTop: "1%",
-};
+
 const center = {
     textAlign: "center",
 };
@@ -57,4 +34,10 @@ const noTop = {
     marginBottom: "0px",
 };
 
-export default RankRow;
+const mapStateToProps = (state) => {
+    return {
+        dataReducer: state.dataReducer,
+    };
+};
+
+export default RankRow = connect(mapStateToProps)(RankRow);

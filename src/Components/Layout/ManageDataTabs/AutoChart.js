@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
-import Team from "../../../Reducers/Team.js";
-import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
+import { RawDataTable } from './RawDataTable.js';
 
 
 export class AutoChart extends Component {
@@ -39,6 +39,7 @@ export class AutoChart extends Component {
     }
 
     render() {
+        let team = this.props.team;
         return (
             <div style={{ position: "relative", width: "400", height: "200" }}>
                 <Bar
@@ -47,7 +48,11 @@ export class AutoChart extends Component {
                     }}
                     data={this.state.data}
                 />
-                <h1>{x}</h1>
+                {this.props.dataReducer.teams.map((team) => {
+                    if (team == this.searchedTeam) {
+                        return <RawDataTable team={team} />;
+                    }
+                })}
             </div>
         )
     }
@@ -57,4 +62,11 @@ const spacer = {
     padding: "2vh",
 };
 
-export default AutoChart;
+const mapStateToProps = (state) => {
+    return {
+        dataReducer: state.dataReducer,
+    };
+};
+
+export default AutoChart = connect(mapStateToProps)(AutoChart);
+

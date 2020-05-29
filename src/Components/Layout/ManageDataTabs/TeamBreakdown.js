@@ -23,7 +23,7 @@ export class TeamBreakdownRaw extends Component {
                             AUTONOMOUS
             </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <div><AutoChart team={searchedTeam} /></div>
+                            <div><AutoChart team={2590} /></div>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>

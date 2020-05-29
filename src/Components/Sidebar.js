@@ -45,7 +45,7 @@ const rightBorder = {
   borderRightStyle: "solid",
   borderColor: "rgb(225,225,225)",
   backgroundColor: "rgb(250,250,250)",
-  height: "350vw",
+  height: "100vw",
   width: "15.5%",
   textAlign: "left",
 };
