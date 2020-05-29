@@ -1,4 +1,4 @@
-import { SET_MATCH } from "./types";
+import { SET_MATCH } from "../types";
 export const setMatch = (matchNum) => {
   return (dispatch) => {
     dispatch({

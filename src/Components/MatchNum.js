@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
-import { setMatch } from "../Actions/setMatch";
-import { setMatchData } from "../Actions/setMatchData";
+import { setMatch } from "../Actions/TBAactions/setMatch";
+import { setMatchData } from "../Actions/TBAactions/setMatchData";
 export class MatchNumRaw extends Component {
   constrain = (num, min, max) => {
     num = num > max ? max : num;
@@ -39,13 +39,17 @@ export class MatchNumRaw extends Component {
           <Row style={spacer}>
             <Col></Col>
             <Col>
-              <Button style={ButtonColors} onClick={this.decrement}>Back</Button>
+              <Button style={ButtonColors} onClick={this.decrement}>
+                Back
+              </Button>
             </Col>
             <Col sm={0}>
               <h2>{this.props.matchNum}</h2>
             </Col>
             <Col>
-              <Button style={ButtonColors} onClick={this.increment}>Next</Button>
+              <Button style={ButtonColors} onClick={this.increment}>
+                Next
+              </Button>
             </Col>
             <Col></Col>
           </Row>
@@ -65,7 +69,7 @@ const mapStateToProps = (state) => {
   };
 };
 const spacer = {
- marginTop: "1vh",
+  marginTop: "1vh",
 };
 const ButtonColors = {
   backgroundColor: "lightGray",

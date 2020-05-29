@@ -1,4 +1,4 @@
-import { SET_MATCH_DATA } from "./types";
+import { SET_MATCH_DATA } from "../types";
 
 export const setMatchData = (match) => {
   return (dispatch) => {

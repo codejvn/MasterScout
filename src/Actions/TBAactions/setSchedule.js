@@ -1,5 +1,5 @@
-import { SET_SCHEDULE } from "./types";
-import requestTBA from "./../TBACode";
+import { SET_SCHEDULE } from "../types";
+import requestTBA from "../../TBACode";
 export const setSchedule = (eventCode) => {
   return function (dispatch) {
     let request = requestTBA("/event/" + eventCode + "/matches/simple");

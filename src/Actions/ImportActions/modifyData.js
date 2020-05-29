@@ -1,4 +1,4 @@
-import { MODIFY_DATA } from "./types";
+import { MODIFY_DATA } from "../types";
 export const modifyData = (data) => {
   return (dispatch) => {
     dispatch({

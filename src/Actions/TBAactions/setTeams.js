@@ -1,5 +1,5 @@
-import { SET_TEAMS } from "./types";
-import requestTBA from "./../TBACode";
+import { SET_TEAMS } from "../types";
+import requestTBA from "../../TBACode";
 export const setTeams = (eventCode) => {
   return function (dispatch) {
     let request = requestTBA("/event/" + eventCode + "/teams");

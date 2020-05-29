@@ -7,8 +7,8 @@ import Alert from "react-bootstrap/Alert";
 import { DataPreview } from "./DataPreview";
 import { connect } from "react-redux";
 import { InputBar } from "./InputBar";
-import { clearData } from "../../../Actions/clearData";
-import { appendMatchData } from "../../../Actions/appendMatchData";
+import { clearData } from "../../../Actions/ImportActions/clearData";
+import { appendMatchData } from "../../../Actions/DataActions/appendMatchData";
 export class ImportRaw extends Component {
   componentWillMount() {
     this.props.appendMatchData([

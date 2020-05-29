@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
-import { modifyData } from "../../../Actions/modifyData";
+import { modifyData } from "../../../Actions/ImportActions/modifyData";
 import { connect } from "react-redux";
 
 export class DataPreviewRaw extends Component {

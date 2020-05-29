@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import FormGroup from "react-bootstrap/FormGroup";
 import { connect } from "react-redux";
-import { addData } from "../../../Actions/addData";
+import { addData } from "../../../Actions/ImportActions/addData";
 export class InputBarRaw extends Component {
   componentWillMount() {}
   submitHandle = (e) => {
