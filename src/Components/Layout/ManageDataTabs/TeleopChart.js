@@ -53,6 +53,9 @@ export default class TeleopChart extends Component {
     super(props);
     this.state = {};
   }
+  
+
+
   render() {
     return (
       <Bar
@@ -75,6 +78,8 @@ export default class TeleopChart extends Component {
     );
   }
 }
+
+
 const chart = {
   width: "20%",
 };

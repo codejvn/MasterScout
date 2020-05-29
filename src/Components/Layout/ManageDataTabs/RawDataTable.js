@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
 
 export class RawDataTable extends Component {
   render() {
