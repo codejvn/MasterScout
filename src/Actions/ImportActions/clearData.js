@@ -1,4 +1,4 @@
-import { CLEAR_DATA } from "./types";
+import { CLEAR_DATA } from "../types";
 export const clearData = () => {
   return (dispatch) => {
     dispatch({

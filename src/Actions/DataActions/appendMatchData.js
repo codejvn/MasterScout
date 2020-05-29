@@ -1,4 +1,4 @@
-import { ADDPEND_MATCHDATA } from "./types";
+import { ADDPEND_MATCHDATA } from "../types";
 export const appendMatchData = (data) => {
   return (dispatch) => {
     dispatch({

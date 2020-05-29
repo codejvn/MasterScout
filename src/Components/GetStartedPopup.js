@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // actions
-import { setTeam } from "../Actions/setTeam";
-import { setEvent } from "../Actions/setEvent";
-import { setEvents } from "../Actions/UpdateEvent";
-import { setSchedule } from "../Actions/setSchedule";
-import { setTeams } from "../Actions/setTeams";
+import { setTeam } from "../Actions/TBAactions/setTeam";
+import { setEvent } from "../Actions/TBAactions/setEvent";
+import { setEvents } from "../Actions/TBAactions/UpdateEvent";
+import { setSchedule } from "../Actions/TBAactions/setSchedule";
+import { setTeams } from "../Actions/TBAactions/setTeams";
 import { connect } from "react-redux";
 
 import Button from "react-bootstrap/Button";

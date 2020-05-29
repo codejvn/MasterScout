@@ -1,4 +1,4 @@
-import { ADD_DATA } from "./types";
+import { ADD_DATA } from "../types";
 export const addData = (data) => {
   return (dispatch) => {
     dispatch({
