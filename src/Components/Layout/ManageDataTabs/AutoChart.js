@@ -20,7 +20,7 @@ export class AutoChartRaw extends Component {
   getChartInfo = () => {
     return {
       data: {
-        labels: ["BOTTOM", "OUTER", "INNER", "ATTEMPTED", "MISSED"],
+        labels: ["BOTTOM", "OUTER", "INNER", "ATTEMPTED"],
         datasets: [
           {
             data: this.getChartData(),

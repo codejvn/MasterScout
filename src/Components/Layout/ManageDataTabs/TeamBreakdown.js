@@ -18,18 +18,56 @@ export class TeamBreakdownRaw extends Component {
       // finds the team if the teamnumber is equal to the searched teamnum
       (team) => team.teamNumber == searchedTeamNum
     );
+
+
+    //ALWAYS RETURNS UNDEFINED FIX THIS SOME TIME
+    var getAccuracy = () => {
+      var accuracy = 0;
+      try {
+        accuracy = parseInt(100 - (searchedTeam.aggregated[1][3] / (searchedTeam.aggregated[1][7] +
+          searchedTeam.aggregated[1][8] +
+          searchedTeam.aggregated[1][9] +
+          searchedTeam.aggregated[1][10]) * 100));
+        return accuracy;
+      } catch (err) {
+        return 'NA';
+      }
+    };
+
+    //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT 
+    var getDefenseLevel = () => {
+      var defense = 0;
+      try {
+        defense = searchedTeam.aggregated[1][11];
+        return defense;
+      } catch (err) {
+        return 'NA';
+      }
+    };
+    console.log(this.getDefenseLevel, this.getAccuracy);
     console.log(searchedTeam);
+    //ALWAYS RETURNS UNDEFINED ABHIK FIX THIS. THIS COMMENT IS AN EASTER EGG YOU BETTER FIND IT 
+    var estimatedPoints = () => {
+      var points = 0;
+      try {
+        //bunch of calculations not in the mood.
+      } catch(err) { 
+        return 0;
+      }
+    };
+
+    
     return (
-      <Container style={containerWidth}>
+      <Container style={containerWidth} >
         <Row>
-          <h1>{searchedTeamNum}</h1>
+          <h1 style={{ textAlign: "center", width: "100%" }} >Team {searchedTeamNum} / Estimated Points: </h1>
         </Row>
         <Row style={chart}>
           <Col>
-            <h4>Auto</h4>
+            <h4>Autonomous</h4>
             <p>Consistency Rating: </p>
-            <p>Trends: (upwards or downwards)</p>
-            <p>Specialty: (like bottom port, top port, etc)</p>
+            <p>Trends: </p>
+            <p>Specialty:</p>
             <p>Max Ball Auto: </p>
             <p>Other Things: </p>
           </Col>
@@ -39,12 +77,12 @@ export class TeamBreakdownRaw extends Component {
         </Row>
         <Row style={chart}>
           <Col>
-            <h4>Teleop</h4>
+            <h4>Teleoperated</h4>
             <p>Consistency Rating: </p>
             <p>Scoring Trends: (upwards or downwards)</p>
             <p>Specialty: (like bottom port, shooting, defense, etc)</p>
-            <p>Can Do Defense?: </p>
-            <p>Accuracy: </p>
+            <p>Avg Defense Level: {this.getDefenseLevel} </p>
+            <p>Accuracy:  {this.getAccuracy} %</p>
             <p>Other: </p>
           </Col>
           <Col>
