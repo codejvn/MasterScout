@@ -5,6 +5,8 @@ import Container from "react-bootstrap/Container";
 import LineGraph from "../LineGraph";
 
 import Form from "react-bootstrap/Form";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
@@ -29,10 +31,13 @@ export class CompareRaw extends Component {
     this.props.removeTeam(num);
   };
   doCharts = (teams) => {
+    // this is such a hacky solution oh my god
     let charts = [];
+    let headers = ["Auto", "Teleop", "Endgame"];
     if (teams.length > 0) {
       // loop through all the entries in organized data set and then access the team data
       for (let i = 0; i < teams[0].organizedDataSets.length; i++) {
+        let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
         // loops through auto teleop and endgame
         for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
           // loops through each part of the game like auto inner scored, auto outer scored over all matches played
@@ -43,12 +48,33 @@ export class CompareRaw extends Component {
               teamNumber: team.teamNumber,
             });
           }
-          charts.push(
+          if (j % 3 == 0) {
+            sectionCharts.push([<Col></Col>, <Col></Col>, <Col></Col>]);
+          }
+          sectionCharts[sectionCharts.length - 1][j % 3] = (
             <Col>
               <LineGraph title={aggreProps[i][j].name} dataSets={dataSets} />
             </Col>
           );
         }
+        charts.push(
+          <Accordion style={formWidth}>
+            <Card style={formWidth}>
+              <Accordion.Toggle as={Card.Header} eventKey={JSON.stringify(i)}>
+                {headers[i]}
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey={JSON.stringify(i)}>
+                <Card.Body>
+                  <Container>
+                    {sectionCharts.map((row) => {
+                      return <Row>{row}</Row>;
+                    })}
+                  </Container>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        );
       }
     }
     return charts;
@@ -111,7 +137,8 @@ export class CompareRaw extends Component {
             highlight={true}
             stripes={false}
           />
-          <Row>{this.doCharts(selectedTeams)}</Row>
+
+          {this.doCharts(selectedTeams)}
         </Container>
       </div>
     );
