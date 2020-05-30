@@ -50,7 +50,7 @@ export class App extends Component {
           <div>
             <Navigation />
             <Tab.Container
-              defaultActiveKey="4"
+              defaultActiveKey="7"
               className="justify-content-between"
             >
               <Row>
