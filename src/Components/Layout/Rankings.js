@@ -3,12 +3,22 @@ import Container from "react-bootstrap/Container";
 import { RankRow } from "../RankRow.js";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 export class RankingsRaw extends Component {
+  state = {
+    sortMethod: "Inner",
+  };
+  selectSortBy = (event) => {
+    console.log(event.target.getAttribute("sort"));
+    this.setState({
+      sortMethod: event.target.getAttribute("sort"),
+    });
+  };
   getSortedTeams = (sortby) => {
     let sorted = this.props.dataReducer.teams;
     switch (sortby) {
-      case "INNER":
+      case "Inner":
         sorted.sort(
           (a, b) =>
             b.aggregated[0][4] +
@@ -16,7 +26,7 @@ export class RankingsRaw extends Component {
             (a.aggregated[0][4] + a.aggregated[1][2])
         );
         break;
-      case "OUTER":
+      case "Outer":
         sorted.sort(
           (a, b) =>
             b.aggregated[0][3] +
@@ -24,7 +34,7 @@ export class RankingsRaw extends Component {
             (a.aggregated[0][3] + a.aggregated[1][1])
         );
         break;
-      case "BOTTOM":
+      case "Bottom":
         sorted.sort(
           (a, b) =>
             b.aggregated[0][2] +
@@ -32,7 +42,7 @@ export class RankingsRaw extends Component {
             (a.aggregated[0][2] + a.aggregated[1][0])
         );
         break;
-      case "MISSED":
+      case "Missed":
         sorted.sort((a, b) => b.aggregated[1][3] - a.aggregated[1][3]);
         break;
     }
@@ -50,14 +60,50 @@ export class RankingsRaw extends Component {
             <tr>
               <td>Rank</td>
               <td>Team Num</td>
-              <td>Inner</td>
-              <td>Outer</td>
-              <td>Bottom</td>
-              <td>Missed</td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                  onClick={this.selectSortBy}
+                  sort={"Inner"}
+                >
+                  Inner
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                  onClick={this.selectSortBy}
+                  sort={"Outer"}
+                >
+                  Outer
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                  onClick={this.selectSortBy}
+                  sort={"Bottom"}
+                >
+                  Bottom
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                  onClick={this.selectSortBy}
+                  sort={"Missed"}
+                >
+                  Missed
+                </Button>
+              </td>
             </tr>
           </thead>
           <tbody>
-            {this.getSortedTeams("INNER").map((team, index) => {
+            {this.getSortedTeams(this.state.sortMethod).map((team, index) => {
               return <RankRow team={team} row={index} />;
             })}
             {console.log(this.props.dataReducer.teams)}
@@ -70,6 +116,9 @@ export class RankingsRaw extends Component {
 const center = {
   textAlign: "center",
   width: "16%",
+};
+const fullWidth = {
+  width: "100%",
 };
 const noTop = {
   top: "0px",

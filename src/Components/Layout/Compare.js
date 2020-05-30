@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { Line } from "react-chartjs-2";
+import LineGraph from "../LineGraph";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -15,7 +15,7 @@ import { clearTeams } from "../../Actions/CompareActions/clearTeams";
 import { removeTeam } from "../../Actions/CompareActions/removeTeam";
 import { selectTeam } from "../../Actions/CompareActions/selectTeam";
 import { connect } from "react-redux";
-
+import { aggreProps } from "../../Reducers/Team";
 export class CompareRaw extends Component {
   submitHandle = (e) => {
     e.preventDefault();
@@ -27,6 +27,31 @@ export class CompareRaw extends Component {
   };
   removeTeam = (num) => {
     this.props.removeTeam(num);
+  };
+  doCharts = (teams) => {
+    let charts = [];
+    if (teams.length > 0) {
+      // loop through all the entries in organized data set and then access the team data
+      for (let i = 0; i < teams[0].organizedDataSets.length; i++) {
+        // loops through auto teleop and endgame
+        for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
+          // loops through each part of the game like auto inner scored, auto outer scored over all matches played
+          let dataSets = [];
+          for (const team of teams) {
+            dataSets.push({
+              data: team.organizedDataSets[i][j],
+              teamNumber: team.teamNumber,
+            });
+          }
+          charts.push(
+            <Col>
+              <LineGraph title={aggreProps[i][j].name} dataSets={dataSets} />
+            </Col>
+          );
+        }
+      }
+    }
+    return charts;
   };
   render() {
     let selectedTeams = [];
@@ -86,6 +111,7 @@ export class CompareRaw extends Component {
             highlight={true}
             stripes={false}
           />
+          <Row>{this.doCharts(selectedTeams)}</Row>
         </Container>
       </div>
     );
