@@ -13,8 +13,8 @@ export class AnalyzedTable extends Component {
       }
       if (highest) {
         return {
-          backgroundColor: "rgb(0,0,0)",
-          color: "white",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          color: "black",
         };
       } else {
         return {};
