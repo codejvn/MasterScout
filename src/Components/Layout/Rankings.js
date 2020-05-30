@@ -42,8 +42,31 @@ export class RankingsRaw extends Component {
             (a.aggregated[0][2] + a.aggregated[1][0])
         );
         break;
-      case "Missed":
-        sorted.sort((a, b) => b.aggregated[1][3] - a.aggregated[1][3]);
+      case "Accuracy":
+        sorted.sort((a, b) => 
+          (parseInt(100 - (b.aggregated[1][3] / (b.aggregated[1][7] + b.aggregated[1][8] + b.aggregated[1][9] + b.aggregated[1][10])) * 100) -
+          parseInt(100 - (a.aggregated[1][3] / (a.aggregated[1][7] + a.aggregated[1][8] + a.aggregated[1][9] + a.aggregated[1][10])) * 100)));
+        break;
+      case "Defense":
+        sorted.sort(
+          (a, b) =>
+            b.aggregated[1][11] -
+            (a.aggregated[1][11])
+        );
+        break;
+      case "Climb":
+        sorted.sort(
+          (a, b) =>
+            b.aggregated[2][1] -
+            (a.aggregated[2][1])
+        );
+        break;
+      case "Climb Time":
+        sorted.sort(
+          (a, b) =>
+            b.aggregated[2][4] -
+            (a.aggregated[2][4])
+        );
         break;
     }
     console.log("SORTED");
@@ -53,17 +76,30 @@ export class RankingsRaw extends Component {
   render() {
     return (
       <Container>
-        <h3 style={mainHead}>Team Rankings</h3>
+        <h3 style={mainHead}>Analyzed Team Rankings</h3>
 
-        <Table hover style={noTop} striped>
+        <Table hover responsive style={noTop} striped>
           <thead style={{ textAlign: "center" }}>
             <tr>
-              <td>Rank</td>
-              <td>Team Num</td>
               <td>
                 <Button
                   variant="outline-dark"
                   style={fullWidth}
+                >
+                  Rank
+                </Button></td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                >
+                  Team
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidthDynamic}
                   onClick={this.selectSortBy}
                   sort={"Inner"}
                 >
@@ -73,7 +109,7 @@ export class RankingsRaw extends Component {
               <td>
                 <Button
                   variant="outline-dark"
-                  style={fullWidth}
+                  style={fullWidthDynamic}
                   onClick={this.selectSortBy}
                   sort={"Outer"}
                 >
@@ -83,7 +119,7 @@ export class RankingsRaw extends Component {
               <td>
                 <Button
                   variant="outline-dark"
-                  style={fullWidth}
+                  style={fullWidthDynamic}
                   onClick={this.selectSortBy}
                   sort={"Bottom"}
                 >
@@ -93,11 +129,42 @@ export class RankingsRaw extends Component {
               <td>
                 <Button
                   variant="outline-dark"
-                  style={fullWidth}
+                  style={fullWidthDynamic}
                   onClick={this.selectSortBy}
-                  sort={"Missed"}
+                  sort={"Accuracy"}
                 >
-                  Missed
+                  Accuracy
+                </Button>
+              </td>
+
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidthDynamic}
+                  onClick={this.selectSortBy}
+                  sort={"Defense"}
+                >
+                  Def
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidthDynamic}
+                  onClick={this.selectSortBy}
+                  sort={"Climb"}
+                >
+                  C%
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidthDynamic}
+                  onClick={this.selectSortBy}
+                  sort={"ClimbTime"}
+                >
+                  C Time
                 </Button>
               </td>
             </tr>
@@ -113,13 +180,13 @@ export class RankingsRaw extends Component {
     );
   }
 }
-const center = {
-  textAlign: "center",
-  width: "16%",
-};
 const fullWidth = {
   width: "100%",
 };
+const fullWidthDynamic = {
+  width: "100%",
+  backgroundColor: 'rgba(100,100,100,0.1)'
+}
 const noTop = {
   top: "0px",
   marginTop: "0px",
