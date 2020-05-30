@@ -61,10 +61,11 @@ export class ImportRaw extends Component {
     this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
-    this.props.dataReducer.teams.map((data) => {
-      //writes to file undefined
-      this.download("CTDataSet.json", JSON.stringify(data.value));
-    })
+    //writes to file undefined
+    this.download(
+      "CTDataSet.json",
+      JSON.stringify({ teams: this.props.dataReducer.teams })
+    );
   };
   setShow = (success) => {
     this.setState({
@@ -81,11 +82,14 @@ export class ImportRaw extends Component {
   };
 
   download(filename, text) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
 
-    element.style.display = 'none';
+    element.style.display = "none";
     document.body.appendChild(element);
 
     element.click();
@@ -93,12 +97,10 @@ export class ImportRaw extends Component {
     document.body.removeChild(element);
   }
 
-
   render() {
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
-
           <Row className="border-bottom">
             <h2>Import Data</h2>
           </Row>
