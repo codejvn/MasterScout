@@ -6,22 +6,14 @@ export class RankRow extends Component {
   render() {
     let team = this.props.team;
     return (
-      <Container>
-        <tr style={{ textAlign: "center", width: "100%", marginTop: "50%" }}>
-          <td style={teamRanking}>Team Rank</td>
-          <td style={center}>Team: {team.teamNumber}</td>
-          <td style={center}>
-            Inner: {team.aggregated[0][4] + team.aggregated[1][2]}
-          </td>
-          <td style={center}>
-            Outer: {team.aggregated[0][3] + team.aggregated[1][1]}
-          </td>
-          <td style={center}>
-            Bottom: {team.aggregated[0][2] + team.aggregated[1][0]}
-          </td>
-          <td style={center}>Missed: {team.aggregated[1][3]}</td>
-        </tr>
-      </Container>
+      <tr style={{ textAlign: "center", width: "100%" }}>
+        <td style={teamRanking}>{this.props.row}</td>
+        <td style={center}>{team.teamNumber}</td>
+        <td style={center}>{team.aggregated[0][4] + team.aggregated[1][2]}</td>
+        <td style={center}>{team.aggregated[0][3] + team.aggregated[1][1]}</td>
+        <td style={center}>{team.aggregated[0][2] + team.aggregated[1][0]}</td>
+        <td style={center}>{team.aggregated[1][3]}</td>
+      </tr>
     );
   }
 }
@@ -31,7 +23,7 @@ const center = {
 };
 const teamRanking = {
   fontWeight: "bold",
-  backgroundColor: "rgba(100,100,100,0.3 )",
+  backgroundColor: "rgba(100,100,100,0.1 )",
 };
 const noTop = {
   top: "0px",

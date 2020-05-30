@@ -2,9 +2,36 @@ import React, { Component } from "react";
 
 import Table from "react-bootstrap/Table";
 export class AnalyzedTable extends Component {
+  getStyle = (data, gameStage, index, highlight) => {
+    // loop through teams and if this is the largest then custom background
+    if (highlight) {
+      let highest = true;
+      for (const team of this.props.teams) {
+        if (team.aggregated[gameStage][index] > data) {
+          highest = false;
+        }
+      }
+      if (highest) {
+        return {
+          backgroundColor: "rgb(0,0,0)",
+          color: "white",
+        };
+      } else {
+        return {};
+      }
+    } else {
+      return {};
+    }
+  };
   render() {
+    let stripes;
+    try {
+      stripes = this.props.stripes;
+    } catch (err) {
+      stripes = true;
+    }
     return (
-      <Table style={center} responsive striped>
+      <Table style={center} responsive striped={stripes}>
         <thead>
           <tr>
             <td>Team</td>
@@ -38,18 +65,39 @@ export class AnalyzedTable extends Component {
           {/* loop through teams, within teams loop through aggregate */}
 
           {this.props.teams.map((team) => {
+            let highlight;
             // hard coded for now
+            try {
+              highlight = this.props.highlight;
+            } catch (err) {
+              highlight = false;
+            }
             return (
               <tr>
                 <td>{team.teamNumber}</td>
-                {team.aggregated[0].map((data) => {
-                  return <td>{data}</td>;
+                {/**maps all auto datas */}
+                {team.aggregated[0].map((data, index) => {
+                  return (
+                    <td style={this.getStyle(data, 0, index, highlight)}>
+                      {data}
+                    </td>
+                  );
                 })}
-                {team.aggregated[1].map((data) => {
-                  return <td>{data}</td>;
+                {/**maps all teleop datas */}
+                {team.aggregated[1].map((data, index) => {
+                  return (
+                    <td style={this.getStyle(data, 1, index, highlight)}>
+                      {data}
+                    </td>
+                  );
                 })}
-                {team.aggregated[2].map((data) => {
-                  return <td>{data}</td>;
+                {/**maps all endgame datas */}
+                {team.aggregated[2].map((data, index) => {
+                  return (
+                    <td style={this.getStyle(data, 2, index, highlight)}>
+                      {data}
+                    </td>
+                  );
                 })}
               </tr>
             );
