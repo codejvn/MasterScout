@@ -7,7 +7,7 @@ export class RankRow extends Component {
     let team = this.props.team;
     return (
       <tr style={{ textAlign: "center", width: "100%" }}>
-        <td style={teamRanking}>{this.props.row}</td>
+        <td style={teamRanking}>{this.props.row + 1}</td>
         <td style={center}>{team.teamNumber}</td>
         <td style={center}>{team.aggregated[0][4] + team.aggregated[1][2]}</td>
         <td style={center}>{team.aggregated[0][3] + team.aggregated[1][1]}</td>

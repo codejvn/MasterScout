@@ -28,7 +28,7 @@ const endgameDataProps = [
   { aggre: "boolavg", name: "Parked?", id: 3 },
   { aggre: "avg", name: "Time Left", id: 4 },
 ];
-const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
+export const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
 class Team {
   constructor(num, arrayPos) {
     this.teamNumber = num;
