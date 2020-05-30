@@ -61,6 +61,10 @@ export class ImportRaw extends Component {
     this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
+    this.props.dataReducer.teams.map((data) => {
+      //writes to file undefined
+      this.download("CTDataSet.json", JSON.stringify(data.value));
+    })
   };
   setShow = (success) => {
     this.setState({
@@ -75,10 +79,26 @@ export class ImportRaw extends Component {
       editable: !this.state.editable,
     });
   };
+
+  download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+
   render() {
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
+
           <Row className="border-bottom">
             <h2>Import Data</h2>
           </Row>
@@ -109,6 +129,9 @@ export class ImportRaw extends Component {
           <Row>
             <div style={spacer}></div>
           </Row>
+          <Row>
+            {/* <Button onclick={this.download("this.json", this.props.dataReducer.teams)}>Save Data</Button> */}
+          </Row>
         </Container>
       </div>
     );
@@ -117,6 +140,7 @@ export class ImportRaw extends Component {
 const mapStateToProps = (state) => {
   return {
     importer: state.importer,
+    dataReducer: state.dataReducer,
   };
 };
 
