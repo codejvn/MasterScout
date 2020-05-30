@@ -6,7 +6,6 @@ import LineGraph from "../LineGraph";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
 import FormGroup from "react-bootstrap/FormGroup";
 import { RawDataTable } from "./ManageDataTabs/RawDataTable";
@@ -117,10 +116,7 @@ export class CompareRaw extends Component {
     );
   }
 }
-const floatRight = {
-  float: "right",
-  padding: "1vh",
-};
+
 const formWidth = {
   width: "100%",
 };
@@ -132,6 +128,7 @@ const homeHeader = {
 };
 const spacer = {
   padding: "1vh",
+  marginRight: "1vh"
 };
 const mapStateToProps = (state) => {
   return {

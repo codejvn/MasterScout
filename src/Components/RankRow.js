@@ -12,7 +12,10 @@ export class RankRow extends Component {
         <td style={center}>{team.aggregated[0][4] + team.aggregated[1][2]}</td>
         <td style={center}>{team.aggregated[0][3] + team.aggregated[1][1]}</td>
         <td style={center}>{team.aggregated[0][2] + team.aggregated[1][0]}</td>
-        <td style={center}>{team.aggregated[1][3]}</td>
+        <td style={center}>{parseInt(100 - (team.aggregated[1][3] / (team.aggregated[1][7] + team.aggregated[1][8] + team.aggregated[1][9] + team.aggregated[1][10])) * 100)}%</td>
+        <td style={center}>{team.aggregated[1][11]}</td>
+        <td style={center}>{team.aggregated[2][1]*100}%</td>
+        <td style={center}>{team.aggregated[2][4]}</td>
       </tr>
     );
   }

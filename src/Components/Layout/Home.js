@@ -8,6 +8,7 @@ import RawDataTable from "./ManageDataTabs/RawDataTable";
 import AnalyzedTable from "./ManageDataTabs/AnalyzedTable";
 import { GetStartedPopup } from "../GetStartedPopup";
 import { connect } from "react-redux";
+import Button from 'react-bootstrap/Button';
 
 import Table from "react-bootstrap/Table";
 
@@ -49,12 +50,15 @@ export class Home extends Component {
     console.log(teams);
     return teams;
   };
+
+
+
   render() {
     tba = this.props.thebluealliance;
     matches = this.props.matches;
     data = this.props.dataReducer;
     return (
-      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 " >
         <Container>
           <Row className="border-bottom">
             <Col>
@@ -152,7 +156,7 @@ const center = {
 const redAlliance = {
   backgroundColor: 'rgba(255, 99, 132, 0.7)',
   textAlign: "center",
-  
+
 };
 const mapStateToProps = (state) => {
   return {
