@@ -68,6 +68,16 @@ export default class EndgameChart extends Component {
               },
             ],
           },
+          title: {
+            display: true,
+            text: "Endgame",
+            fontsize: 80,
+          },
+
+          legend: {
+            display: false,
+            position: "right",
+          },
         }}
         data={this.getChartInfo().data}
         style={chart}

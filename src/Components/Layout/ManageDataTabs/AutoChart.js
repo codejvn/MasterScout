@@ -66,6 +66,16 @@ export class AutoChartRaw extends Component {
               },
             ],
           },
+          title: {
+            display: true,
+            text: "Auto",
+            fontsize: 80,
+          },
+
+          legend: {
+            display: false,
+            position: "right",
+          },
         }}
         data={this.getChartInfo().data}
         style={chart}
