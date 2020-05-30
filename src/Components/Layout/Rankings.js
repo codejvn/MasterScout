@@ -46,9 +46,19 @@ export class RankingsRaw extends Component {
         <h3 style={mainHead}>Team Rankings</h3>
 
         <Table hover style={noTop} striped>
+          <thead style={{ textAlign: "center" }}>
+            <tr>
+              <td>Rank</td>
+              <td>Team Num</td>
+              <td>Inner</td>
+              <td>Outer</td>
+              <td>Bottom</td>
+              <td>Missed</td>
+            </tr>
+          </thead>
           <tbody>
-            {this.getSortedTeams("INNER").map((team) => {
-              return <RankRow team={team} />;
+            {this.getSortedTeams("INNER").map((team, index) => {
+              return <RankRow team={team} row={index} />;
             })}
             {console.log(this.props.dataReducer.teams)}
           </tbody>
