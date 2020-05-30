@@ -39,7 +39,11 @@ class Team {
     this.endgameData = [];
     this.comments = [];
 
-    this.aggregated = [[], [], []];
+    this.aggregated = [
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ];
     this.matchNums = [];
 
     this.totaldata = [this.autoData, this.teleopData, this.endgameData];

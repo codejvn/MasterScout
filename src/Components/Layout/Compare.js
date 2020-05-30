@@ -10,7 +10,7 @@ import Badge from "react-bootstrap/Badge";
 import FormControl from "react-bootstrap/FormControl";
 import FormGroup from "react-bootstrap/FormGroup";
 import { RawDataTable } from "./ManageDataTabs/RawDataTable";
-
+import { AnalyzedTable } from "./ManageDataTabs/AnalyzedTable";
 import { clearTeams } from "../../Actions/CompareActions/clearTeams";
 import { removeTeam } from "../../Actions/CompareActions/removeTeam";
 import { selectTeam } from "../../Actions/CompareActions/selectTeam";
@@ -81,6 +81,11 @@ export class CompareRaw extends Component {
           {selectedTeams.map((team) => {
             return <RawDataTable team={team} style={formWidth} />;
           })}
+          <AnalyzedTable
+            teams={selectedTeams}
+            highlight={true}
+            stripes={false}
+          />
         </Container>
       </div>
     );
