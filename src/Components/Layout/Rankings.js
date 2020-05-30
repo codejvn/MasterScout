@@ -43,9 +43,9 @@ export class RankingsRaw extends Component {
         );
         break;
       case "Accuracy":
-        sorted.sort((a, b) => 
+        sorted.sort((a, b) =>
           (parseInt(100 - (b.aggregated[1][3] / (b.aggregated[1][7] + b.aggregated[1][8] + b.aggregated[1][9] + b.aggregated[1][10])) * 100) -
-          parseInt(100 - (a.aggregated[1][3] / (a.aggregated[1][7] + a.aggregated[1][8] + a.aggregated[1][9] + a.aggregated[1][10])) * 100)));
+            parseInt(100 - (a.aggregated[1][3] / (a.aggregated[1][7] + a.aggregated[1][8] + a.aggregated[1][9] + a.aggregated[1][10])) * 100)));
         break;
       case "Defense":
         sorted.sort(

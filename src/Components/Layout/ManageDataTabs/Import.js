@@ -63,7 +63,9 @@ export class ImportRaw extends Component {
     this.props.appendMatchData(this.props.importer.data);
     this.props.dataReducer.teams.map((data) => {
       //writes to file undefined
-      this.download("CTDataSet.json", JSON.stringify(data.value));
+      this.download(
+        "CTDataSet.json",
+        JSON.stringify({ teams: this.props.dataReducer.teams }));
     })
   };
   setShow = (success) => {
