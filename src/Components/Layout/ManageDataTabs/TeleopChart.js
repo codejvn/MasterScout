@@ -53,8 +53,6 @@ export default class TeleopChart extends Component {
     super(props);
     this.state = {};
   }
-  
-
 
   render() {
     return (
@@ -71,6 +69,16 @@ export default class TeleopChart extends Component {
               },
             ],
           },
+          title: {
+            display: true,
+            text: "Teleop",
+            fontsize: 80,
+          },
+
+          legend: {
+            display: false,
+            position: "right",
+          },
         }}
         data={this.getChartInfo().data}
         style={chart}
@@ -78,7 +86,6 @@ export default class TeleopChart extends Component {
     );
   }
 }
-
 
 const chart = {
   width: "20%",
