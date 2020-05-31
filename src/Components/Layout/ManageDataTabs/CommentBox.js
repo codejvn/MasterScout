@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class CommentBox extends Component {
   getComments = () => {
     try {
-      return this.props.team.comments.map((comment) => <h4>{comment}</h4>);
+      return this.props.team.comments.map((comment) => <p>{comment}</p>);
     } catch (err) {
       return [];
     }
@@ -11,7 +11,7 @@ export class CommentBox extends Component {
   render() {
     return (
       <div>
-        <h2>Comments</h2>
+        <h3>Comments</h3>
         {this.getComments()}
       </div>
     );

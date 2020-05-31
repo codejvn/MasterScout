@@ -4,8 +4,8 @@ const autoDataProps = [
   { aggre: "avg", name: "Bottom Scored Auto", id: 2 },
   { aggre: "avg", name: "Outer Scored Auto", id: 3 },
   { aggre: "avg", name: "Inner Scored Auto", id: 4 },
-  { aggre: "avg", name: "Init Line Attmpeted Auto", id: 5 },
-  { aggre: "avg", name: "Near Trench Attmpeted Auto", id: 6 },
+  { aggre: "avg", name: "Init Line Attempted Auto", id: 5 },
+  { aggre: "avg", name: "Near Trench Attempted Auto", id: 6 },
 ];
 const teleopDataProps = [
   { aggre: "avg", name: "Bottom Scored", id: 0 },
