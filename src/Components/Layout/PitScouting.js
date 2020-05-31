@@ -300,11 +300,6 @@ const enlarge = {
     fontSize: "230%",
     textAlign: "center",
 };
-const center = {
-    textAlign: "center",
-    contentAlign: "center",
-    width: "100%",
-}
 const gameModeHeaders = {
     paddingTop: "3vh",
     fontSize: "150%",

@@ -18,7 +18,7 @@ export class PlusMinus extends Component {
             <div style={centerStyle}>
                 <h6 style={enlarge} >{this.props.title}</h6>
                 <ButtonGroup className="mb-2 thin">
-                    <Button variant="info" size="lg" style={buttonStyle} >+</Button>
+                    <Button variant="info" size="lg" style={buttonStyle}  >+</Button>
                     <p style={valueStyle} >{this.state.value}</p>
                     <Button variant="info" size="lg" style={buttonStyle} >-</Button>
                 </ButtonGroup>

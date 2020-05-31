@@ -194,7 +194,54 @@ export class TeamBreakdownRaw extends Component {
       return 0;
     }
   }
-  
+
+  //IMPORTANT INFO FOR EACH GAME MODE
+  canClimb = (team) => {
+    try {
+      if (team.aggregated[2][0] > 0) {
+        return 'YES';
+      }
+      return 'NO';
+    } catch (err) {
+      return 'NA'
+    }
+  }
+  consistentClimb = (team) => {
+    try {
+      if (team.aggregated[2][0] > 0.75) {
+        return 'YES'
+      }
+      return 'NO'
+    } catch (err) {
+      return 'NA'
+    }
+  }
+  //doesnt work atm
+  mostCommonClimbLocation = (team) => {
+    try {
+      return team.aggregated[2][2]
+    } catch (err) {
+      return 'NA'
+    }
+  }
+  specialty = (team) => {
+    try {
+      //if avg defense is greater than 3.5 (probably plays consistent and good defense)
+      if (team.aggregated[1][11] > 3.5) {
+        return 'DEFENSE'
+      }
+      //if total in upper (inner + outer) is greater than bottom --> high goal
+      else if (team.aggregated[1][1] + team.aggregated[1][2] >= team.aggregated[1][0]) {
+        return 'SHOOTING'
+      }
+      return 'BOTTOM'
+    } catch (err) {
+      return 'NA'
+    }
+  }
+
+
+
   render() {
     let searchedTeamNum = this.props.search.teamSearched; // this is the boy
     let searchedTeam = this.props.teams.teams.find(
@@ -226,7 +273,7 @@ export class TeamBreakdownRaw extends Component {
             <h4>Teleoperated</h4>
             <p>Consistency Rating: </p>
             <p>Scoring Trends: (upwards or downwards)</p>
-            <p>Specialty: (like bottom port, shooting, defense, etc)</p>
+            <p>Specialty: {this.specialty(searchedTeam)}</p>
             <p>Avg Defense Level: {this.getDefenseLevel(searchedTeam)} </p>
             <p>Accuracy: {this.getAccuracy(searchedTeam)} %</p>
           </Col>
@@ -237,9 +284,10 @@ export class TeamBreakdownRaw extends Component {
         <Row style={chart}>
           <Col>
             <h4>Endgame</h4>
-            <p>Can Climb?: </p>
-            <p>Consistent Climb?: </p>
+            <p>Can Climb: {this.canClimb(searchedTeam)} </p>
+            <p>Consistent Climb: {this.consistentClimb(searchedTeam)}</p>
             <p>Consistent Level?: </p>
+            <p>Most Common Climb Location: </p>
             <p>Can Climb In Multiple Positions?: </p>
           </Col>
           <Col>
@@ -287,11 +335,11 @@ const spacer = {
   padding: "0.8vh",
 };
 const breakdownInBreakdown = {
-  textAlign:"left",
+  textAlign: "left",
 }
 const breakdownCol = {
   backgroundColor: 'rgba(100,100,100,0.1)',
-  paddingTop:"2vh",
+  paddingTop: "2vh",
 }
 const rowWidth = {
   width: "100%",
@@ -303,8 +351,8 @@ const center = {
   textAlign: "center",
 }
 const breakdown = {
-  textAlign:"left",
-  marginBottom:"2vh",
+  textAlign: "left",
+  marginBottom: "2vh",
 }
 const pointBreakdown = {
   marginTop: "3vh",

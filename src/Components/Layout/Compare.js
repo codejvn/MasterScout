@@ -58,12 +58,12 @@ export class CompareRaw extends Component {
         }
         charts.push(
           <Accordion style={formWidth}>
-            <Card style={formWidth}>
+            <Card style={collapseStyling}>
               <Accordion.Toggle as={Card.Header} eventKey={JSON.stringify(i)}>
                 {headers[i]}
               </Accordion.Toggle>
               <Accordion.Collapse eventKey={JSON.stringify(i)}>
-                <Card.Body>
+                <Card.Body style={makeWhite}>
                   <Container>
                     {sectionCharts.map((row) => {
                       return <Row>{row}</Row>;
@@ -109,7 +109,7 @@ export class CompareRaw extends Component {
                     style={inputWidth}
                   />
                 </Col>
-                <Col>
+                <Col style={buttonColWidth}>
                   <Button onClick={this.clearTeams}>Clear</Button>
                 </Col>
               </FormGroup>
@@ -147,16 +147,27 @@ export class CompareRaw extends Component {
 const formWidth = {
   width: "100%",
 };
+const makeWhite = {
+  backgroundColor:"white",
+};
 const inputWidth = {
   width: "100%",
 };
 const homeHeader = {
   marginBottom: "2%",
 };
+const buttonColWidth = {
+  width: "7.5%",
+};
 const spacer = {
   padding: "1vh",
   marginRight: "1vh"
 };
+const collapseStyling = {
+  width: "100%",
+  marginTop: "2vh",
+  backgroundColor: "rgba(75, 192, 192, 0.2)",
+}
 const mapStateToProps = (state) => {
   return {
     compare: state.compare,

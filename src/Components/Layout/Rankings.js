@@ -185,7 +185,7 @@ const fullWidth = {
 };
 const fullWidthDynamic = {
   width: "100%",
-  backgroundColor: 'rgba(100,100,100,0.1)'
+  backgroundColor: "rgba(75, 192, 192, 0.2)"
 }
 const noTop = {
   top: "0px",
