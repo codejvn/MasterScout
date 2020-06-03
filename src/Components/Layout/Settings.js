@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import { setAutoDownload } from "../../Actions/SettingsActions/setAutoDownload";
 import { setImportFile } from "../../Actions/SettingsActions/setImportFile";
-import { setMatchData } from "../../Actions/DataActions/setMatchData";
+import { setCompData } from "../../Actions/DataActions/setCompData";
 import { setTBA } from "../../Actions/TBAactions/setTBA";
 import { resolve } from "dns";
 
@@ -121,7 +121,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setAutoDownload: (toggle) => dispatch(setAutoDownload(toggle)),
     setImportFile: (file) => dispatch(setImportFile(file)),
-    setMatchData: (data) => dispatch(setMatchData(data)),
+    setCompData: (data) => dispatch(setCompData(data)),
     setTBA: (data) => dispatch(setTBA(data)),
     // Upload Data
   };

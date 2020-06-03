@@ -2,7 +2,7 @@
 import Team from "./Team";
 import { SET_TEAMS } from "../Actions/types";
 import { ADDPEND_MATCHDATA } from "../Actions/types";
-import { SET_MATCHDATA } from "../Actions/types";
+import { SET_COMPDATA } from "../Actions/types";
 
 const dataInitState = {
   teams: [new Team(2590, 0)],
@@ -34,7 +34,7 @@ const dataReducer = (state = dataInitState, action = {}) => {
         ...state,
         teams: teams,
       };
-    case SET_MATCHDATA:
+    case SET_COMPDATA:
       return {
         ...state,
         teams: action.payload,
