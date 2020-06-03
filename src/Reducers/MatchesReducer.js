@@ -19,7 +19,7 @@ const matchesReducer = (state = matchesInitState, action = {}) => {
         // 6 teams
         let code = JSON.stringify({
           matchNum: state.currentMatch,
-          teamNum: action.payload.alliances.blue.team_keys[i].slice(3),
+          //teamNum: action.payload.alliances.blue.team_keys[i].slice(3),
         });
         newMatchCodes.push(code);
       }
@@ -27,7 +27,7 @@ const matchesReducer = (state = matchesInitState, action = {}) => {
         // 6 teams
         let code = JSON.stringify({
           matchNum: state.currentMatch,
-          teamNum: action.payload.alliances.red.team_keys[i].slice(3),
+          //teamNum: action.payload.alliances.red.team_keys[i].slice(3),
         });
         newMatchCodes.push(code);
       }
