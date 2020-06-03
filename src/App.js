@@ -11,7 +11,7 @@ import { Sidebar } from "./Components/Sidebar";
 import { SidebarContents } from "./Components/SidebarContents";
 export class App extends Component {
   state = {
-    activePage: 1,
+    activePage: 0,
   };
   render() {
     if (this.state.activePage == 0) {
@@ -50,7 +50,7 @@ export class App extends Component {
           <div>
             <Navigation />
             <Tab.Container
-              defaultActiveKey="7"
+              defaultActiveKey="1"
               className="justify-content-between"
             >
               <Row>
