@@ -64,7 +64,10 @@ export class ImportRaw extends Component {
     //writes to file undefined
     this.download(
       "CTDataSet.json",
-      JSON.stringify({ teams: this.props.dataReducer.teams })
+      JSON.stringify({
+        teams: this.props.dataReducer.teams,
+        tba: this.props.tba,
+      })
     );
   };
   setShow = (success) => {
@@ -143,6 +146,7 @@ const mapStateToProps = (state) => {
   return {
     importer: state.importer,
     dataReducer: state.dataReducer,
+    tba: state.thebluealliance,
   };
 };
 

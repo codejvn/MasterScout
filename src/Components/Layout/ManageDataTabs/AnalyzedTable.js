@@ -30,84 +30,92 @@ export class AnalyzedTable extends Component {
     } catch (err) {
       stripes = true;
     }
-    return (
-      <Table style={center} responsive striped={stripes}>
-        <thead>
-          <tr>
-            <td>Team</td>
-            <td>Common Pos</td>
-            <td>Init</td>
-            <td>Bottom Auto</td>
-            <td>Outer Auto</td>
-            <td>Inner Auto</td>
-            <td>Attempt Init A</td>
-            <td>Attempt Near Trench A</td>
-            <td>Bottom Teleop</td>
-            <td>Outer Teleop</td>
-            <td>Inner Teleop</td>
-            <td>Missed Teleop</td>
-            <td>Cycles Teleop</td>
-            <td>% CPR</td>
-            <td>% CPP</td>
-            <td>T-Zone Attempt</td>
-            <td>Init Attempt</td>
-            <td>N Trench Attempt</td>
-            <td>Far Trench Attempt</td>
-            <td>Defense</td>
-            <td>% Climb</td>
-            <td>% Level</td>
-            <td>Common Climb Location</td>
-            <td>% Parked</td>
-            <td>Climb Time Left</td>
-          </tr>
-        </thead>
-        <tbody>
-          {/* loop through teams, within teams loop through aggregate */}
+    let validTeam = true;
+    if (this.props.teams[0] == undefined) {
+      validTeam = false;
+    }
+    if (validTeam) {
+      return (
+        <Table style={center} responsive striped={stripes}>
+          <thead>
+            <tr>
+              <td>Team</td>
+              <td>Common Pos</td>
+              <td>Init</td>
+              <td>Bottom Auto</td>
+              <td>Outer Auto</td>
+              <td>Inner Auto</td>
+              <td>Attempt Init A</td>
+              <td>Attempt Near Trench A</td>
+              <td>Bottom Teleop</td>
+              <td>Outer Teleop</td>
+              <td>Inner Teleop</td>
+              <td>Missed Teleop</td>
+              <td>Cycles Teleop</td>
+              <td>% CPR</td>
+              <td>% CPP</td>
+              <td>T-Zone Attempt</td>
+              <td>Init Attempt</td>
+              <td>N Trench Attempt</td>
+              <td>Far Trench Attempt</td>
+              <td>Defense</td>
+              <td>% Climb</td>
+              <td>% Level</td>
+              <td>Common Climb Location</td>
+              <td>% Parked</td>
+              <td>Climb Time Left</td>
+            </tr>
+          </thead>
+          <tbody>
+            {/* loop through teams, within teams loop through aggregate */}
 
-          {this.props.teams.map((team) => {
-            let highlight;
-            // hard coded for now
-            try {
-              highlight = this.props.highlight;
-            } catch (err) {
-              highlight = false;
-            }
-            return (
-              <tr>
-                <td>{team.teamNumber}</td>
-                {/**maps all auto datas */}
-                {team.aggregated[0].map((data, index) => {
-                  return (
-                    <td style={this.getStyle(data, 0, index, highlight)}>
-                      {data}
-                    </td>
-                  );
-                })}
-                {/**maps all teleop datas */}
-                {team.aggregated[1].map((data, index) => {
-                  return (
-                    <td style={this.getStyle(data, 1, index, highlight)}>
-                      {data}
-                    </td>
-                  );
-                })}
-                {/**maps all endgame datas */}
-                {team.aggregated[2].map((data, index) => {
-                  return (
-                    <td style={this.getStyle(data, 2, index, highlight)}>
-                      {data}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-          {/* {this.props.dataReducer.teams.map((team) => {
+            {this.props.teams.map((team) => {
+              let highlight;
+              // hard coded for now
+              try {
+                highlight = this.props.highlight;
+              } catch (err) {
+                highlight = false;
+              }
+              return (
+                <tr>
+                  <td>{team.teamNumber}</td>
+                  {/**maps all auto datas */}
+                  {team.aggregated[0].map((data, index) => {
+                    return (
+                      <td style={this.getStyle(data, 0, index, highlight)}>
+                        {data}
+                      </td>
+                    );
+                  })}
+                  {/**maps all teleop datas */}
+                  {team.aggregated[1].map((data, index) => {
+                    return (
+                      <td style={this.getStyle(data, 1, index, highlight)}>
+                        {data}
+                      </td>
+                    );
+                  })}
+                  {/**maps all endgame datas */}
+                  {team.aggregated[2].map((data, index) => {
+                    return (
+                      <td style={this.getStyle(data, 2, index, highlight)}>
+                        {data}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+            {/* {this.props.dataReducer.teams.map((team) => {
                   return <tr>{team.aggregated}</tr>;
                 })} */}
-        </tbody>
-      </Table>
-    );
+          </tbody>
+        </Table>
+      );
+    } else {
+      return <p>no team</p>;
+    }
   }
 }
 const center = {
