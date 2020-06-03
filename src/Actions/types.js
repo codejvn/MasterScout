@@ -14,3 +14,4 @@ export const SEARCH_TEAM = "searchTeam";
 export const SELECT_TEAM = "selectTeam";
 export const CLEAR_TEAMS = "clearTeams";
 export const REMOVE_TEAM = "removeTeam";
+export const SET_AUTODOWNLOAD = "setAutoDownload";
