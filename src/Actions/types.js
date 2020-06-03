@@ -15,6 +15,6 @@ export const SELECT_TEAM = "selectTeam";
 export const CLEAR_TEAMS = "clearTeams";
 export const REMOVE_TEAM = "removeTeam";
 export const SET_AUTODOWNLOAD = "setAutoDownload";
-export const SET_MATCHDATA = "setMatchData";
+export const SET_COMPDATA = "setCompData";
 export const SET_IMPORTFILE = "setImportFile";
 export const SET_TBA = "setTBA";
