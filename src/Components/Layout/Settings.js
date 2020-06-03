@@ -53,7 +53,7 @@ export class SettingsRaw extends Component {
       console.log(parsed);
       // let update = new Promise((res, rej) => {
       this.props.setTBA(parsed.tba);
-      this.props.setMatchData(parsed.teams);
+      this.props.setCompData(parsed.teams);
       //resolve("yay");
       // }).then((res, rej) => {
 
