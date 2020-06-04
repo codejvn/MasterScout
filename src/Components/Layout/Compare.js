@@ -85,7 +85,6 @@ export class CompareRaw extends Component {
         this.props.data.teams.find((team) => team.teamNumber == teamNum)
       );
     }
-    console.log(selectedTeams);
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>

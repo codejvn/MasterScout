@@ -4,8 +4,7 @@ import Row from 'react-bootstrap/Row'
 import { MultipleChoice } from '../MultipleChoice.js';
 import { Boolean } from '../Boolean.js';
 import Col from 'react-bootstrap/Col';
-import PlusMinus from "../PlusMinus.js";
-import Button from 'react-bootstrap/Button';
+import { PlusMinus } from "../PlusMinus.js";
 
 export class PitScouting extends Component {
     state = {
