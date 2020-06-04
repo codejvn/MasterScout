@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LineGraph from '../../LineGraph';
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,8 +8,136 @@ import { AutoChart } from "./AutoChart.js";
 import EndgameChart from "./EndgameChart.js";
 import TeleopChart from "./TeleopChart.js";
 import CommentBox from "./CommentBox.js";
+import Button from 'react-bootstrap/Button';
+import { aggreProps } from "../../../Reducers/Team";
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card'
+
 
 export class TeamBreakdownRaw extends Component {
+
+  getAutoProp = (key) => {
+    if (key === 2) {
+      return "BOTTOM";
+    }
+    else if (key === 3) {
+      return "OUTER"
+    }
+    return "INNER"
+  }
+
+  getTeleopProp = (key) => {
+    if (key === 0) {
+      return "BOTTOM"
+    }
+    else if (key === 1) {
+      return "OUTER"
+    }
+    else if (key === 2) {
+      return "INNER"
+    }
+    else if (key === 3) {
+      return "MISSED"
+    }
+    return "CYCLES"
+  }
+
+  doAutoCharts = (team) => {
+    let charts = [];
+    let relevantIndices = [2, 3, 4]
+    try {
+      let dataSets = [];
+      for (let i = 0; i < relevantIndices.length; i++) {
+        dataSets.push({
+          data: team.organizedDataSets[0][relevantIndices[i]],
+          teamNumber: this.getAutoProp(relevantIndices[i]),
+        });
+      }
+      charts.push(
+        <Container>
+          <Col>
+            <LineGraph
+              title="AUTONOMOUS"
+              dataSets={dataSets}
+            />
+          </Col>
+        </Container>
+      );
+      return charts;
+    } catch (err) {
+      return []
+    }
+  };
+
+  doTeleopCharts = (team) => {
+    let charts = [];
+    let relevantIndices = [0, 1, 2, 3, 4]
+    try {
+      let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
+      let dataSets = [];
+      for (let i = 0; i < relevantIndices.length; i++) {
+        dataSets.push({
+          data: team.organizedDataSets[1][relevantIndices[i]],
+          teamNumber: this.getTeleopProp(relevantIndices[i]),
+        });
+      }
+      charts.push(
+        <Container>
+          <Col>
+            <LineGraph
+              title="TELEOPERATED"
+              dataSets={dataSets}
+            />
+          </Col>
+        </Container>
+      );
+      return charts;
+    } catch (err) {
+      return []
+    }
+  };
+
+  getEndgameProp = (key) => {
+    if(key === 0){
+      return "CLIMBED?"
+    }
+    else if(key === 1){
+      return "LEVEL?"
+    }
+    else {
+      return "TIME LEFT"
+    }
+  }
+
+  doEndgameCharts = (team) => {
+    let charts = [];
+    let relevantIndices = [0, 1, 4]
+    try {
+      let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
+      let dataSets = [];
+      for (let i = 0; i < relevantIndices.length; i++) {
+        dataSets.push({
+          data: team.organizedDataSets[2][relevantIndices[i]],
+          teamNumber: this.getEndgameProp(relevantIndices[i]),
+        });
+      }
+      charts.push(
+        <Container>
+          <Col>
+            <LineGraph
+              title="ENDGAME"
+              dataSets={dataSets}
+            />
+          </Col>
+        </Container>
+      );
+      return charts;
+    } catch (err) {
+      return []
+    }
+  };
+
+
   getAccuracy = (team) => {
     var accuracy = 0;
     try {
@@ -36,7 +165,6 @@ export class TeamBreakdownRaw extends Component {
     }
   };
   estimatedPoints = (team) => {
-    var points = 0;
     try {
       //auto points
       var autoInner = team.aggregated[0][4] * 6
@@ -194,7 +322,6 @@ export class TeamBreakdownRaw extends Component {
       return 0;
     }
   }
-
   //IMPORTANT INFO FOR EACH GAME MODE
   canClimb = (team) => {
     try {
@@ -239,8 +366,6 @@ export class TeamBreakdownRaw extends Component {
       return 'NA'
     }
   }
-
-
 
   render() {
     let searchedTeamNum = this.props.search.teamSearched; // this is the boy
@@ -324,12 +449,21 @@ export class TeamBreakdownRaw extends Component {
             </Col>
           </Row>
         </Row>
+        {this.doAutoCharts(searchedTeam)};
+        {this.doTeleopCharts(searchedTeam)};
+        {this.doEndgameCharts(searchedTeam)};
       </Container>
     );
   }
 }
 const chart = {
   height: "40%",
+};
+const formWidth = {
+  width: "100%",
+};
+const makeWhite = {
+  backgroundColor: "white",
 };
 const spacer = {
   padding: "0.8vh",
@@ -370,6 +504,11 @@ const mapDispatchToProps = (dispatch) => {
     // put actions here
   };
 };
+const collapseStyling = {
+  width: "100%",
+  marginTop: "2vh",
+  backgroundColor: "rgba(75, 192, 192, 0.2)",
+}
 
 
 export const TeamBreakdown = connect(
