@@ -8,11 +8,8 @@ import { AutoChart } from "./AutoChart.js";
 import EndgameChart from "./EndgameChart.js";
 import TeleopChart from "./TeleopChart.js";
 import CommentBox from "./CommentBox.js";
-import Button from 'react-bootstrap/Button';
-import { aggreProps } from "../../../Reducers/Team";
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card'
-
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 export class TeamBreakdownRaw extends Component {
 
@@ -57,6 +54,7 @@ export class TeamBreakdownRaw extends Component {
         <Container>
           <Col>
             <LineGraph
+              style={lineWidth}
               title="AUTONOMOUS"
               dataSets={dataSets}
             />
@@ -65,7 +63,7 @@ export class TeamBreakdownRaw extends Component {
       );
       return charts;
     } catch (err) {
-      return []
+      return [];
     }
   };
 
@@ -85,6 +83,7 @@ export class TeamBreakdownRaw extends Component {
         <Container>
           <Col>
             <LineGraph
+              style={lineWidth}
               title="TELEOPERATED"
               dataSets={dataSets}
             />
@@ -93,15 +92,15 @@ export class TeamBreakdownRaw extends Component {
       );
       return charts;
     } catch (err) {
-      return []
+      return [];
     }
   };
 
   getEndgameProp = (key) => {
-    if(key === 0){
+    if (key === 0) {
       return "CLIMBED?"
     }
-    else if(key === 1){
+    else if (key === 1) {
       return "LEVEL?"
     }
     else {
@@ -125,6 +124,7 @@ export class TeamBreakdownRaw extends Component {
         <Container>
           <Col>
             <LineGraph
+              style={lineWidth}
               title="ENDGAME"
               dataSets={dataSets}
             />
@@ -333,16 +333,6 @@ export class TeamBreakdownRaw extends Component {
       return 'NA'
     }
   }
-  consistentClimb = (team) => {
-    try {
-      if (team.aggregated[2][0] > 0.75) {
-        return 'YES'
-      }
-      return 'NO'
-    } catch (err) {
-      return 'NA'
-    }
-  }
   //doesnt work atm
   mostCommonClimbLocation = (team) => {
     try {
@@ -384,39 +374,54 @@ export class TeamBreakdownRaw extends Component {
         <Row style={chart}>
           <Col>
             <h4>Autonomous</h4>
-            <p>Consistency Rating: </p>
-            <p>Trends: </p>
-            <p>Specialty:</p>
+            <p style={extCatMargin}>Specialty:</p>
             <p>Max Ball Auto: </p>
           </Col>
           <Col>
-            <AutoChart team={searchedTeam} />
+            <Tabs defaultActiveKey="bar" id="uncontrolled-tab">
+              <Tab eventKey="bar" title="Bar">
+                <AutoChart team={searchedTeam} />
+              </Tab>
+              <Tab eventKey="line" title="Line">
+                {this.doAutoCharts(searchedTeam)};
+              </Tab>
+            </Tabs>
           </Col>
         </Row>
         <Row style={chart}>
           <Col>
             <h4>Teleoperated</h4>
-            <p>Consistency Rating: </p>
-            <p>Scoring Trends: (upwards or downwards)</p>
-            <p>Specialty: {this.specialty(searchedTeam)}</p>
+            <p style={extCatMargin}>Specialty: {this.specialty(searchedTeam)}</p>
             <p>Avg Defense Level: {this.getDefenseLevel(searchedTeam)} </p>
             <p>Accuracy: {this.getAccuracy(searchedTeam)} %</p>
           </Col>
           <Col>
-            <TeleopChart team={searchedTeam} />
+            <Tabs defaultActiveKey="bar" id="uncontrolled-tab">
+              <Tab eventKey="bar" title="Bar">
+                <TeleopChart team={searchedTeam} />
+              </Tab>
+              <Tab eventKey="line" title="Line">
+                {this.doTeleopCharts(searchedTeam)};
+              </Tab>
+            </Tabs>
           </Col>
         </Row>
         <Row style={chart}>
           <Col>
             <h4>Endgame</h4>
-            <p>Can Climb: {this.canClimb(searchedTeam)} </p>
-            <p>Consistent Climb: {this.consistentClimb(searchedTeam)}</p>
-            <p>Consistent Level?: </p>
+            <p style={extCatMargin}>Can Climb: {this.canClimb(searchedTeam)} </p>
             <p>Most Common Climb Location: </p>
             <p>Can Climb In Multiple Positions?: </p>
           </Col>
           <Col>
-            <EndgameChart team={searchedTeam} />
+            <Tabs defaultActiveKey="bar" id="uncontrolled-tab">
+              <Tab eventKey="bar" title="Bar">
+                <EndgameChart team={searchedTeam} />
+              </Tab>
+              <Tab eventKey="line" title="Line">
+                {this.doEndgameCharts(searchedTeam)};
+              </Tab>
+            </Tabs>
           </Col>
         </Row>
         <Row>
@@ -449,24 +454,12 @@ export class TeamBreakdownRaw extends Component {
             </Col>
           </Row>
         </Row>
-        {this.doAutoCharts(searchedTeam)};
-        {this.doTeleopCharts(searchedTeam)};
-        {this.doEndgameCharts(searchedTeam)};
       </Container>
     );
   }
 }
 const chart = {
   height: "40%",
-};
-const formWidth = {
-  width: "100%",
-};
-const makeWhite = {
-  backgroundColor: "white",
-};
-const spacer = {
-  padding: "0.8vh",
 };
 const breakdownInBreakdown = {
   textAlign: "left",
@@ -481,9 +474,6 @@ const rowWidth = {
 const containerWidth = {
   width: "100%",
 };
-const center = {
-  textAlign: "center",
-}
 const breakdown = {
   textAlign: "left",
   marginBottom: "2vh",
@@ -498,18 +488,18 @@ const mapStateToProps = (state) => {
     teams: state.dataReducer,
   };
 };
+const lineWidth = {
+  width: "26%",
+};
+const extCatMargin = {
+  marginTop: "12%",
+}
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {
     // put actions here
   };
 };
-const collapseStyling = {
-  width: "100%",
-  marginTop: "2vh",
-  backgroundColor: "rgba(75, 192, 192, 0.2)",
-}
-
 
 export const TeamBreakdown = connect(
   mapStateToProps,
