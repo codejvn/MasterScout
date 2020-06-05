@@ -68,7 +68,7 @@ export class AutoChartRaw extends Component {
           },
           title: {
             display: true,
-            text: "Auto",
+            text: "AUTONOMOUS",
             fontsize: 80,
           },
 

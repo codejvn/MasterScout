@@ -70,7 +70,7 @@ export default class EndgameChart extends Component {
           },
           title: {
             display: true,
-            text: "Endgame",
+            text: "ENDGAME",
             fontsize: 80,
           },
 
