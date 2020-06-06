@@ -7,8 +7,8 @@ import { HomeCom } from "./Layout/Home";
 import { Settings } from "./Layout/Settings";
 import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
-import { PitScouting } from "./Layout/PitScouting.js";
 import { Rankings } from "./Layout/Rankings.js";
+import { PickList } from "./Layout/PickList";
 
 export class SidebarContents extends Component {
   render() {
@@ -31,10 +31,10 @@ export class SidebarContents extends Component {
             <Export />
           </Tab.Pane>
           <Tab.Pane eventKey="6">
-            <PitScouting />
+            <Rankings />
           </Tab.Pane>
           <Tab.Pane eventKey="7">
-            <Rankings />
+            <PickList />
           </Tab.Pane>
           <Tab.Pane eventKey="8">
             <Settings />

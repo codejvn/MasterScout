@@ -88,12 +88,15 @@ export class SettingsRaw extends Component {
           </Row>
           <Row>
             <p style={spacer}>Import Competition Data: </p>
+          </Row>
+          <Row>
             <input
               type="file"
               name="file"
               onChange={this.fileSelectHandle}
-              style={spacer}
             />
+          </Row>
+          <Row>
             <Button style={buttonSize} onClick={this.setTeams}>
               {" "}
               Import{" "}
@@ -106,6 +109,7 @@ export class SettingsRaw extends Component {
 }
 const buttonSize = {
   height: "90%",
+  marginTop: "1%",
 };
 const mapStateToProps = (state) => {
   return {
@@ -128,7 +132,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const spacer = {
-  padding: "2vh",
+  marginTop: "3vh",
 };
 
 const settingsHeader = {

@@ -9,6 +9,7 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "hide-scrollbar-react": "^1.1.6",
+    "material-ui": "^0.20.2",
     "node-sass": "^4.14.1",
     "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
