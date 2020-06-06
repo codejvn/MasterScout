@@ -9,9 +9,8 @@ import { setAutoDownload } from "../../Actions/SettingsActions/setAutoDownload";
 import { setImportFile } from "../../Actions/SettingsActions/setImportFile";
 import { setCompData } from "../../Actions/DataActions/setCompData";
 import { setTBA } from "../../Actions/TBAactions/setTBA";
-import { setTeams } from "../../Actions/TBAactions/setTeams";
 import { resolve } from "dns";
-// this.props.setTeams(tba.event.key);
+
 export class SettingsRaw extends Component {
   toggleAutoDownload = (e) => {
     this.props.setAutoDownload(!this.props.settings.autoDownload);
@@ -52,13 +51,15 @@ export class SettingsRaw extends Component {
       let result = reader.result;
       let parsed = JSON.parse(result);
       console.log(parsed);
+      // let update = new Promise((res, rej) => {
       this.props.setTBA(parsed.tba);
-      console.log("SETTING TEAMS");
-      this.props.setTeams(this.props.tba.event.key);
-      console.log("SETTING DATA");
-      setTimeout(() => {
-        this.props.setCompData(parsed.teams);
-      }, 5000);
+      this.props.setCompData(parsed.teams);
+      //resolve("yay");
+      // }).then((res, rej) => {
+
+      //setTimeout(this.props.setMatchData(parsed.teams), 2000);
+
+      //});
     });
     reader.readAsText(file);
   };
@@ -122,7 +123,6 @@ const mapDispatchToProps = (dispatch) => {
     setImportFile: (file) => dispatch(setImportFile(file)),
     setCompData: (data) => dispatch(setCompData(data)),
     setTBA: (data) => dispatch(setTBA(data)),
-    setTeams: (nums) => dispatch(setTeams(nums)),
     // Upload Data
   };
 };

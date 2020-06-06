@@ -9,6 +9,7 @@ export class RawDataTable extends Component {
     let validTeam = true;
     let team;
     try {
+      console.log(this.props.team);
       team = this.props.team;
     } catch (err) {
       validTeam = false;
@@ -45,6 +46,7 @@ export class RawDataTable extends Component {
                           <td>
                             {team.matchNums[team.autoData.indexOf(match)]}
                           </td>
+                          {console.log(match)}
                           {match.map((matchData) => (
                             <td>{JSON.stringify(matchData.value)}</td>
                           ))}
