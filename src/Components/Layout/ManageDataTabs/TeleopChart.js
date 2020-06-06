@@ -71,7 +71,7 @@ export default class TeleopChart extends Component {
           },
           title: {
             display: true,
-            text: "Teleop",
+            text: "TELEOPERATED",
             fontsize: 80,
           },
 

@@ -12,15 +12,13 @@ export class ViewMatches extends Component {
   render() {
     matches = this.props.matches;
     tba = this.props.thebluealliance;
-    console.log(tba.schedule);
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <Container>
           <Row className="border-bottom">
             <h2 className="h2">Matches</h2>
           </Row>
-          <Row style={spacer}>
-          </Row>
+          <Row style={spacer}></Row>
           <Row>
             <h4 style={center}>Current Match</h4>
           </Row>

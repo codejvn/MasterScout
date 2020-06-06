@@ -5,7 +5,7 @@ import { ADDPEND_MATCHDATA } from "../Actions/types";
 import { SET_COMPDATA } from "../Actions/types";
 
 const dataInitState = {
-  teams: [new Team(0, 0)],
+  teams: [new Team(2590, 0)],
 };
 const dataReducer = (state = dataInitState, action = {}) => {
   switch (action.type) {
@@ -14,46 +14,30 @@ const dataReducer = (state = dataInitState, action = {}) => {
       for (const teamNum of action.payload) {
         newTeams.push(new Team(teamNum, newTeams.length));
       }
-      console.log("TEAMS ARE NOW P MUCH SET");
       return {
         ...state,
         teams: newTeams,
       };
       break;
+    // break up the data into an array with the teams that do not need to be updated and then the teams that do, add the data,
+    // create a new final array that mashes these together
     case ADDPEND_MATCHDATA:
       let teams = state.teams;
       for (const matchDataObj of action.payload) {
         let index = teams.findIndex(
           (team) => team.teamNumber == matchDataObj.teamNum
         );
-        try {
-          teams[index].appendData(matchDataObj);
-          teams[index].aggregate();
-        } catch (err) {
-          console.log(err);
-        }
+        teams[index].appendData(matchDataObj);
+        teams[index].aggregate();
       }
       return {
         ...state,
         teams: teams,
       };
     case SET_COMPDATA:
-      let teamsRaw = state.teams;
-      console.log(teamsRaw);
-      console.log(action.payload);
-      for (const team of teamsRaw) {
-        let teamFromImport = action.payload.find(
-          (teamFromImport) => teamFromImport.teamNumber == team.teamNumber
-        );
-        console.log("FROM IMPORT");
-        console.log(teamFromImport);
-        console.log("RAW");
-        console.log(team);
-        team.setData(teamFromImport);
-      }
       return {
         ...state,
-        teams: teamsRaw,
+        teams: action.payload,
       };
     default:
       return state;
