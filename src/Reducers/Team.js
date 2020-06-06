@@ -50,10 +50,6 @@ class Team {
     this.organizedDataSets = [[], [], []];
   }
   setData = (data) => {
-    console.log(data);
-    console.log("SETTING FROM DATA");
-    console.log("Previous");
-    console.log(this);
     this.autoData = data.autoData;
     this.teleopData = data.teleopData;
     this.endgameData = data.endgameData;
@@ -62,17 +58,37 @@ class Team {
     this.matchNums = data.matchNums;
     this.totaldata = data.totaldata;
     this.organizedDataSets = data.organizedDataSets;
-    console.log("Now");
-    console.log(this);
   };
   appendData = (set) => {
-    console.log("This is the set thats being added!!");
     this.comments.push(set.comment);
     this.autoData.push(set.data.auto);
     this.teleopData.push(set.data.teleop);
     this.endgameData.push(set.data.endgame);
     this.matchNums.push(set.matchNum);
-    console.log(set);
+  };
+  getMatchData = (matchNum) => {
+    let matchIndex = this.matchNums.findIndex((match) => match == matchNum);
+
+    let data = {
+      comment: this.comments[matchIndex],
+      data: {
+        auto: this.autoData[matchIndex],
+        teleop: this.teleopData[matchIndex],
+        endgame: this.endgameData[matchIndex],
+      },
+    };
+    return data;
+  };
+  deleteData = (matchNum) => {
+    let delIndex = this.matchNums.findIndex((match) => match == matchNum);
+
+    this.matchNums.splice(delIndex, 1);
+    this.autoData.splice(delIndex, 1);
+    this.teleopData.splice(delIndex, 1);
+    this.endgameData.splice(delIndex, 1);
+    this.comments.splice(delIndex, 1);
+
+    this.aggregate();
   };
   /**
    * Input section of match data and the index of the data you want

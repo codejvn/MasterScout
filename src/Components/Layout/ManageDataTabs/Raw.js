@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row";
 import { connect } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { RawDataTable } from "./RawDataTable";
+
+import { EditModal } from "./EditModal";
 export class RawComponent extends Component {
   render() {
     return (
@@ -16,6 +18,8 @@ export class RawComponent extends Component {
             return <RawDataTable team={team} />;
           })}
         </Container>
+
+        <EditModal />
       </div>
     );
   }
@@ -23,6 +27,7 @@ export class RawComponent extends Component {
 const mapStateToProps = (state) => {
   return {
     dataReducer: state.dataReducer,
+    edit: state.edit,
   };
 };
 const mapDispatchToProps = (dispatch) => {

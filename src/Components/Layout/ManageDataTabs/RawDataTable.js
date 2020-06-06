@@ -2,9 +2,21 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
-export class RawDataTable extends Component {
+import { editTeam } from "../../../Actions/EditActions/editTeam";
+import { setModal } from "../../../Actions/EditActions/setModal";
+// import { setModal } from "../../../Actions/EditActions/setModal";
+// import edit modal
+import { connect } from "react-redux";
+
+export class RawDataTableRaw extends Component {
   getTeamNum = (team) => {};
+  showModal = (e) => {
+    this.props.setModal(true);
+    console.log(this.props.team.teamNumber);
+    this.props.editTeam(this.props.team.teamNumber);
+  };
   render() {
     let validTeam = true;
     let team;
@@ -103,6 +115,7 @@ export class RawDataTable extends Component {
                       ))}
                     </tbody>
                   </Table>
+                  <Button onClick={this.showModal}>Edit</Button>
                 </div>
               </Accordion.Collapse>
             </Card>
@@ -135,4 +148,21 @@ const noTop = {
   bottom: "0px",
   marginBottom: "0px",
 };
-export default RawDataTable;
+const mapStateToProps = (state) => {
+  return {
+    edit: state.edit,
+    data: state.dataReducer,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  // propName: (parameters) => dispatch(action)
+  return {
+    setModal: (data) => dispatch(setModal(data)),
+    editTeam: (data) => dispatch(editTeam(data)),
+    // Upload Data
+  };
+};
+export const RawDataTable = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RawDataTableRaw);
