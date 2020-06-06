@@ -342,7 +342,7 @@ export class TeamBreakdownRaw extends Component {
   specialty = (team) => {
     try {
       //if avg defense is greater than 3.5 (probably plays consistent and good defense)
-      if (team.aggregated[1][11] > 3.5) {
+      if (team.aggregated[1][11] > 4) {
         return 'DEFENSE'
       }
       //if total in upper (inner + outer) is greater than bottom --> high goal
@@ -372,7 +372,7 @@ export class TeamBreakdownRaw extends Component {
         <Row style={chart}>
           <Col>
             <h4>Autonomous</h4>
-            <p style={extCatMargin}>Specialty:</p>
+            <p style={extCatMargin}>Specialty: {this.specialty(searchedTeam)}</p>
             <p>Max Ball Auto: </p>
           </Col>
           <Col>
@@ -409,7 +409,7 @@ export class TeamBreakdownRaw extends Component {
             <h4>Endgame</h4>
             <p style={extCatMargin}>Can Climb: {this.canClimb(searchedTeam)} </p>
             <p>Most Common Climb Location: </p>
-            <p>Can Climb In Multiple Positions?: </p>
+            <p>Can Climb In Multiple Positions: </p>
           </Col>
           <Col>
             <Tabs defaultActiveKey="bar" id="uncontrolled-tab">
