@@ -10,7 +10,6 @@ export class RankingsRaw extends Component {
     sortMethod: "Inner",
   };
   selectSortBy = (event) => {
-    console.log(event.target.getAttribute("sort"));
     this.setState({
       sortMethod: event.target.getAttribute("sort"),
     });
@@ -43,34 +42,38 @@ export class RankingsRaw extends Component {
         );
         break;
       case "Accuracy":
-        sorted.sort((a, b) =>
-          (parseInt(100 - (b.aggregated[1][3] / (b.aggregated[1][7] + b.aggregated[1][8] + b.aggregated[1][9] + b.aggregated[1][10])) * 100) -
-            parseInt(100 - (a.aggregated[1][3] / (a.aggregated[1][7] + a.aggregated[1][8] + a.aggregated[1][9] + a.aggregated[1][10])) * 100)));
+        sorted.sort(
+          (a, b) =>
+            parseInt(
+              100 -
+                (b.aggregated[1][3] /
+                  (b.aggregated[1][7] +
+                    b.aggregated[1][8] +
+                    b.aggregated[1][9] +
+                    b.aggregated[1][10])) *
+                  100
+            ) -
+            parseInt(
+              100 -
+                (a.aggregated[1][3] /
+                  (a.aggregated[1][7] +
+                    a.aggregated[1][8] +
+                    a.aggregated[1][9] +
+                    a.aggregated[1][10])) *
+                  100
+            )
+        );
         break;
       case "Defense":
-        sorted.sort(
-          (a, b) =>
-            b.aggregated[1][11] -
-            (a.aggregated[1][11])
-        );
+        sorted.sort((a, b) => b.aggregated[1][11] - a.aggregated[1][11]);
         break;
       case "Climb":
-        sorted.sort(
-          (a, b) =>
-            b.aggregated[2][1] -
-            (a.aggregated[2][1])
-        );
+        sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
         break;
       case "Climb Time":
-        sorted.sort(
-          (a, b) =>
-            b.aggregated[2][4] -
-            (a.aggregated[2][4])
-        );
+        sorted.sort((a, b) => b.aggregated[2][4] - a.aggregated[2][4]);
         break;
     }
-    console.log("SORTED");
-    console.log(sorted);
     return sorted;
   };
   render() {
@@ -82,17 +85,12 @@ export class RankingsRaw extends Component {
           <thead style={{ textAlign: "center" }}>
             <tr>
               <td>
-                <Button
-                  variant="outline-dark"
-                  style={fullWidth}
-                >
+                <Button variant="outline-dark" style={fullWidth}>
                   Rank
-                </Button></td>
+                </Button>
+              </td>
               <td>
-                <Button
-                  variant="outline-dark"
-                  style={fullWidth}
-                >
+                <Button variant="outline-dark" style={fullWidth}>
                   Team
                 </Button>
               </td>
@@ -173,7 +171,6 @@ export class RankingsRaw extends Component {
             {this.getSortedTeams(this.state.sortMethod).map((team, index) => {
               return <RankRow team={team} row={index} />;
             })}
-            {console.log(this.props.dataReducer.teams)}
           </tbody>
         </Table>
       </Container>
@@ -185,8 +182,8 @@ const fullWidth = {
 };
 const fullWidthDynamic = {
   width: "100%",
-  backgroundColor: "rgba(75, 192, 192, 0.2)"
-}
+  backgroundColor: "rgba(75, 192, 192, 0.2)",
+};
 const noTop = {
   top: "0px",
   marginTop: "0px",

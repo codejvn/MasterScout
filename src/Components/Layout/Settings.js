@@ -9,6 +9,7 @@ import { setAutoDownload } from "../../Actions/SettingsActions/setAutoDownload";
 import { setImportFile } from "../../Actions/SettingsActions/setImportFile";
 import { setCompData } from "../../Actions/DataActions/setCompData";
 import { setTBA } from "../../Actions/TBAactions/setTBA";
+import { setTeams } from "../../Actions/TBAactions/setTeams";
 import { resolve } from "dns";
 
 export class SettingsRaw extends Component {
@@ -53,7 +54,12 @@ export class SettingsRaw extends Component {
       console.log(parsed);
       // let update = new Promise((res, rej) => {
       this.props.setTBA(parsed.tba);
-      this.props.setCompData(parsed.teams);
+      console.log("SETTING TEAMS");
+      this.props.setTeams(this.props.tba.event.key);
+      console.log("SETTING DATA");
+      setTimeout(() => {
+        this.props.setCompData(parsed.teams);
+      }, 5000);
       //resolve("yay");
       // }).then((res, rej) => {
 
@@ -123,6 +129,7 @@ const mapDispatchToProps = (dispatch) => {
     setImportFile: (file) => dispatch(setImportFile(file)),
     setCompData: (data) => dispatch(setCompData(data)),
     setTBA: (data) => dispatch(setTBA(data)),
+    setTeams: (nums) => dispatch(setTeams(nums)),
     // Upload Data
   };
 };

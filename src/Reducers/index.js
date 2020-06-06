@@ -5,6 +5,7 @@ import dataReducer from "./DataReducer";
 import searchReducer from "./SearchReducer";
 import compareReducer from "./CompareReducer";
 import settingsReducer from "./SettingsReducer";
+import editDataReducer from "./EditDataReducer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   compare: compareReducer,
   settings: settingsReducer,
+  edit: editDataReducer,
 });
 
 export default rootReducer;
