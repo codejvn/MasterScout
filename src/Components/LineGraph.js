@@ -15,8 +15,14 @@ export class LineGraph extends Component {
   getData = () => {
     let data = [];
     for (const dataSet of this.props.dataSets) {
+      let dataValues = [];
       console.log(dataSet);
-      let dataValues = dataSet.data.map((thing) => thing.value);
+      try {
+        dataValues = dataSet.data.map((thing) => thing.value);
+      } catch (err) {
+        console.log(err);
+        dataValues = [];
+      }
       data.push({
         label: dataSet.teamNumber,
         fill: true,

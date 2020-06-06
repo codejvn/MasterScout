@@ -5,7 +5,7 @@ import { ADDPEND_MATCHDATA } from "../Actions/types";
 import { SET_COMPDATA } from "../Actions/types";
 
 const dataInitState = {
-  teams: [new Team(2590, 0)],
+  teams: [new Team(0, 0)],
 };
 const dataReducer = (state = dataInitState, action = {}) => {
   switch (action.type) {
@@ -27,17 +27,34 @@ const dataReducer = (state = dataInitState, action = {}) => {
         let index = teams.findIndex(
           (team) => team.teamNumber == matchDataObj.teamNum
         );
-        teams[index].appendData(matchDataObj);
-        teams[index].aggregate();
+        try {
+          teams[index].appendData(matchDataObj);
+          teams[index].aggregate();
+        } catch (err) {
+          console.log(err);
+        }
       }
       return {
         ...state,
         teams: teams,
       };
     case SET_COMPDATA:
+      let teamsRaw = state.teams;
+      console.log(teamsRaw);
+      console.log(action.payload);
+      for (const team of teamsRaw) {
+        let teamFromImport = action.payload.find(
+          (teamFromImport) => teamFromImport.teamNumber == team.teamNumber
+        );
+        console.log("FROM IMPORT");
+        console.log(teamFromImport);
+        console.log("RAW");
+        console.log(team);
+        team.setData(teamFromImport);
+      }
       return {
         ...state,
-        teams: action.payload,
+        teams: teamsRaw,
       };
     default:
       return state;
