@@ -71,7 +71,6 @@ export class TeamBreakdownRaw extends Component {
     let charts = [];
     let relevantIndices = [0, 1, 2, 3, 4]
     try {
-      let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
       let dataSets = [];
       for (let i = 0; i < relevantIndices.length; i++) {
         dataSets.push({
@@ -112,7 +111,6 @@ export class TeamBreakdownRaw extends Component {
     let charts = [];
     let relevantIndices = [0, 1, 4]
     try {
-      let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
       let dataSets = [];
       for (let i = 0; i < relevantIndices.length; i++) {
         dataSets.push({
