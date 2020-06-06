@@ -182,8 +182,8 @@ export class TeamBreakdownRaw extends Component {
       var levelPoints = team.aggregated[2][1] * 15
 
       return (
-        autoInner + autoOuter + autoBottom + crossPoints +
-        teleInner + teleOuter + teleBottom + cpRotation + cpPosition + climbPoints + levelPoints
+        parseInt(autoInner + autoOuter + autoBottom + crossPoints +
+        teleInner + teleOuter + teleBottom + cpRotation + cpPosition + climbPoints + levelPoints)
       );
 
     } catch (err) {
@@ -233,7 +233,7 @@ export class TeamBreakdownRaw extends Component {
       var levelPoints = team.aggregated[2][1] * 15
 
       return (
-        climbPoints + levelPoints
+        parseInt(climbPoints + levelPoints)
       );
 
     } catch (err) {
@@ -243,28 +243,28 @@ export class TeamBreakdownRaw extends Component {
   //getters for breakdown autonomous
   innerAuto = (team) => {
     try {
-      return team.aggregated[0][4] * 6;
+      return parseInt(team.aggregated[0][4] * 6);
     } catch (err) {
       return 0;
     }
   }
   outerAuto = (team) => {
     try {
-      return team.aggregated[0][3] * 4;
+      return parseInt(team.aggregated[0][3] * 4);
     } catch (err) {
       return 0;
     }
   }
   bottomAuto = (team) => {
     try {
-      return team.aggregated[0][2] * 2;
+      return parseInt(team.aggregated[0][2] * 2);
     } catch (err) {
       return 0;
     }
   }
   crossedInit = (team) => {
     try {
-      return team.aggregated[0][1] * 4;
+      return parseInt(team.aggregated[0][1] * 4);
     } catch (err) {
       return 0;
     }
@@ -272,35 +272,35 @@ export class TeamBreakdownRaw extends Component {
   //getters for breakdown teleop
   outerTeleop = (team) => {
     try {
-      return team.aggregated[1][1] * 2;
+      return parseInt(team.aggregated[1][1] * 2);
     } catch (err) {
       return 0;
     }
   }
   innerTeleop = (team) => {
     try {
-      return team.aggregated[1][2] * 3;
+      return parseInt(team.aggregated[1][2] * 3);
     } catch (err) {
       return 0;
     }
   }
   bottomTeleop = (team) => {
     try {
-      return team.aggregated[1][0] * 4;
+      return parseInt(team.aggregated[1][0] * 4);
     } catch (err) {
       return 0;
     }
   }
   cpPosition = (team) => {
     try {
-      return team.aggregated[1][6] * 10;
+      return parseInt(team.aggregated[1][6] * 10);
     } catch (err) {
       return 0;
     }
   }
   cpRotation = (team) => {
     try {
-      return team.aggregated[1][5] * 4;
+      return parseInt(team.aggregated[1][5] * 4);
     } catch (err) {
       return 0;
     }
@@ -308,14 +308,14 @@ export class TeamBreakdownRaw extends Component {
   //endgame points
   climbPoints = (team) => {
     try {
-      return team.aggregated[2][0] * 25;
+      return parseInt(team.aggregated[2][0] * 25);
     } catch (err) {
       return 0;
     }
   }
   levelPoints = (team) => {
     try {
-      return team.aggregated[2][1] * 15;
+      return parseInt(team.aggregated[2][1] * 15);
     } catch (err) {
       return 0;
     }
@@ -342,7 +342,7 @@ export class TeamBreakdownRaw extends Component {
   specialty = (team) => {
     try {
       //if avg defense is greater than 3.5 (probably plays consistent and good defense)
-      if (team.aggregated[1][11] > 3.5) {
+      if (team.aggregated[1][11] > 4) {
         return 'DEFENSE'
       }
       //if total in upper (inner + outer) is greater than bottom --> high goal
@@ -372,7 +372,7 @@ export class TeamBreakdownRaw extends Component {
         <Row style={chart}>
           <Col>
             <h4>Autonomous</h4>
-            <p style={extCatMargin}>Specialty:</p>
+            <p style={extCatMargin}>Specialty: {this.specialty(searchedTeam)}</p>
             <p>Max Ball Auto: </p>
           </Col>
           <Col>
@@ -381,7 +381,7 @@ export class TeamBreakdownRaw extends Component {
                 <AutoChart team={searchedTeam} />
               </Tab>
               <Tab eventKey="line" title="Line">
-                {this.doAutoCharts(searchedTeam)};
+                {this.doAutoCharts(searchedTeam)}
               </Tab>
             </Tabs>
           </Col>
@@ -399,7 +399,7 @@ export class TeamBreakdownRaw extends Component {
                 <TeleopChart team={searchedTeam} />
               </Tab>
               <Tab eventKey="line" title="Line">
-                {this.doTeleopCharts(searchedTeam)};
+                {this.doTeleopCharts(searchedTeam)}
               </Tab>
             </Tabs>
           </Col>
@@ -409,7 +409,7 @@ export class TeamBreakdownRaw extends Component {
             <h4>Endgame</h4>
             <p style={extCatMargin}>Can Climb: {this.canClimb(searchedTeam)} </p>
             <p>Most Common Climb Location: </p>
-            <p>Can Climb In Multiple Positions?: </p>
+            <p>Can Climb In Multiple Positions: </p>
           </Col>
           <Col>
             <Tabs defaultActiveKey="bar" id="uncontrolled-tab">
@@ -417,7 +417,7 @@ export class TeamBreakdownRaw extends Component {
                 <EndgameChart team={searchedTeam} />
               </Tab>
               <Tab eventKey="line" title="Line">
-                {this.doEndgameCharts(searchedTeam)};
+                {this.doEndgameCharts(searchedTeam)}
               </Tab>
             </Tabs>
           </Col>

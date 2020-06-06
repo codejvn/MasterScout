@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import { InputBar } from "./InputBar";
 import { clearData } from "../../../Actions/ImportActions/clearData";
 import { appendMatchData } from "../../../Actions/DataActions/appendMatchData";
+import { DupDataPopup } from '../../../Components/DupDataPopup';
+
 export class ImportRaw extends Component {
   componentWillMount() {
     this.props.appendMatchData([
@@ -61,6 +63,7 @@ export class ImportRaw extends Component {
     this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
+
     //writes to file undefined
     this.download(
       "CTDataSet.json",
@@ -100,6 +103,7 @@ export class ImportRaw extends Component {
     document.body.removeChild(element);
   }
 
+
   render() {
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
@@ -138,6 +142,7 @@ export class ImportRaw extends Component {
             {/* <Button onclick={this.download("this.json", this.props.dataReducer.teams)}>Save Data</Button> */}
           </Row>
         </Container>
+        <DupDataPopup/>
       </div>
     );
   }
