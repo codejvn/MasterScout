@@ -58,9 +58,9 @@ export class ImportRaw extends Component {
     editable: true,
   };
   importHandle = () => {
+    this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
-    this.props.clearData();
     //writes to file undefined
     this.download(
       "CTDataSet.json",

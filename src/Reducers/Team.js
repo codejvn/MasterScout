@@ -49,22 +49,6 @@ class Team {
     this.totaldata = [this.autoData, this.teleopData, this.endgameData];
     this.organizedDataSets = [[], [], []];
   }
-  setData = (data) => {
-    console.log(data);
-    console.log("SETTING FROM DATA");
-    console.log("Previous");
-    console.log(this);
-    this.autoData = data.autoData;
-    this.teleopData = data.teleopData;
-    this.endgameData = data.endgameData;
-    this.comments = data.comments;
-    this.aggregated = data.aggregated;
-    this.matchNums = data.matchNums;
-    this.totaldata = data.totaldata;
-    this.organizedDataSets = data.organizedDataSets;
-    console.log("Now");
-    console.log(this);
-  };
   appendData = (set) => {
     console.log("This is the set thats being added!!");
     this.comments.push(set.comment);
