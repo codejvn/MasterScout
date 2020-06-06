@@ -63,6 +63,8 @@ export class ImportRaw extends Component {
     this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
+    console.log(this.props.importer.matchNum);
+    console.log(JSON.stringify(this.props.dataReducer.teams));
 
     //writes to file undefined
     this.download(
