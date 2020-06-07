@@ -84,6 +84,14 @@ export class RankingsRaw extends Component {
         <Table hover responsive style={noTop} striped>
           <thead style={{ textAlign: "center" }}>
             <tr>
+            <td>
+                <Button
+                  variant="outline-dark"
+                  style={fullWidth}
+                >
+                  Delete
+                </Button>
+              </td>
               <td>
                 <Button variant="outline-dark" style={fullWidth}>
                   Rank
@@ -158,7 +166,7 @@ export class RankingsRaw extends Component {
               <td>
                 <Button
                   variant="outline-dark"
-                  style={fullWidthDynamic}
+                  style={climbTimeWidth}
                   onClick={this.selectSortBy}
                   sort={"ClimbTime"}
                 >
@@ -179,6 +187,10 @@ export class RankingsRaw extends Component {
 }
 const fullWidth = {
   width: "100%",
+};
+const climbTimeWidth = {
+  width:"130%",
+  backgroundColor: "rgba(75, 192, 192, 0.2)"
 };
 const fullWidthDynamic = {
   width: "100%",

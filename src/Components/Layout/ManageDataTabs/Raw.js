@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { connect } from "react-redux";
-import Col from "react-bootstrap/Col";
 import { RawDataTable } from "./RawDataTable";
 
 import { EditModal } from "./EditModal";
@@ -18,7 +17,6 @@ export class RawComponent extends Component {
             return <RawDataTable team={team} />;
           })}
         </Container>
-
         <EditModal />
       </div>
     );
