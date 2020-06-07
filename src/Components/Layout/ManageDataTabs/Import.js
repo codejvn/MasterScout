@@ -79,13 +79,6 @@ export class ImportRaw extends Component {
       }
     }
 
-    // for (var i = 0; i < this.props.dataReducer.teams[0].length; i++) {
-    //   if (this.props.importer.data[0].matchNum === this.props.dataReducer.teams[0].matchNum &&
-    //     this.props.import.data[0].teamNum === this.props.dataReducer.teams[0].teamNum) {
-    //     console.log('this data is a duplicate');
-    //   }
-    // }
-
     //writes to file undefined
     this.download(
       "CTDataSet.json",
