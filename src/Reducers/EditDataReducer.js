@@ -4,8 +4,8 @@ import { CLEAR_EDIT } from "../Actions/types";
 import { SET_MODAL } from "../Actions/types";
 import { EDIT_TEAM } from "../Actions/types";
 const modRawDataInit = {
-  originalData: {},
-  editedData: {},
+  originalData: null,
+  editedData: null,
   showModal: false,
   team: -1,
 };
