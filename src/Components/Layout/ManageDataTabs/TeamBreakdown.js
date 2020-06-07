@@ -200,7 +200,7 @@ export class TeamBreakdownRaw extends Component {
       var crossPoints = team.aggregated[0][1] * 5
 
       return (
-        autoInner + autoOuter + autoBottom + crossPoints
+        parseInt(autoInner + autoOuter + autoBottom + crossPoints)
       );
 
     } catch (err) {
@@ -218,7 +218,7 @@ export class TeamBreakdownRaw extends Component {
       var cpPosition = team.aggregated[1][5] * 10
 
       return (
-        teleInner + teleOuter + teleBottom + cpRotation + cpPosition
+        parseInt(teleInner + teleOuter + teleBottom + cpRotation + cpPosition)
       );
 
     } catch (err) {
