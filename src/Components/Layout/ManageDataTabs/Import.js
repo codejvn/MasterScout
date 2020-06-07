@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
@@ -10,6 +9,7 @@ import { InputBar } from "./InputBar";
 import { clearData } from "../../../Actions/ImportActions/clearData";
 import { appendMatchData } from "../../../Actions/DataActions/appendMatchData";
 import { DupDataPopup } from '../../../Components/DupDataPopup';
+import { zeroRightClassName } from "react-remove-scroll-bar";
 
 export class ImportRaw extends Component {
   componentWillMount() {
@@ -63,8 +63,28 @@ export class ImportRaw extends Component {
     this.props.clearData();
     this.setShow(true);
     this.props.appendMatchData(this.props.importer.data);
-    console.log(this.props.importer.matchNum);
+    console.log(this.props.importer.data[0].matchNum);
     console.log(JSON.stringify(this.props.dataReducer.teams));
+
+    // console.log(this.props.dataReducer.teams[0]);
+    console.log(this.props.importer.data[0].teamNum);
+    console.log(this.props.importer.data[0].matchNum);
+    console.log(this.props.dataReducer.teams[0].matchNums);
+
+    for (var i = 0; i < this.props.dataReducer.teams[0].length; i++) {
+      if (this.props.dataReducer.teams[i].teamNum === this.props.importer.data[0].teamNum) {
+        if (this.props.dataReducer.teams[0].matchNums.includes(this.props.importer.data[0].matchNum)) {
+          console.log('this ddata is aduplicate');
+        }
+      }
+    }
+
+    // for (var i = 0; i < this.props.dataReducer.teams[0].length; i++) {
+    //   if (this.props.importer.data[0].matchNum === this.props.dataReducer.teams[0].matchNum &&
+    //     this.props.import.data[0].teamNum === this.props.dataReducer.teams[0].teamNum) {
+    //     console.log('this data is a duplicate');
+    //   }
+    // }
 
     //writes to file undefined
     this.download(
@@ -105,7 +125,6 @@ export class ImportRaw extends Component {
     document.body.removeChild(element);
   }
 
-
   render() {
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
@@ -144,7 +163,6 @@ export class ImportRaw extends Component {
             {/* <Button onclick={this.download("this.json", this.props.dataReducer.teams)}>Save Data</Button> */}
           </Row>
         </Container>
-        <DupDataPopup/>
       </div>
     );
   }
@@ -181,10 +199,5 @@ const formWidth = {
 const spacer = {
   padding: "2vh",
 };
-const noBotMargin = {
-  marginBottom: "0px",
-};
-const spacerSmall = {
-  padding: "1vh",
-};
+
 export const Import = connect(mapStateToProps, mapDispatchToProps)(ImportRaw);

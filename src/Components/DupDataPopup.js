@@ -8,8 +8,6 @@ import { setTeams } from "../Actions/TBAactions/setTeams";
 import { connect } from "react-redux";
 
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -47,12 +45,6 @@ export class DupDataPopupRaw extends Component {
             modalDisplay: false,
         });
     };
-    dropdownReplace = () => {
-        //this should replace raw data 
-    }
-    dropwdownKeep = () => {
-        //does literally nothing, just cancels
-    }
     render() {
         return (
             <Modal
@@ -76,8 +68,7 @@ export class DupDataPopupRaw extends Component {
                             <Col style={teamColumn}>
                                 <Dropdown
                                     isOpen={this.state.dropDownOpen}
-                                    toggle={this.toggleDropdown}
-                                >
+                                    toggle={this.toggleDropdown}>
                                     <DropdownToggle caret>Dropdown</DropdownToggle>
                                     <DropdownMenu>
                                         <DropdownItem>Replace Data</DropdownItem>
