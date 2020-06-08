@@ -5,12 +5,13 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
+import Alert from 'react-bootstrap/Alert';
 import { setAutoDownload } from "../../Actions/SettingsActions/setAutoDownload";
 import { setImportFile } from "../../Actions/SettingsActions/setImportFile";
 import { setCompData } from "../../Actions/DataActions/setCompData";
 import { setTBA } from "../../Actions/TBAactions/setTBA";
 import { setTeams } from "../../Actions/TBAactions/setTeams";
-import { resolve } from "dns";
+
 
 export class SettingsRaw extends Component {
   toggleAutoDownload = (e) => {
@@ -65,8 +66,14 @@ export class SettingsRaw extends Component {
 
       //setTimeout(this.props.setMatchData(parsed.teams), 2000);
 
-      //});
+      //});  
     });
+    //should add alert but doesn't something off with this function
+    return (
+      <Alert variant="success">
+        You successfully imported data!
+      </Alert>
+    );
     reader.readAsText(file);
   };
   render() {
@@ -78,21 +85,26 @@ export class SettingsRaw extends Component {
               <h2 style={settingsHeader}>Settings</h2>
             </Col>
           </Row>
-          <Row style={spacer}></Row>
-          <Form>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="Disable Auto Download"
-                onChange={this.toggleAutoDownload}
-              />
-            </Form.Group>
-          </Form>
-          <Row>
-            <Button onClick={this.downloadComp}>
-              Download Competition Data
-            </Button>
+          <Row style={spacer}>
+            <Form >
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check
+                  type="checkbox"
+                  label="Disable Auto Download"
+                  onChange={this.toggleAutoDownload}
+                />
+              </Form.Group>
+            </Form>
           </Row>
+          <hr></hr>
+          <Row>
+            <div style={spacer}>
+              <Button onClick={this.downloadComp} variant="info">
+                Download Competition Data
+              </Button>
+            </div>
+          </Row>
+          <hr></hr>
           <Row>
             <p style={spacer}>Import Competition Data: </p>
             <input
@@ -101,11 +113,14 @@ export class SettingsRaw extends Component {
               onChange={this.fileSelectHandle}
               style={spacer}
             />
-            <Button style={buttonSize} onClick={this.setTeams}>
-              {" "}
+            <div style={spacer}>
+              <Button style={buttonSize} onClick={this.setTeams} variant="info">
+                {" "}
               Import{" "}
-            </Button>
+              </Button>
+            </div>
           </Row>
+          <hr></hr>
         </Container>
       </div>
     );
@@ -141,6 +156,8 @@ const spacer = {
 const settingsHeader = {
   marginBottom: "2%",
 };
+
+
 export const Settings = connect(
   mapStateToProps,
   mapDispatchToProps
