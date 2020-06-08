@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import { setMatch } from "../Actions/TBAactions/setMatch";
 import { setMatchData } from "../Actions/TBAactions/setMatchData";
+
 export class MatchNumRaw extends Component {
   constrain = (num, min, max) => {
     num = num > max ? max : num;

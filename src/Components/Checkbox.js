@@ -1,5 +1,4 @@
 //this currently doesn't work not showing the actual check box
-
 import React, { Component } from 'react';
 import FormCheck from 'react-bootstrap/FormCheck';
 import { FormGroup } from 'reactstrap';
@@ -7,7 +6,6 @@ import { FormGroup } from 'reactstrap';
 export class Checkbox extends Component {
     state = {
         id: this.props.id,
-        // entryName: this.props.entryName,
         value: this.props.value
     }
     render() {
@@ -20,11 +18,7 @@ export class Checkbox extends Component {
             </div>
         )
     }
-    // changeHandle = (value) =>{
-    //     this.setState({value:value}, () => {
-    //         this.props.send(this.state);
-    //     });
-    // }
+
 }
 const headers = {
     fontSize: "150%",

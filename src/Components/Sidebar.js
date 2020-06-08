@@ -23,10 +23,10 @@ export class Sidebar extends Component {
               <Nav.Link eventKey="5">Export</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="6"> Pit Scouting</Nav.Link>
+              <Nav.Link eventKey="6"> Rankings </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="7"> Rankings </Nav.Link>
+              <Nav.Link eventKey="7"> Picklist </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="8">Settings</Nav.Link>

@@ -17,6 +17,7 @@ import { removeTeam } from "../../Actions/CompareActions/removeTeam";
 import { selectTeam } from "../../Actions/CompareActions/selectTeam";
 import { connect } from "react-redux";
 import { aggreProps } from "../../Reducers/Team";
+
 export class CompareRaw extends Component {
   submitHandle = (e) => {
     e.preventDefault();
@@ -30,7 +31,6 @@ export class CompareRaw extends Component {
     this.props.removeTeam(num);
   };
   doCharts = (teams) => {
-    // this is such a hacky solution oh my god
     let charts = [];
     let headers = ["Auto", "Teleop", "Endgame"];
     if (teams.length > 0) {
@@ -147,7 +147,7 @@ const formWidth = {
   width: "100%",
 };
 const makeWhite = {
-  backgroundColor:"white",
+  backgroundColor: "white",
 };
 const inputWidth = {
   width: "100%",

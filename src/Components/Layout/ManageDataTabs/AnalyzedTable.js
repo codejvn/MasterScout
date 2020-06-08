@@ -123,11 +123,19 @@ export class AnalyzedTable extends Component {
         </Table>
       );
     } else {
-      return <p>no team</p>;
+      return(
+        <div style={center}>
+          <h5 style={defaultHeader}>No Teams Selected</h5>
+        </div>
+      )
     }
   }
 }
 const center = {
   textAlign: "center",
 };
+const defaultHeader = {
+  color: "gray",
+}
+
 export default AnalyzedTable;

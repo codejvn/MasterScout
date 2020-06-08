@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button'
 export class PlusMinus extends Component {
     state = {
         id: this.props.id,
-        // entryName: this.props.entryName,
         value: 0
     }
     changeHandle = (value) => {
@@ -37,7 +36,6 @@ export class PlusMinus extends Component {
         });
     }
 }
-// weird styling issues need to be fixed soon
 const centerStyle = {
     textAlign: 'center',
     fontSize: "150%",

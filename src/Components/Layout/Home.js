@@ -8,8 +8,6 @@ import { RawDataTable } from "./ManageDataTabs/RawDataTable";
 import AnalyzedTable from "./ManageDataTabs/AnalyzedTable";
 import { GetStartedPopup } from "../GetStartedPopup";
 import { connect } from "react-redux";
-import Button from "react-bootstrap/Button";
-
 import Table from "react-bootstrap/Table";
 
 let tba;
