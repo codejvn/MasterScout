@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Table from "react-bootstrap/Table";
 let match;
 export class MatchRow extends Component {
   currentStyle = () => {
@@ -26,10 +25,6 @@ export class MatchRow extends Component {
     );
   }
 }
-const plain = {};
-const selected = {
-  backgroundColor: "rgb(200,200,255)",
-};
 const center = {
   textAlign: "center",
 }
