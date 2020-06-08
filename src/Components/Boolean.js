@@ -5,7 +5,6 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 export class Boolean extends Component {
     state = {
         id: this.props.id,
-        // entryName: this.props.entryName,
         value: "none"
     }
     render() {

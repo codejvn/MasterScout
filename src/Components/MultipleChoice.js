@@ -5,7 +5,6 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 export class MultipleChoice extends Component {
     state = {
         id: this.props.id,
-        // entryName: this.props.entryName,
         value: this.props.options[0]
     }
     render() {

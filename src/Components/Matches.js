@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import MatchRow from "./MatchRow";
+
 export class Matches extends Component {
   render() {
     return (
       <div style={fw}>
-        
         <Table striped borderless hover variant="light" style={{marginTop:"2%"}}>
           <thead>
             <tr>
@@ -28,9 +28,6 @@ export class Matches extends Component {
     );
   }
 }
-const spacer = {
- padding: "2vh",
-};
 const match = {
  backgroundColor: "rgb(200,200,200)",
  textAlign: "center",

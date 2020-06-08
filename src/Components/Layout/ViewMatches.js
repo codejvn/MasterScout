@@ -5,8 +5,10 @@ import Matches from "../Matches";
 import MatchCodes from "../MatchCodes";
 import { MatchNum } from "../MatchNum";
 import { connect } from "react-redux";
+
 let tba;
 let matches;
+
 export class ViewMatches extends Component {
   state = {};
   render() {
