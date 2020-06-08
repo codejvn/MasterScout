@@ -5,10 +5,14 @@ import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { setModal } from "../../../Actions/EditActions/setModal";
 import { selectEditData } from "../../../Actions/EditActions/selectDataToEdit";
+import { editData } from "../../../Actions/EditActions/editData";
 import { aggreProps } from "../../../Reducers/Team";
 export class EditModalRaw extends Component {
   hide = (e) => {
-    this.props.setModal(false);
+    this.props.setModal(false, false);
+  };
+  save = (e) => {
+    this.props.setModal(false, true);
   };
   getTeam = (num) => {
     if (num > 0) {
@@ -23,14 +27,63 @@ export class EditModalRaw extends Component {
     let matchData = this.getTeam(this.props.edit.team).getMatchData(matchNum);
     this.props.selectEditData(matchData);
   };
-  parseData = (data) => {
+  editNum = (e) => {
+    let section = e.currentTarget.getAttribute("section");
+    let id = e.currentTarget.getAttribute("id");
+    let value = e.currentTarget.value;
+
+    value = value == "" ? "" : JSON.parse(value);
+    section = JSON.parse(section);
+    id = JSON.parse(id);
+
+    this.props.editData({
+      section: section,
+      dataId: id,
+      value: value,
+    });
+    console.log(section);
+    console.log(id);
+    console.log(value);
+  };
+  editString = (e) => {
+    let section = e.currentTarget.getAttribute("section");
+    let id = e.currentTarget.getAttribute("id");
+    let value = e.currentTarget.value;
+    this.props.editData({
+      section: JSON.parse(section),
+      dataId: JSON.parse(id),
+      value: value,
+    });
+    console.log(section);
+    console.log(id);
+    console.log(value);
+  };
+  parseData = (data, id, section) => {
     switch (typeof data) {
       case "number":
-        return data;
+        return (
+          <input
+            type="text"
+            className="form-control"
+            value={data}
+            id={id}
+            section={section}
+            onChange={this.editNum}
+          />
+        );
       case "boolean":
         return data ? "true" : "false";
       case "string":
-        return data;
+        return (
+          <input
+            type="text"
+            className="form-control"
+            value={data}
+            id={id}
+            section={section}
+            onChange={this.editString}
+          />
+        );
     }
   };
   render() {
@@ -54,24 +107,24 @@ export class EditModalRaw extends Component {
               <div>
                 <h5>Auto</h5>
                 {this.props.edit.editedData.data.auto.map((dataObj) => (
-                  <p>
+                  <div>
                     {aggreProps[0][dataObj.id].name}:
-                    {this.parseData(dataObj.value)}
-                  </p>
+                    {this.parseData(dataObj.value, dataObj.id, 0)}
+                  </div>
                 ))}
                 <h5>Teleop</h5>{" "}
                 {this.props.edit.editedData.data.teleop.map((dataObj) => (
-                  <p>
+                  <div>
                     {aggreProps[1][dataObj.id].name}:
-                    {this.parseData(dataObj.value)}
-                  </p>
+                    {this.parseData(dataObj.value, dataObj.id, 1)}
+                  </div>
                 ))}
                 <h5>Endgame</h5>{" "}
                 {this.props.edit.editedData.data.endgame.map((dataObj) => (
-                  <p>
+                  <div>
                     {aggreProps[2][dataObj.id - 12].name}:
-                    {this.parseData(dataObj.value)}
-                  </p>
+                    {this.parseData(dataObj.value, dataObj.id, 2)}
+                  </div>
                 ))}
               </div>
             )}
@@ -98,8 +151,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {
-    setModal: (data) => dispatch(setModal(data)),
+    setModal: (data, save) => dispatch(setModal(data, save)),
     selectEditData: (matchNum) => dispatch(selectEditData(matchNum)),
+    editData: (data) => dispatch(editData(data)),
     // addData: (data) => dispatch(addData(data)),
     // Upload Data
   };
