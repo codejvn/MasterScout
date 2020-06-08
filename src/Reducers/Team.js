@@ -136,6 +136,7 @@ class Team {
   };
 
   aggregate = () => {
+    console.log("AGGERGATING TEAM " + this.teamNumber);
     this.totaldata.forEach((set, i, a) => {
       console.log(set);
       this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);

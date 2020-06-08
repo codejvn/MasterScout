@@ -13,15 +13,13 @@ import { connect } from "react-redux";
 export class RawDataTableRaw extends Component {
   getTeamNum = (team) => {};
   showModal = (e) => {
-    this.props.setModal(true);
-    console.log(this.props.team.teamNumber);
+    this.props.setModal(true, false);
     this.props.editTeam(this.props.team.teamNumber);
   };
   render() {
     let validTeam = true;
     let team;
     try {
-      console.log(this.props.team);
       team = this.props.team;
     } catch (err) {
       validTeam = false;
@@ -58,7 +56,6 @@ export class RawDataTableRaw extends Component {
                           <td>
                             {team.matchNums[team.autoData.indexOf(match)]}
                           </td>
-                          {console.log(match)}
                           {match.map((matchData) => (
                             <td>{JSON.stringify(matchData.value)}</td>
                           ))}
@@ -159,7 +156,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // propName: (parameters) => dispatch(action)
   return {
-    setModal: (data) => dispatch(setModal(data)),
+    setModal: (data, save) => dispatch(setModal(data, save)),
     editTeam: (data) => dispatch(editTeam(data)),
     // Upload Data
   };
