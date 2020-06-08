@@ -8,6 +8,7 @@ import { Settings } from "./Layout/Settings";
 import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
 import { Rankings } from "./Layout/Rankings.js";
+import { Picklist } from './Layout/Picklist';
 
 export class SidebarContents extends Component {
   render() {
@@ -33,6 +34,9 @@ export class SidebarContents extends Component {
             <Rankings />
           </Tab.Pane>
           <Tab.Pane eventKey="7">
+            <Picklist />
+          </Tab.Pane>
+          <Tab.Pane eventKey="8">
             <Settings />
           </Tab.Pane>
         </Tab.Content>
