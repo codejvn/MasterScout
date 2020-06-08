@@ -12,6 +12,7 @@ export class EditModalRaw extends Component {
     this.props.setModal(false, false);
   };
   save = (e) => {
+    this.getTeam(this.props.edit.team).aggregate();
     this.props.setModal(false, true);
   };
   getTeam = (num) => {

@@ -13,11 +13,7 @@ const editDataReducer = (state = modRawDataInit, action = {}) => {
   switch (action.type) {
     case SET_MODAL:
       if (!action.payload && !action.save) {
-        return {
-          ...state,
-          editedData: state.originalData,
-          showModal: action.payload,
-        };
+        return modRawDataInit;
       } else {
         return {
           ...state,
@@ -31,9 +27,11 @@ const editDataReducer = (state = modRawDataInit, action = {}) => {
         editedData: action.payload,
       };
     case EDIT_DATA:
+      console.log(state);
+      let original = state.originalData;
       let copy = state.editedData;
+      console.log(original);
       console.log(copy);
-      console.log(action);
       switch (action.section) {
         case 0:
           copy.data.auto[action.dataId].value = action.value;
@@ -45,9 +43,12 @@ const editDataReducer = (state = modRawDataInit, action = {}) => {
           copy.data.endgame[action.dataId - 12].value = action.value;
           break;
       }
+      console.log(original);
+      console.log(copy);
       return {
         ...state,
         editedData: copy,
+        originalData: original,
       };
     case EDIT_TEAM:
       return {

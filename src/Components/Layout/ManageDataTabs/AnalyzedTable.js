@@ -24,6 +24,7 @@ export class AnalyzedTable extends Component {
     }
   };
   render() {
+    console.log("rending analyzed");
     let stripes;
     try {
       stripes = this.props.stripes;
@@ -35,6 +36,14 @@ export class AnalyzedTable extends Component {
       validTeam = false;
     }
     if (validTeam) {
+      if (this.props.teams.length > 1) {
+        for (const team of this.props.teams) {
+          if (team.autoData.length > 0) {
+            console.log("AGGREGATING TEAM");
+            team.aggregate();
+          }
+        }
+      }
       return (
         <Table style={center} responsive striped={stripes}>
           <thead>
