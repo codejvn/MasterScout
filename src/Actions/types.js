@@ -23,3 +23,4 @@ export const EDIT_DATA = "editData";
 export const CLEAR_EDIT = "clearEdit";
 export const SET_MODAL = "setModal";
 export const EDIT_TEAM = "editTeam";
+export const AGGREGATE_ALL = "aggregateAll";

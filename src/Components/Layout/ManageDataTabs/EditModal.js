@@ -6,14 +6,15 @@ import { connect } from "react-redux";
 import { setModal } from "../../../Actions/EditActions/setModal";
 import { selectEditData } from "../../../Actions/EditActions/selectDataToEdit";
 import { editData } from "../../../Actions/EditActions/editData";
+import { aggregateAll } from "../../../Actions/DataActions/aggregateAll";
 import { aggreProps } from "../../../Reducers/Team";
 export class EditModalRaw extends Component {
   hide = (e) => {
     this.props.setModal(false, false);
   };
   save = (e) => {
-    this.getTeam(this.props.edit.team).aggregate();
     this.props.setModal(false, true);
+    this.props.aggregateAll();
   };
   getTeam = (num) => {
     if (num > 0) {
@@ -134,7 +135,7 @@ export class EditModalRaw extends Component {
             <Button variant="secondary" onClick={this.hide}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.hide}>
+            <Button variant="primary" onClick={this.save}>
               Save Changes
             </Button>
           </Modal.Footer>
@@ -155,6 +156,7 @@ const mapDispatchToProps = (dispatch) => {
     setModal: (data, save) => dispatch(setModal(data, save)),
     selectEditData: (matchNum) => dispatch(selectEditData(matchNum)),
     editData: (data) => dispatch(editData(data)),
+    aggregateAll: () => dispatch(aggregateAll()),
     // addData: (data) => dispatch(addData(data)),
     // Upload Data
   };
