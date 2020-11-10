@@ -9,6 +9,8 @@ import AnalyzedTable from "./ManageDataTabs/AnalyzedTable";
 import { GetStartedPopup } from "../GetStartedPopup";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
+import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 let tba;
 let matches;
@@ -49,12 +51,18 @@ export class Home extends Component {
     return teams;
   };
 
+  setTeama = async () => {
+    const res =  await axios.post('https://jsonbox.io/box_27ac3dacb977a1e82148/data', {text: "hello"});
+    console.log(res);
+  }
+
   render() {
     tba = this.props.thebluealliance;
     matches = this.props.matches;
     data = this.props.dataReducer;
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+        <Button onClick={() => {this.setTeama()}}>test db</Button>
         <Container>
           <Row className="border-bottom">
             <Col>
