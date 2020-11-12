@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
+    "fs": "0.0.1-security",
     "hide-scrollbar-react": "^1.1.6",
     "node-sass": "^4.14.1",
     "qrcode.react": "^1.0.0",

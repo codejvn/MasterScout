@@ -9,11 +9,43 @@ import store from "./store";
 import { Navigation } from "./Components/Navigation";
 import { Sidebar } from "./Components/Sidebar";
 import { SidebarContents } from "./Components/SidebarContents";
+import axios from 'axios';
+
+let counter = 1;
+
 export class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      data: []
+    }
+  }
+
   state = {
     activePage: 0,
   };
+
+  //set highest state to data and pass down through props
+  getTeams = async () => {
+    const response = await axios.get('https://jsonbox.io/box_27ac3dacb977a1e82148/data')
+    this.setState({
+      data: response
+    })
+    console.log(this.state.data)
+  }
+
+
+  //initial setstate FIX LATER THIS IS VERY JANK
+  pullDataState = () => {
+    if(counter === 1){
+      this.getTeams();
+      console.log("this worked")
+    }
+    counter++;
+  }
+
   render() {
+    {this.pullDataState()}
     if (this.state.activePage == 0) {
       // this is temp lol
       return (
@@ -55,7 +87,7 @@ export class App extends Component {
             >
               <Row>
                 <Sidebar />
-                <SidebarContents />
+                <SidebarContents data={this.state.data}/>
               </Row>
             </Tab.Container>
           </div>

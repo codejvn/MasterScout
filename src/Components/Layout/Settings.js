@@ -5,14 +5,24 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
-import Alert from "react-bootstrap/Alert";
 import { setAutoDownload } from "../../Actions/SettingsActions/setAutoDownload";
 import { setImportFile } from "../../Actions/SettingsActions/setImportFile";
 import { setCompData } from "../../Actions/DataActions/setCompData";
 import { setTBA } from "../../Actions/TBAactions/setTBA";
 import { setTeams } from "../../Actions/TBAactions/setTeams";
+import axios from 'axios';
+
+//ONCE DATABASE IS DONE, GET RID OF LOCAL DOWNLOAD AND CHANGE TO DOWNLOAD FROM DB - METHOD EXISTS 
+//DELETE? COULD BE RISKY 
 
 export class SettingsRaw extends Component {
+  constructor(props){
+    super(props);
+    this.state = ({
+      data: []
+    });
+  }
+
   toggleAutoDownload = (e) => {
     this.props.setAutoDownload(!this.props.settings.autoDownload);
   };
@@ -24,6 +34,23 @@ export class SettingsRaw extends Component {
       JSON.stringify({ teams: this.props.dataReducer.teams })
     );
   };
+
+  getTeams = async () => {
+    const response = await axios.get('https://jsonbox.io/box_27ac3dacb977a1e82148/data')
+    this.setState({
+      data: response
+    })
+    console.log(this.state.data)
+  }
+
+  downloadDB = (e) => {
+    console.log('downloading db data');
+    this.download(
+      "DBtest.json",
+      JSON.stringify(this.state.data)
+    )
+  }
+
   download = (filename, text) => {
     var element = document.createElement("a");
     element.setAttribute(
@@ -116,6 +143,14 @@ export class SettingsRaw extends Component {
             </div>
           </Row>
           <hr></hr>
+          <Row>
+            <Button onClick={() => {
+              this.getTeams();
+              this.downloadDB();
+            }}>
+              DOWNLOAD DB ATUFF
+            </Button>
+          </Row>
         </Container>
       </div>
     );

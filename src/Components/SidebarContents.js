@@ -9,35 +9,45 @@ import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
 import { Rankings } from "./Layout/Rankings.js";
 import { Picklist } from './Layout/Picklist';
+import Button from 'react-bootstrap/Button';
 
 export class SidebarContents extends Component {
+  //for testing purposes - get rid of in non-dev situation
+  logProps = () => {
+    let x = 0;
+    if (x < 1) {
+      console.log(this.props);
+    }
+    x++;
+  }
+
   render() {
     return (
       <Col sm={10}>
         <Tab.Content>
           <Tab.Pane eventKey="1">
-            <HomeCom />
+            <HomeCom data={this.props.data}/>
           </Tab.Pane>
           <Tab.Pane eventKey="2">
-            <ManageData />
+            <ManageData data={this.props.data}/>
           </Tab.Pane>
           <Tab.Pane eventKey="3">
-            <ViewMatchesConn />
+            <ViewMatchesConn/>
           </Tab.Pane>
           <Tab.Pane eventKey="4">
-            <Compare />
+            <Compare data={this.props.data}/>
           </Tab.Pane>
           <Tab.Pane eventKey="5">
             <Export />
           </Tab.Pane>
           <Tab.Pane eventKey="6">
-            <Rankings />
+            <Rankings data={this.props.data}/>
           </Tab.Pane>
           <Tab.Pane eventKey="7">
-            <Picklist />
+            <Picklist data={this.props.data}/>
           </Tab.Pane>
           <Tab.Pane eventKey="8">
-            <Settings />
+            <Settings data={this.props.data}/>
           </Tab.Pane>
         </Tab.Content>
       </Col>
