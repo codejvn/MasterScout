@@ -4,6 +4,8 @@ import { SET_TEAMS } from "../Actions/types";
 import { ADDPEND_MATCHDATA } from "../Actions/types";
 import { SET_COMPDATA } from "../Actions/types";
 import { AGGREGATE_ALL } from "../Actions/types";
+import axios from 'axios';
+
 const dataInitState = {
   teams: [new Team(0, 0)],
 };
@@ -32,6 +34,7 @@ const dataReducer = (state = dataInitState, action = {}) => {
       };
     case ADDPEND_MATCHDATA:
       let teams = state.teams;
+      console.log(state.teams);
       for (const matchDataObj of action.payload) {
         let index = teams.findIndex(
           (team) => team.teamNumber == matchDataObj.teamNum
@@ -43,10 +46,15 @@ const dataReducer = (state = dataInitState, action = {}) => {
           console.log(err);
         }
       }
+      axios.post('https://jsonbox.io/box_27ac3dacb977a1e82148/data', {data: state.teams});
+      axios.delete('https://jsonbox.io/box_27ac3dacb977a1e82148/data').then(
+        console.log("DELETED")
+      )
       return {
         ...state,
         teams: teams,
       };
+     
     case SET_COMPDATA:
       let teamsRaw = state.teams;
       console.log(teamsRaw);
