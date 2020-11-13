@@ -3,7 +3,7 @@ import Team from "./Team";
 import { SET_TEAMS } from "../Actions/types";
 import { ADDPEND_MATCHDATA } from "../Actions/types";
 import { SET_COMPDATA } from "../Actions/types";
-
+import { AGGREGATE_ALL } from "../Actions/types";
 const dataInitState = {
   teams: [new Team(0, 0)],
 };
@@ -19,8 +19,17 @@ const dataReducer = (state = dataInitState, action = {}) => {
         teams: newTeams,
       };
       break;
-    // break up the data into an array with the teams that do not need to be updated and then the teams that do, add the data,
-    // create a new final array that mashes these together
+    case AGGREGATE_ALL:
+      let teamsPre = state.teams;
+      for (const team of teamsPre) {
+        if (team.comments.length > 0) {
+          team.aggregate();
+        }
+      }
+      return {
+        ...state,
+        teams: teamsPre,
+      };
     case ADDPEND_MATCHDATA:
       let teams = state.teams;
       for (const matchDataObj of action.payload) {
