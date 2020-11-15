@@ -83,7 +83,7 @@ export class SettingsRaw extends Component {
       this.props.setTeams(this.props.tba.event.key);
       console.log(parsed);
       //IMPORTANT
-      axios.put('https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679', {parsed});
+      axios.put('https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679', { parsed });
       console.log('UPDATING DATABASE')
       console.log("SETTING DATA");
       setTimeout(() => {
@@ -109,49 +109,57 @@ export class SettingsRaw extends Component {
               <h2 style={settingsHeader}>Settings</h2>
             </Col>
           </Row>
-          <Row style={spacer}>
-            <Form>
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check
-                  type="checkbox"
-                  label="Disable Auto Download"
-                  onChange={this.toggleAutoDownload}
+          <Row>
+            <div style={encap}>
+              <Row style={spacer}>
+                <div style={spacer}>
+                  <Form>
+                    <Form.Group controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        label="Disable Auto Download"
+                        onChange={this.toggleAutoDownload}
+                      />
+                    </Form.Group>
+                  </Form>
+                </div>
+              </Row>
+              <hr></hr>
+              <Row style={spacer}>
+                <div style={spacer}>
+                  <Button onClick={this.downloadComp} variant="outline-dark">
+                    Download Competition Data
+                  </Button>
+                </div>
+              </Row>
+              <hr></hr>
+              <Row style={spacer}>
+                <p style={spacer}>Import Competition Data: </p>
+                <input
+                  type="file"
+                  name="file"
+                  onChange={this.fileSelectHandle}
+                  style={spacer}
                 />
-              </Form.Group>
-            </Form>
-          </Row>
-          <hr></hr>
-          <Row>
-            <div style={spacer}>
-              <Button onClick={this.downloadComp} variant="info">
-                Download Competition Data
-              </Button>
+                <div style={spacer}>
+                  <Button onClick={this.setTeams} variant="outline-dark">
+                    {" "}
+                    Import{" "}
+                  </Button>
+                </div>
+              </Row>
             </div>
           </Row>
           <hr></hr>
-          <Row>
-            <p style={spacer}>Import Competition Data: </p>
-            <input
-              type="file"
-              name="file"
-              onChange={this.fileSelectHandle}
-              style={spacer}
-            />
-            <div style={spacer}>
-              <Button style={buttonSize} onClick={this.setTeams} variant="info">
-                {" "}
-                Import{" "}
-              </Button>
-            </div>
-          </Row>
         </Container>
       </div>
     );
   }
 }
-const buttonSize = {
-  height: "90%",
-};
+const marginTop = {
+  marginTop: "2vh",
+  marginLeft: '2vh'
+}
 const mapStateToProps = (state) => {
   return {
     settings: state.settings,
@@ -172,8 +180,13 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const encap = {
+  marginTop: '2vh',
+  marginLeft: "2.5%",
+}
+
 const spacer = {
-  padding: "2vh",
+  padding: "1vh",
 };
 
 const settingsHeader = {
