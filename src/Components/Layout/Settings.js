@@ -12,11 +12,9 @@ import { setTBA } from "../../Actions/TBAactions/setTBA";
 import { setTeams } from "../../Actions/TBAactions/setTeams";
 import axios from 'axios';
 
-//ONCE DATABASE IS DONE, GET RID OF LOCAL DOWNLOAD AND CHANGE TO DOWNLOAD FROM DB - METHOD EXISTS 
-//DELETE? COULD BE RISKY 
 
 export class SettingsRaw extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = ({
       data: []
@@ -83,6 +81,10 @@ export class SettingsRaw extends Component {
       this.props.setTBA(parsed.tba);
       console.log("SETTING TEAMS");
       this.props.setTeams(this.props.tba.event.key);
+      console.log(parsed);
+      //IMPORTANT
+      axios.put('https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679', {parsed});
+      console.log('UPDATING DATABASE')
       console.log("SETTING DATA");
       setTimeout(() => {
         this.props.setCompData(parsed.teams);
@@ -141,15 +143,6 @@ export class SettingsRaw extends Component {
                 Import{" "}
               </Button>
             </div>
-          </Row>
-          <hr></hr>
-          <Row>
-            <Button onClick={() => {
-              this.getTeams();
-              this.downloadDB();
-            }}>
-              DOWNLOAD DB ATUFF
-            </Button>
           </Row>
         </Container>
       </div>

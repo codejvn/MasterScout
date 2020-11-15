@@ -74,12 +74,11 @@ export class ImportRaw extends Component {
     for (var i = 0; i < this.props.dataReducer.teams[0].length; i++) {
       if (this.props.dataReducer.teams[i].teamNum === this.props.importer.data[0].teamNum) {
         if (this.props.dataReducer.teams[0].matchNums.includes(this.props.importer.data[0].matchNum)) {
-          console.log('this ddata is aduplicate');
+          console.log('this data is aduplicate');
         }
       }
     }
-
-    //writes to file undefined
+    //writes to file undefined dir
     this.download(
       "CTDataSet.json",
       JSON.stringify({
@@ -88,6 +87,7 @@ export class ImportRaw extends Component {
       })
     );
   };
+
   setShow = (success) => {
     this.setState({
       ...this.state,

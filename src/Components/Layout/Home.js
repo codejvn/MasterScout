@@ -54,18 +54,6 @@ export class Home extends Component {
     console.log(teams);
     return teams;
   };
-
-
-  //db testing 
-  setTeamDB = async () => {
-    const res = await axios.post('https://jsonbox.io/box_27ac3dacb977a1e82148/data', { teamData: [4, 5, 6] });
-  }
-
-  logState = () => {
-    console.log(this.props.data);
-  }
-  
-
   
 
   render() {
@@ -74,10 +62,6 @@ export class Home extends Component {
     data = this.props.dataReducer;
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-        <Button onClick={() => {
-          this.setTeamDB()
-          this.logState()
-        }}>test db</Button>
         <Container>
           <Row className="border-bottom">
             <Col>

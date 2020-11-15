@@ -46,10 +46,9 @@ const dataReducer = (state = dataInitState, action = {}) => {
           console.log(err);
         }
       }
-      axios.post('https://jsonbox.io/box_27ac3dacb977a1e82148/data', {data: state.teams});
-      axios.delete('https://jsonbox.io/box_27ac3dacb977a1e82148/data').then(
-        console.log("DELETED")
-      )
+      //update on button 
+      axios.put('https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679', {data: state.teams});
+
       return {
         ...state,
         teams: teams,
