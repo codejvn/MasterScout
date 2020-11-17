@@ -33,22 +33,6 @@ export class SettingsRaw extends Component {
     );
   };
 
-  getTeams = async () => {
-    const response = await axios.get('https://jsonbox.io/box_27ac3dacb977a1e82148/data')
-    this.setState({
-      data: response
-    })
-    console.log(this.state.data)
-  }
-
-  downloadDB = (e) => {
-    console.log('downloading db data');
-    this.download(
-      "DBtest.json",
-      JSON.stringify(this.state.data)
-    )
-  }
-
   download = (filename, text) => {
     var element = document.createElement("a");
     element.setAttribute(
