@@ -9,7 +9,7 @@ import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
 import { Rankings } from "./Layout/Rankings.js";
 import { Picklist } from './Layout/Picklist';
-import Button from 'react-bootstrap/Button';
+import { MatchPlanning } from './Layout/Match Planning/MatchPlanning.js'
 
 export class SidebarContents extends Component {
   //for testing purposes - get rid of in non-dev situation
@@ -26,28 +26,31 @@ export class SidebarContents extends Component {
       <Col sm={10}>
         <Tab.Content>
           <Tab.Pane eventKey="1">
-            <HomeCom data={this.props.data}/>
+            <HomeCom data={this.props.data} />
           </Tab.Pane>
           <Tab.Pane eventKey="2">
-            <ManageData data={this.props.data}/>
+            <ManageData data={this.props.data} />
           </Tab.Pane>
           <Tab.Pane eventKey="3">
-            <ViewMatchesConn/>
+            <ViewMatchesConn />
           </Tab.Pane>
           <Tab.Pane eventKey="4">
-            <Compare data={this.props.data}/>
+            <Compare data={this.props.data} />
           </Tab.Pane>
           <Tab.Pane eventKey="5">
-            <Export />
+            <MatchPlanning />
           </Tab.Pane>
           <Tab.Pane eventKey="6">
-            <Rankings data={this.props.data}/>
+            <Export />
           </Tab.Pane>
           <Tab.Pane eventKey="7">
-            <Picklist data={this.props.data}/>
+            <Rankings data={this.props.data} />
           </Tab.Pane>
           <Tab.Pane eventKey="8">
-            <Settings data={this.props.data}/>
+            <Picklist data={this.props.data} />
+          </Tab.Pane>
+          <Tab.Pane eventKey="9">
+            <Settings data={this.props.data} />
           </Tab.Pane>
         </Tab.Content>
       </Col>

@@ -10,6 +10,7 @@ import { clearData } from "../../../Actions/ImportActions/clearData";
 import { appendMatchData } from "../../../Actions/DataActions/appendMatchData";
 import { DupDataPopup } from '../../../Components/DupDataPopup';
 import { zeroRightClassName } from "react-remove-scroll-bar";
+import axios from 'axios';
 
 export class ImportRaw extends Component {
   componentWillMount() {
@@ -118,6 +119,12 @@ export class ImportRaw extends Component {
     document.body.removeChild(element);
   }
 
+  // updateData = async () => {
+  //   await axios.put('https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679', { data: this.props.dataReducer.state }).then(
+  //     console.log("WAITED and finished")
+  //   );
+  // }
+
   render() {
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
@@ -153,10 +160,13 @@ export class ImportRaw extends Component {
             <div style={spacer}></div>
           </Row>
           <Row>
-            {/* <Button onclick={this.download("this.json", this.props.dataReducer.teams)}>Save Data</Button> */}
+            {/* <Button onClick={() => {
+              this.updateData()
+              console.log(this.props.dataReducer.data)
+            }}>Update data</Button> */}
           </Row>
         </Container>
-      </div>
+      </div >
     );
   }
 }
