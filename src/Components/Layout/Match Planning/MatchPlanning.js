@@ -13,19 +13,42 @@ export class MatchPlanning extends Component {
                 <Canvas id="canvas">
                 </Canvas>
 
-                <Button id="red" style={redButton}></Button>
-                <Button id="blue" style={blueButton}></Button>
-                <Button id="green" style={greenButton}></Button>
-                <Button id="purple" style={purpleButton}></Button>
-                <Button id="yellow" style={yellowButton}></Button>
+                <Container style={toolbarWrap}>
+                    <div style={toolbar}>
+                        <Button id="red" style={redButton}></Button>
+                        <Button id="blue" style={blueButton}></Button>
+                        <Button id="green" style={greenButton}></Button>
+                        <Button id="purple" style={purpleButton}></Button>
+                        <Button id="yellow" style={yellowButton}></Button>
+                        <Button className="secondary" id="laptop" style={toggles}>Laptop</Button>
+                        <Button id="touch" style={toggles}>Touch-Screen Device</Button>
+                    </div>
+                </Container>
 
-                
 
-                <img className="invisible" id="image" src={gameField} alt="Game Field" />
+                <img className="invisible" style={minimize} id="image" src={gameField} alt="Game Field" />
                 <script src={dScript}></script>
             </Container>
         );
     }
+}
+const minimize = {
+    width: "1px",
+}
+const toolbar = {
+    backgroundColor: "lightgray",
+    padding: '2vh',
+    width: "80%",
+    border: "2px solid gray",
+    align: "center",
+}
+const toolbarWrap = {
+    textAlign: "center",
+}
+const toggles = {
+    marginLeft: "3vh",
+    marginTop: "2vh",
+    marginBottom: "2vh",
 }
 const pushLeft = {
     marginLeft: "0",
@@ -35,37 +58,32 @@ const pushLeft = {
 const redButton = {
     backgroundColor: "red",
     borderRadius: "100%",
-    padding: "2vh",
+    padding: "1vh",
     marginLeft: "3vh",
-    marginTop: "2vh",
 }
 const yellowButton = {
     backgroundColor: "yellow",
     borderRadius: "100%",
-    padding: "2vh",
+    padding: "1vh",
     marginLeft: "3vh",
-    marginTop: "2vh",
 }
 const blueButton = {
     backgroundColor: "blue",
     borderRadius: "100%",
-    padding: "2vh",
+    padding: "1vh",
     marginLeft: "3vh",
-    marginTop: "2vh",
 }
 const purpleButton = {
     backgroundColor: "magenta",
     borderRadius: "100%",
-    padding: "2vh",
+    padding: "1vh",
     marginLeft: "3vh",
-    marginTop: "2vh",
 }
 const greenButton = {
     backgroundColor: "limegreen",
     borderRadius: "100%",
-    padding: "2vh",
+    padding: "1vh",
     marginLeft: "3vh",
-    marginTop: "2vh",
 }
 
 export default MatchPlanning;

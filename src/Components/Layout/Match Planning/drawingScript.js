@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+    let laptop = true;
     try {
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
@@ -22,10 +23,17 @@ window.addEventListener("load", () => {
             ctx.beginPath();
         }
         function draw(e) {
-            if (painting) {
+            if (painting && !laptop) {
                 ctx.lineWidth = 5;
                 ctx.lineCap = "round";
                 ctx.lineTo(e.touches[0].clientX - 240, e.touches[0].clientY - 51.5);
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
+            else if(painting){
+                ctx.lineWidth = 5;
+                ctx.lineCap = "round";
+                ctx.lineTo(e.clientX - 240, e.clientY - 51.5);
                 ctx.strokeStyle = color;
                 ctx.stroke();
             }
@@ -50,14 +58,19 @@ window.addEventListener("load", () => {
             color = "yellow";
             console.log("changing to yellow");
         }
+        function toggleTouch(){
+            laptop = false;
+        }
+        function toggleLap(){
+            laptop = true;
+        }
+        document.getElementById("laptop").addEventListener("click", toggleLap);
+        document.getElementById("touch").addEventListener("click", toggleTouch)
         document.getElementById("red").addEventListener("click", red);
         document.getElementById("blue").addEventListener("click", blue);
         document.getElementById("green").addEventListener("click", green);
         document.getElementById("purple").addEventListener("click", purple);
         document.getElementById("yellow").addEventListener("click", yellow);
-
-
-
 
         canvas.addEventListener("touchstart", startPaint);
         canvas.addEventListener("touchend", endPaint);
