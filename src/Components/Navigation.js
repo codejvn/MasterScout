@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { searchTeam } from "../Actions/searchTeam";
-import { Input } from "reactstrap";
 import { connect } from "react-redux";
 
 export class NavigationRaw extends Component {
@@ -25,7 +23,7 @@ export class NavigationRaw extends Component {
         style={positioning}
       >
         <Container fluid style={positioning}>
-          <Row>
+          <Row style={width}>
             <Col>
               <Navbar.Brand style={brandWidth}>NEMƎSIS</Navbar.Brand>
             </Col>
@@ -51,6 +49,9 @@ export class NavigationRaw extends Component {
     );
   }
 }
+const width = {
+  width: "100%",
+}
 const positioning = {
   position: "sticky",
   left: "0",
@@ -58,7 +59,7 @@ const positioning = {
   zIndex: "100",
 };
 const searchWidth = {
-  width: "70vw",
+  width: "65vw",
   padding: ".65%",
 };
 const brandWidth = {
@@ -69,7 +70,6 @@ const btnWidth = {
 };
 const mapStateToProps = (state) => {
   return {
-    // nothing i think
   };
 };
 const mapDispatchToProps = (dispatch) => {

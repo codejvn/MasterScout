@@ -5,6 +5,9 @@ import Canvas from './Canvas';
 import gameField from './gameField2020.png'
 import Button from 'react-bootstrap/Button';
 
+//fix image styling
+//make toolbar draggable and more sexy 
+
 export class MatchPlanning extends Component {
 
     render() {
@@ -20,8 +23,8 @@ export class MatchPlanning extends Component {
                         <Button id="green" style={greenButton}></Button>
                         <Button id="purple" style={purpleButton}></Button>
                         <Button id="yellow" style={yellowButton}></Button>
-                        <Button className="secondary" id="laptop" style={toggles}>Laptop</Button>
-                        <Button id="touch" style={toggles}>Touch-Screen Device</Button>
+                        <Button variant="dark" id="laptop" style={toggles}>Laptop</Button>
+                        <Button variant="dark" id="touch" style={toggles}>Touch-Screen Device</Button>
                     </div>
                 </Container>
 
@@ -58,31 +61,31 @@ const pushLeft = {
 const redButton = {
     backgroundColor: "red",
     borderRadius: "100%",
-    padding: "1vh",
+    padding: "1.5vh",
     marginLeft: "3vh",
 }
 const yellowButton = {
     backgroundColor: "yellow",
     borderRadius: "100%",
-    padding: "1vh",
+    padding: "1.5vh",
     marginLeft: "3vh",
 }
 const blueButton = {
     backgroundColor: "blue",
     borderRadius: "100%",
-    padding: "1vh",
+    padding: "1.5vh",
     marginLeft: "3vh",
 }
 const purpleButton = {
     backgroundColor: "magenta",
     borderRadius: "100%",
-    padding: "1vh",
+    padding: "1.5vh",
     marginLeft: "3vh",
 }
 const greenButton = {
     backgroundColor: "limegreen",
     borderRadius: "100%",
-    padding: "1vh",
+    padding: "1.5vh",
     marginLeft: "3vh",
 }
 

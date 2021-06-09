@@ -57,5 +57,4 @@ export class SidebarContents extends Component {
     );
   }
 }
-
 export default SidebarContents;
