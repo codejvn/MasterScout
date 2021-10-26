@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import DeleteIcon from '@material-ui/icons/Delete';
 import Button from 'react-bootstrap/Button';
 
 export class RankRow extends Component {
   render() {
-    let team = this.props.team;
+    let {team} = this.props;
     return (
       <tr style={{ textAlign: "center", width: "100%" }}>
-        <td style={center}><Button onClick={this.deleteRow} style={deleteButton}><DeleteIcon /></Button></td>
+        {/* <td style={center}><Button onClick={this.deleteRow} style={deleteButton}>X</Button></td> */}
         <td style={teamRanking}>{this.props.row + 1}</td>
         <td style={center}>{team.teamNumber}</td>
         <td style={center}>{team.aggregated[0][4] + team.aggregated[1][2]}</td>

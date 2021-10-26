@@ -8,7 +8,7 @@ import { Settings } from "./Layout/Settings";
 import { Compare } from "./Layout/Compare.js";
 import { Export } from "./Layout/Export.js";
 import { Rankings } from "./Layout/Rankings.js";
-import { Picklist } from './Layout/Picklist';
+import Picklist from './Layout/Picklist';
 import { MatchPlanning } from './Layout/Match Planning/MatchPlanning.js'
 
 export class SidebarContents extends Component {

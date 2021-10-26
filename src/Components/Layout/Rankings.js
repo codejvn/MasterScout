@@ -84,14 +84,14 @@ export class RankingsRaw extends Component {
         <Table hover responsive style={noTop} striped>
           <thead style={{ textAlign: "center" }}>
             <tr>
-            <td>
+            {/* <td>
                 <Button
                   variant="outline-dark"
                   style={fullWidth}
                 >
                   Delete
                 </Button>
-              </td>
+              </td> */}
               <td>
                 <Button variant="outline-dark" style={fullWidth}>
                   Rank
