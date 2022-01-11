@@ -1,33 +1,19 @@
-const autoDataProps = [
-	{ aggre: 'mode', name: 'Starting Position', id: 0 },
-	{ aggre: 'boolavg', name: 'Crossed Init Line', id: 1 },
-	{ aggre: 'avg', name: 'Bottom Scored Auto', id: 2 },
-	{ aggre: 'avg', name: 'Outer Scored Auto', id: 3 },
-	{ aggre: 'avg', name: 'Inner Scored Auto', id: 4 },
-	{ aggre: 'avg', name: 'Init Line Attempted Auto', id: 5 },
-	{ aggre: 'avg', name: 'Near Trench Attempted Auto', id: 6 },
+export const autoDataProps = [
+	{ aggre: 'mode', name: 'Auto Data Header', id: 0 },
 ];
-const teleopDataProps = [
-	{ aggre: 'avg', name: 'Bottom Scored', id: 0 },
-	{ aggre: 'avg', name: 'Outer Scored', id: 1 },
-	{ aggre: 'avg', name: 'Inner Scored', id: 2 },
-	{ aggre: 'avg', name: 'Missed', id: 3 },
-	{ aggre: 'avg', name: 'Cycles', id: 4 },
-	{ aggre: 'boolavg', name: 'CP Rotation', id: 5 },
-	{ aggre: 'boolavg', name: 'CP Position', id: 6 },
-	{ aggre: 'avg', name: 'T-Zone Attempted', id: 7 },
-	{ aggre: 'avg', name: 'Init-Line Attempted', id: 8 },
-	{ aggre: 'avg', name: 'Near Trench Attmpeted', id: 9 },
-	{ aggre: 'avg', name: 'Far Trench Attempted', id: 10 },
-	{ aggre: 'avg', name: 'Defense', id: 11 },
+export const teleopDataProps = [
+	{ aggre: 'avg', name: 'Teleop Data Header', id: 0 },
 ];
-const endgameDataProps = [
-	{ aggre: 'boolavg', name: 'Climbed?', id: 0 },
-	{ aggre: 'boolavg', name: 'Leveled?', id: 1 },
-	{ aggre: 'mode', name: 'Most Common Climb Location', id: 2 },
-	{ aggre: 'boolavg', name: 'Parked?', id: 3 },
-	{ aggre: 'avg', name: 'Time Left', id: 4 },
+export const endgameDataProps = [
+	{ aggre: 'boolavg', name: 'Endgame Data Header', id: 0 },
 ];
+/*
+	Aggregation Types:
+	* mode: Finds the most common occurence  
+	* avg: Averages the values among the set
+	* boolavg: Create a percent based off of true or false values 
+	* max: The maximum among a set
+*/
 export const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
 class Team {
 	constructor(num, arrayPos) {
@@ -39,10 +25,15 @@ class Team {
 		this.endgameData = [];
 		this.comments = [];
 
+		// this.aggregated = [
+		// 	[0, 0, 0, 0, 0, 0, 0], // equal to the length of auto data props
+		// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // equal to the length of teleop data props
+		// 	[0, 0, 0, 0, 0], // equal to the length of endgame data props
+		// ];
 		this.aggregated = [
-			[0, 0, 0, 0, 0, 0, 0], // equal to the length of auto data props
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // equal to the length of teleop data props
-			[0, 0, 0, 0, 0], // equal to the length of endgame data props
+			new Array(autoDataProps.length),
+			new Array(teleopDataProps.length),
+			new Array(endgameDataProps.length),
 		];
 		this.matchNums = [];
 
