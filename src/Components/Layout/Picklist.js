@@ -21,6 +21,7 @@ import { searchTeam } from "../../Actions/searchTeam";
 
 export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 	const [listOrder, setListOrder] = useState([]);
+	const [rankChange, setRankChange] = useState([]);
 	const [filledTeams, setFilledTeams] = useState(false);
 	let { teams } = dataReducer;
 	// let { teamSearched } = searchReducer;
@@ -55,18 +56,18 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 				<Center w="100%">
 					<Table
 						variant="striped"
-						colorScheme="teal"
+						colorScheme="blackAlpha"
 						w="90%"
 						size="lg"
 					>
 						<TableCaption>
-							{' '}
-							this is lowkey the picklist{' '}
+							{' '}{' '}
 						</TableCaption>
 						<Thead>
 							<Tr>
 								<Th textAlign="center">Placement</Th>
 								<Th textAlign="center">Team Number</Th>
+								{/* <Th textAlign="center">Team Rank</Th> */}
 								<Th textAlign="center">Comments</Th>
 								<Th textAlign="center">Color Label</Th>
 								<Th textAlign="center">Positioning</Th>
@@ -80,8 +81,11 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 								({ rank, team, comment, label }, index) => {
 									// console.log(team);
 									return (
-										<Tr>
-											<Td>
+										<Tr
+											backgroundColor={(rank == rankChange) ? "purple.100" : console.log(rank)}
+										>
+											<Td
+											>
 												<Heading
 													size="md"
 													textAlign="center"
@@ -93,13 +97,17 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 												<Heading
 													size="md"
 													textAlign="center"
-													onClick={()=>{
+													onClick={() => {
 														searchTeam(team.teamNumber)
 													}}
 												>
 													{team.teamNumber}
 												</Heading>
 											</Td>
+											{/* <Td>
+												<Heading>
+												</Heading>
+											</Td> */}
 											<Textarea
 												value={comment}
 												onChange={(e) => {
@@ -115,11 +123,12 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 											></Textarea>
 											<Td padding={0}>
 												<Box
-													w="100%"
+													w="95%"
 													h="100%"
 													bgColor={label}
 													color={label}
 													padding={'10%'}
+													marginLeft={'5%'}
 													onClick={() => {
 														let newArray =
 															listOrder;
@@ -128,9 +137,9 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 															label == 'red.300'
 																? 'yellow.200'
 																: label ==
-																  'yellow.200'
-																? 'green.100'
-																: 'red.300';
+																	'yellow.200'
+																	? 'green.100'
+																	: 'red.300';
 														newArray[index].label =
 															newLabel;
 														setListOrder([
@@ -153,15 +162,18 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														<Button
 															w="100%"
 															p="9%"
-															colorScheme="teal"
+															colorScheme="black"
 															onClick={() => {
 																let newArray = listOrder;
-																newArray[index].rank = rank+1;
-																newArray[index+1].rank = rank;
-																[ newArray[index], newArray[index+1] ] = [ newArray[index+1], newArray[index] ];
+																newArray[index].rank = rank + 1;
+																newArray[index + 1].rank = rank;
+																[newArray[index], newArray[index + 1]] = [newArray[index + 1], newArray[index]];
 																setListOrder([
 																	...newArray,
 																]);
+																setRankChange([
+																	rank + 1,
+																])
 															}}
 														>
 															<Heading size="lg">
@@ -171,20 +183,23 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														<Button
 															w="100%"
 															p="10%"
-															colorScheme="teal"
+															colorScheme="black"
 															onClick={() => {
 																//[ list[x], list[y] ] = [ list[y], list[x] ];
 																let newArray = listOrder;
-																if(index == 0) return;
-																newArray[index].rank = rank-1;
-																newArray[index-1].rank = rank;
-																[ newArray[index], newArray[index-1] ] = [ newArray[index-1], newArray[index] ];
+																if (index == 0) return;
+																newArray[index].rank = rank - 1;
+																newArray[index - 1].rank = rank;
+																[newArray[index], newArray[index - 1]] = [newArray[index - 1], newArray[index]];
 																setListOrder([
 																	...newArray,
 																]);
 																console.log(
 																	listOrder,
 																);
+																setRankChange([
+																	rank - 1,
+																])
 															}}
 														>
 															<Heading size="md">
@@ -219,7 +234,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	// propName: (parameters) => dispatch(action)
 	return {
-	  searchTeam: (teamNum) => dispatch(searchTeam(teamNum)),
+		searchTeam: (teamNum) => dispatch(searchTeam(teamNum)),
 	};
-  };
-export default Picklist = connect(mapStateToProps,mapDispatchToProps)(Picklist);
+};
+export default Picklist = connect(mapStateToProps, mapDispatchToProps)(Picklist);
