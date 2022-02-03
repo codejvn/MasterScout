@@ -29,19 +29,17 @@ export class App extends Component {
 	//set highest state to data and pass down through props
 	getTeams = async () => {
 		const response = await axios.get(
-			'https://jsonbox.io/box_27ac3dacb977a1e82148/data',
+			'https://jsonbox.io/box_27ac3dacb977a1e82148/data'
 		);
 		this.setState({
 			data: response,
 		});
-		console.log(this.state.data);
 	};
 
 	//initial setstate FIX LATER THIS IS VERY JANK
 	pullDataState = () => {
 		if (counter === 1) {
 			this.getTeams();
-			console.log('this worked');
 		}
 		counter++;
 	};
@@ -56,19 +54,19 @@ export class App extends Component {
 				<Provider store={store}>
 					<div style={jumbotronStyle}>
 						<Jumbotron
-							className="container-full-bg"
+							className='container-full-bg'
 							fluid
 							style={jumbotronStyle}
 						>
 							<div style={bigSpacer}></div>
 							<div style={center}>
-								<h1 className="display-3" style={center}>
+								<h1 className='display-3' style={center}>
 									Nemesis Scouting
 								</h1>
 								<div style={smallSpacer}></div>
 								<p>
 									<Button
-										variant="primary"
+										variant='primary'
 										onClick={this.goToDashboard}
 										style={center}
 									>
@@ -87,8 +85,8 @@ export class App extends Component {
 						<div>
 							<Navigation />
 							<Tab.Container
-								defaultActiveKey="1"
-								className="justify-content-between"
+								defaultActiveKey='1'
+								className='justify-content-between'
 							>
 								<Row>
 									<Sidebar />

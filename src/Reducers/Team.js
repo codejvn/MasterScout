@@ -12,15 +12,16 @@ export const teleopDataProps = [
 	{ aggre: 'avg', name: 'Missed Upper', id: 1 },
 	{ aggre: 'avg', name: 'Lower', id: 2 },
 	{ aggre: 'avg', name: 'Missed Lower', id: 3 },
-	{ aggre: 'avg', name: 'Shoot From Tarmac', id: 4 },
-	{ aggre: 'avg', name: 'Shoot From Launch Pad', id: 5 },
-	{ aggre: 'avg', name: 'Shoot From Fender', id: 6 },
+	{ aggre: 'boolavg', name: 'Shoot From Tarmac', id: 4 },
+	{ aggre: 'boolavg', name: 'Shoot From Launch Pad', id: 5 },
+	{ aggre: 'boolavg', name: 'Shoot From Fender', id: 6 },
 	{ aggre: 'avg', name: 'Cycles', id: 7 },
 	{ aggre: 'avg', name: 'Defense', id: 8 },
 ];
 export const endgameDataProps = [
-	{ aggre: 'avg', name: 'Climb', id: 0 },
-	{ aggre: 'avg', name: 'Time of Climb Start', id: 1 },
+	{ aggre: 'boolavg', name: 'Climbed?', id: 0 },
+	{ aggre: 'avg', name: 'Climb Level', id: 1 },
+	{ aggre: 'avg', name: 'Time of Climb Start', id: 2 },
 ];
 /*
 	Aggregation Types:
@@ -66,6 +67,8 @@ class Team {
 		this.organizedDataSets = data.organizedDataSets;
 	};
 	appendData = (set) => {
+		// console.log(set.data);
+		console.warn(set.data);
 		this.comments.push(set.comment);
 		this.autoData.push(set.data.auto);
 		this.teleopData.push(set.data.teleop);
@@ -115,7 +118,7 @@ class Team {
 	 */
 	organizeSet = (set, numOfDataPoints) => {
 		let ret = [];
-		console.log(set);
+		// console.log(set);
 		for (let i = 0; i < numOfDataPoints; i++) {
 			ret.push(this.organizeIntoSet(set, i));
 		}
@@ -128,8 +131,8 @@ class Team {
 			let operation;
 			switch (prop.aggre) {
 				case 'mode':
-					console.log(organizedSet[prop.id]);
-					console.log('Mode lol');
+					// console.log(organizedSet[prop.id]);
+					// console.log('Mode lol');
 					return this.mode(organizedSet[prop.id]).value;
 				case 'avg':
 					return this.average(organizedSet[prop.id]);
@@ -142,9 +145,8 @@ class Team {
 	};
 
 	aggregate = () => {
-		console.log('AGGERGATING TEAM ' + this.teamNumber);
+		// console.log('AGGERGATING TEAM ' + this.teamNumber);
 		this.totaldata.forEach((set, i, a) => {
-			console.log(set);
 			this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);
 			this.aggregated[i] = this.aggregateSet(
 				this.organizedDataSets[i],
@@ -154,12 +156,6 @@ class Team {
 	};
 
 	average = (data) => {
-		console.log(data);
-		console.log(
-			data.reduce((acc, current) => acc + current.value, 0) +
-				' : ' +
-				data.length
-		);
 		return data.reduce((a, b) => a + b.value, 0) / data.length;
 	};
 	boolAverage = (data) => {

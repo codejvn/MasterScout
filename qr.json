@@ -1,0 +1,7 @@
+{"data":{"auto":[{"id":0,"value":"P"},{"id":1,"value":true},{"id":2,"value":1},{"id":3,"value":2},{"id":4,"value":1},{"id":5,"value":1},{"id":6,"value":2}],"teleop":[{"id":0,"value":1},{"id":1,"value":1},{"id":2,"value":1},{"id":3,"value":1},{"id":4,"value":1},{"id":5,"value":true},{"id":6,"value":true},{"id":7,"value":true},{"id":8,"value":5}],"endgame":[{"id":9,"value":true},{"id":11,"value":0}]},"comment":"this robot is nutty","matchNum":"13","teamNum":"2590","scout":"Abhik Ray"}
+
+
+
+
+
+{"data":{"auto":[{"id":0,"value":"P"},{"id":1,"value":true},{"id":2,"value":1},{"id":3,"value":2},{"id":4,"value":3},{"id":5,"value":4},{"id":6,"value":5}],"teleop":[{"id":0,"value":1},{"id":1,"value":2},{"id":2,"value":3},{"id":3,"value":4},{"id":4,"value":5},{"id":5,"value":true},{"id":6,"value":false},{"id":7,"value":true},{"id":8,"value":4}],"endgame":[{"id":9,"value":true},{"id":10,"value":2},{"id":11,"value":0}]},"comment":"this is lowkey a robot","matchNum":"12","teamNum":"2590","scout":"Abhik Ray"}
