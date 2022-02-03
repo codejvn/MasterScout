@@ -11,6 +11,7 @@ import { appendMatchData } from '../../../Actions/DataActions/appendMatchData';
 import { DupDataPopup } from '../../../Components/DupDataPopup';
 import { zeroRightClassName } from 'react-remove-scroll-bar';
 import axios from 'axios';
+import CameraReader from './CameraReader';
 
 export class ImportRaw extends Component {
 	componentWillMount() {
@@ -167,12 +168,13 @@ export class ImportRaw extends Component {
 						<div style={spacer}></div>
 					</Row>
 					<Row>
+						<CameraReader />
 						{/* <Button onClick={() => {
               this.updateData()
               console.log(this.props.dataReducer.data)
             }}>Update data</Button> */}
 					</Row>
-				</Container>
+				</Container>{' '}
 			</div>
 		);
 	}
