@@ -50,9 +50,12 @@ export class DataPreviewRaw extends Component {
 							</Accordion.Toggle>
 							<Accordion.Collapse eventKey='0'>
 								<Card.Body>
+									{(() => {
+										console.log(this.props.data);
+									})()}
 									{
 										//JSON.stringify(this.props.data.data.auto)
-										this.props.data.data.auto.map((data) => {
+										this.props.data.auto.map((data) => {
 											return (
 												<div>
 													{autoHeaders[data.id]}
@@ -81,7 +84,7 @@ export class DataPreviewRaw extends Component {
 							</Accordion.Toggle>
 							<Accordion.Collapse eventKey='1'>
 								<Card.Body>
-									{this.props.data.data.teleop.map((data) => {
+									{this.props.data.teleop.map((data) => {
 										return (
 											<div>
 												{teleopHeaders[data.id]}
@@ -109,7 +112,7 @@ export class DataPreviewRaw extends Component {
 							</Accordion.Toggle>
 							<Accordion.Collapse eventKey='2'>
 								<Card.Body>
-									{this.props.data.data.endgame.map((data) => {
+									{this.props.data.endgame.map((data) => {
 										console.log(data);
 										return (
 											<div>

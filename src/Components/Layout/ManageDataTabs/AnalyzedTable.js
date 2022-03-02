@@ -49,30 +49,25 @@ export class AnalyzedTable extends Component {
 					<thead>
 						<tr>
 							<td>Team</td>
-							<td>Common Pos</td>
-							<td>Init</td>
-							<td>Bottom Auto</td>
-							<td>Outer Auto</td>
-							<td>Inner Auto</td>
-							<td>Attempt Init A</td>
-							<td>Attempt Near Trench A</td>
-							<td>Bottom Teleop</td>
-							<td>Outer Teleop</td>
-							<td>Inner Teleop</td>
-							<td>Missed Teleop</td>
-							<td>Cycles Teleop</td>
-							<td>% CPR</td>
-							<td>% CPP</td>
-							<td>T-Zone Attempt</td>
-							<td>Init Attempt</td>
-							<td>N Trench Attempt</td>
-							<td>Far Trench Attempt</td>
+							<td>Start Position</td>
+							<td>Cross Tarmac</td>
+							<td>Upper Auto</td>
+							<td>Lower Auto</td>
+							<td>Inside A</td>
+							<td>Outside Tarmac A</td>
+							<td>Fender A</td>
+							<td>Upper Teleop</td>
+							<td>Missed Upper Teleop</td>
+							<td>Lower Teleop</td>
+							<td>Missed Lower Teleop</td>
+							<td>Shoot From Tarmac</td>
+							<td>Shoot From Launch Pad</td>
+							<td>Shoot From Fender'</td>
+							<td>Cycles</td>
 							<td>Defense</td>
-							<td>% Climb</td>
-							<td>% Level</td>
-							<td>Common Climb Location</td>
-							<td>% Parked</td>
-							<td>Climb Time Left</td>
+							<td>Climbed?</td>
+							<td>Climb Level</td>
+							<td>Time of Climb Start</td>
 						</tr>
 					</thead>
 					<tbody>

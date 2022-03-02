@@ -41,17 +41,18 @@ const dataReducer = (state = dataInitState, action = {}) => {
 					(team) => team.teamNumber == matchDataObj.teamNum
 				);
 				try {
+					console.log('actually adding in the data');
 					teams[index].appendData(matchDataObj);
 					teams[index].aggregate();
 				} catch (err) {
-					// console.log(err);
+					console.log(err);
 				}
 			}
 			//update on button
-			axios.put(
-				'https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679',
-				{ data: state.teams }
-			);
+			// axios.put(
+			// 	'https://jsonbox.io/box_5a9767899ab8ef9ab5d0/data/5fb0b24b9c0ec50017038679',
+			// 	{ data: state.teams }
+			// );
 
 			return {
 				...state,

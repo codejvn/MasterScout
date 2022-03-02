@@ -46,7 +46,7 @@ export class ImportRaw extends Component {
 						{ id: 13, value: true },
 						{ id: 14, value: 'C' },
 						{ id: 15, value: false },
-						{ entryName: 'timeleft', id: 16, value: '12' },
+						{ id: 16, value: '12' },
 					],
 				},
 				comment: 'this is a really cool robot!!',

@@ -1,3 +1,5 @@
+import { extendTheme } from '@chakra-ui/react';
+
 export const autoDataProps = [
 	{ aggre: 'mode', name: 'Starting Position', id: 0 },
 	{ aggre: 'boolavg', name: 'Cross Tarmac', id: 1 },
@@ -51,6 +53,9 @@ class Team {
 			new Array(teleopDataProps.length),
 			new Array(endgameDataProps.length),
 		];
+		this.aggregated = this.aggregated.map((set) => {
+			return set.fill(0);
+		});
 		this.matchNums = [];
 
 		this.totaldata = [this.autoData, this.teleopData, this.endgameData];
@@ -67,12 +72,16 @@ class Team {
 		this.organizedDataSets = data.organizedDataSets;
 	};
 	appendData = (set) => {
-		// console.log(set.data);
-		console.warn(set.data);
+		// console.log(set.);
+		console.log(set);
+		// set.map((num) => {
+		// 	return { value: num };
+		// });
+		console.warn(set);
 		this.comments.push(set.comment);
-		this.autoData.push(set.data.auto);
-		this.teleopData.push(set.data.teleop);
-		this.endgameData.push(set.data.endgame);
+		this.autoData.push(set.auto);
+		this.teleopData.push(set.teleop);
+		this.endgameData.push(set.endgame);
 		this.matchNums.push(set.matchNum);
 	};
 	getMatchData = (matchNum) => {
@@ -124,7 +133,6 @@ class Team {
 		}
 		return ret;
 	};
-
 	aggregateSet = (organizedSet, dataProps) => {
 		// loop over all the organized data and condense them into a funciton
 		return dataProps.map((prop) => {

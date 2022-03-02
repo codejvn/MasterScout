@@ -4,4 +4,16 @@
 
 
 
-{"data":{"auto":[{"id":0,"value":"P"},{"id":1,"value":true},{"id":2,"value":1},{"id":3,"value":2},{"id":4,"value":3},{"id":5,"value":4},{"id":6,"value":5}],"teleop":[{"id":0,"value":1},{"id":1,"value":2},{"id":2,"value":3},{"id":3,"value":4},{"id":4,"value":5},{"id":5,"value":true},{"id":6,"value":false},{"id":7,"value":true},{"id":8,"value":4}],"endgame":[{"id":9,"value":true},{"id":10,"value":2},{"id":11,"value":0}]},"comment":"this is lowkey a robot","matchNum":"12","teamNum":"2590","scout":"Abhik Ray"}
+{ 
+    "data":
+        {"auto":
+            [{"id":0,"value":"P"},{"id":1,"value":true},{"id":2,"value":1},{"id":3,"value":2},{"id":4,"value":3},{"id":5,"value":4},{"id":6,"value":5}],
+        "teleop":[{"id":0,"value":1},{"id":1,"value":2},{"id":2,"value":3},{"id":3,"value":4},{"id":4,"value":5},{"id":5,"value":true},{"id":6,"value":false},{"id":7,"value":true},{"id":8,"value":4}],
+        "endgame":[{"id":9,"value":true},{"id":10,"value":2},{"id":11,"value":0}]},
+        "comment":"this is lowkey a robot",
+        "matchNum":"12",
+        "teamNum":"2590",
+        "scout":"Abhik Ray"
+}
+
+["1","2590","a fantastic robot and it is very fast, plays great defense, shiftin a fantastic robot and it is ","D",true,1,2,3,4,5,2,2,2,2,2,true,true,true,4,false,"L","30"]

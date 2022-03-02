@@ -73,9 +73,7 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 								// console.log(team);
 								return (
 									<Tr
-										backgroundColor={
-											rank == rankChange ? 'purple.100' : 'purple.200'
-										}
+										backgroundColor={rank == rankChange ? 'red.100' : 'red.200'}
 									>
 										<Td>
 											<Heading size='md' textAlign='center'>
