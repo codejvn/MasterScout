@@ -7,7 +7,7 @@ export default function CameraReader() {
 	const dispatch = useDispatch();
 	return (
 		<QrReader
-			delay={500}
+			delay={2000}
 			onError={(error) => {
 				console.log(error);
 			}}
@@ -16,7 +16,7 @@ export default function CameraReader() {
 				console.log(scan);
 				dispatch(addData(scan));
 			}}
-			style={{ width: '100%' }}
+			style={{ width: '50%' }}
 		/>
 	);
 }

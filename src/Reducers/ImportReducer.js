@@ -17,6 +17,25 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			console.log('from import reducer');
 			console.log(action.payload);
 			let parsedData = action.payload;
+			// forgive me father for this utter garbage
+			switch (parsedData.endgame[1].value) {
+				case 'NA':
+					parsedData.endgame[1].value = 0;
+					break;
+				case 'L':
+					parsedData.endgame[1].value = 1;
+					break;
+				case 'M':
+					parsedData.endgame[1].value = 2;
+					break;
+				case 'H':
+					parsedData.endgame[1].value = 3;
+					break;
+				case 'T':
+					parsedData.endgame[1].value = 4;
+					break;
+			}
+			parsedData.endgame[2].value = JSON.parse(parsedData.endgame[2].value);
 			parsedData.key = state.data.length;
 			newData.unshift(parsedData);
 			console.log('ADDING THAT DATA!');

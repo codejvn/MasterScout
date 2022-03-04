@@ -14,48 +14,7 @@ import axios from 'axios';
 import CameraReader from './CameraReader';
 
 export class ImportRaw extends Component {
-	componentWillMount() {
-		this.props.appendMatchData([
-			{
-				data: {
-					auto: [
-						{ id: 0, value: 'C' },
-						{ id: 1, value: true },
-						{ id: 2, value: 3 },
-						{ id: 3, value: 1 },
-						{ id: 4, value: 2 },
-						{ id: 5, value: 5 },
-						{ id: 6, value: 0 },
-					],
-					teleop: [
-						{ id: 0, value: 3 },
-						{ id: 1, value: 1 },
-						{ id: 2, value: 2 },
-						{ id: 3, value: 3 },
-						{ id: 4, value: 4 },
-						{ id: 5, value: false },
-						{ id: 6, value: false },
-						{ id: 7, value: 3 },
-						{ id: 8, value: 2 },
-						{ id: 9, value: 2 },
-						{ id: 10, value: 4 },
-						{ id: 11, value: 4 },
-					],
-					endgame: [
-						{ id: 12, value: true },
-						{ id: 13, value: true },
-						{ id: 14, value: 'C' },
-						{ id: 15, value: false },
-						{ id: 16, value: '12' },
-					],
-				},
-				comment: 'this is a really cool robot!!',
-				matchNum: '6',
-				teamNum: '2590',
-				scout: 'Abhik',
-			},
-		]);
-	}
+	componentWillMount() {}
 	state = {
 		showSuccess: false,
 		showFail: false,
