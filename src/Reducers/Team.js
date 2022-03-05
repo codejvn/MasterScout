@@ -166,6 +166,7 @@ class Team {
 		console.log(data);
 		return data.reduce((a, b) => a + b.value, 0) / data.length;
 	};
+	// average;
 	boolAverage = (data) => {
 		return (
 			data.reduce((a, b) => {
