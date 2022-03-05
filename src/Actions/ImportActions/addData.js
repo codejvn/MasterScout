@@ -12,8 +12,9 @@ export const addData = (data) => {
 	parsedData.comments = newData[commentIndex].value;
 	parsedData.teamNum = JSON.parse(data)[1];
 	parsedData.auto = newData.slice(3, 9);
-	parsedData.teleop = newData.slice(9, 18);
-	parsedData.endgame = newData.slice(18);
+	parsedData.teleop = newData.slice(9, 19);
+	parsedData.endgame = newData.slice(19);
+	// parsedData.matchNums = JSON.parse(d ata)[0];
 	parsedData.matchNums = newData[matchNumIndex].value;
 	console.warn(parsedData);
 	return (dispatch) => {

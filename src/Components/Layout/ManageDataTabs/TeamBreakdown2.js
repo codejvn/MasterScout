@@ -62,6 +62,7 @@ export default function TeamBreakdown2(props) {
 	const { teamSearched } = useSelector((state) => state.search, shallowEqual);
 	const dataReducer = useSelector((state) => state.dataReducer, shallowEqual);
 	const [team, setTeam] = useState(null);
+	const [searchedOnce, setSearchedOnce] = useState(false);
 	const [renderCount, setRenderCount] = useState(0);
 	console.log(team);
 	console.log(teamSearched);
@@ -72,7 +73,16 @@ export default function TeamBreakdown2(props) {
 		console.log(
 			dataReducer.teams.find((team) => teamSearched == team.teamNumber)
 		);
+		// if (teamSearched != team.teamNumber) {
 		setTeam(dataReducer.teams.find((team) => teamSearched == team.teamNumber));
+		setSearchedOnce(true);
+		// }
+	} else if (teamSearched != '' && searchedOnce) {
+		if (teamSearched != team.teamNumber) {
+			setTeam(
+				dataReducer.teams.find((team) => teamSearched == team.teamNumber)
+			);
+		}
 	}
 	if (team == null || team == {}) {
 		console.log(team);

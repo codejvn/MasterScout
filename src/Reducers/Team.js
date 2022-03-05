@@ -1,23 +1,22 @@
-import { extendTheme } from '@chakra-ui/react';
-
 export const autoDataProps = [
 	{ aggre: 'mode', name: 'Starting Position', id: 0 },
 	{ aggre: 'boolavg', name: 'Cross Tarmac', id: 1 },
-	{ aggre: 'avg', name: 'Upper Port', id: 2 },
 	{ aggre: 'avg', name: 'Lower Port', id: 3 },
-	{ aggre: 'avg', name: 'Upper Port Missed', id: 4 },
 	{ aggre: 'avg', name: 'Lower Port Missed', id: 5 },
+	{ aggre: 'avg', name: 'Upper Port', id: 2 },
+	{ aggre: 'avg', name: 'Upper Port Missed', id: 4 },
 ];
 export const teleopDataProps = [
 	{ aggre: 'avg', name: 'Upper', id: 0 },
 	{ aggre: 'avg', name: 'Missed Upper', id: 1 },
 	{ aggre: 'avg', name: 'Lower', id: 2 },
 	{ aggre: 'avg', name: 'Missed Lower', id: 3 },
-	{ aggre: 'avg', name: 'Shoot From Tarmac', id: 4 },
-	{ aggre: 'avg', name: 'Shoot From Launch Pad', id: 5 },
-	{ aggre: 'avg', name: 'Shoot From Fender', id: 6 },
-	{ aggre: 'avg', name: 'Defense Quality', id: 7 },
-	{ aggre: 'avg', name: 'Defense Quantity', id: 8 },
+	{ aggre: 'avg', name: 'Shoot From Fender', id: 4 },
+	{ aggre: 'avg', name: 'Shoot From Tarmac', id: 5 },
+	{ aggre: 'avg', name: 'Shoot From Launch Pad', id: 6 },
+	{ aggre: 'avg', name: 'Shoot From Outside Fender', id: 7 },
+	{ aggre: 'avg', name: 'Defense Quality', id: 8 },
+	{ aggre: 'avg', name: 'Defense Quantity', id: 9 },
 ];
 export const endgameDataProps = [
 	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },

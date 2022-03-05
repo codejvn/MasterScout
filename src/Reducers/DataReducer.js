@@ -68,10 +68,10 @@ const dataReducer = (state = dataInitState, action = {}) => {
 				let teamFromImport = action.payload.find(
 					(teamFromImport) => teamFromImport.teamNumber == team.teamNumber
 				);
-				// console.log('FROM IMPORT');
-				// console.log(teamFromImport);
-				// console.log('RAW');
-				// console.log(team);
+				console.log('FROM IMPORT');
+				console.log(teamFromImport);
+				console.log('RAW');
+				console.log(team);
 				team.setData(teamFromImport);
 			}
 			return {
