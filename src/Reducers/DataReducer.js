@@ -42,6 +42,7 @@ const dataReducer = (state = dataInitState, action = {}) => {
 				);
 				try {
 					console.log('actually adding in the data');
+					console.log(matchDataObj);
 					teams[index].appendData(matchDataObj);
 					teams[index].aggregate();
 				} catch (err) {

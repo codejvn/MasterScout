@@ -34,32 +34,16 @@ export class RankingsRaw extends Component {
 						(a.aggregated[0][3] + a.aggregated[1][2])
 				);
 				break;
-			case 'Cycles':
-				sorted.sort((a, b) => b.aggregated[1][7] - a.aggregated[1][7]);
-				break;
 			case 'Accuracy':
 				sorted.sort(
 					(a, b) =>
-						parseInt(
-							((b.aggregated[1][0] + b.aggregated[1][2]) /
-								(b.aggregated[1][0] +
-									b.aggregated[1][2] +
-									b.aggregated[1][1] +
-									b.aggregated[1][3])) *
-								100
-						) -
-						parseInt(
-							((a.aggregated[1][0] + a.aggregated[1][2]) /
-								(a.aggregated[1][0] +
-									a.aggregated[1][2] +
-									a.aggregated[1][1] +
-									a.aggregated[1][3])) *
-								100
-						)
+						(b.aggregated[1][0] / b.aggregated[1][0] + b.aggregated[1][1]) *
+							100 -
+						(a.aggregated[1][0] / a.aggregated[1][0] + a.aggregated[1][1]) * 100
 				);
 				break;
-			case 'Defense':
-				sorted.sort((a, b) => b.aggregated[1][8] - a.aggregated[1][8]);
+			case 'Defense Quality':
+				sorted.sort((a, b) => b.aggregated[1][7] - a.aggregated[1][7]);
 				break;
 			case 'Climb Level':
 				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
@@ -134,16 +118,6 @@ export class RankingsRaw extends Component {
 									sort={'Defense'}
 								>
 									Defense
-								</Button>
-							</td>
-							<td>
-								<Button
-									variant='outline-dark'
-									style={fullWidthDynamic}
-									onClick={this.selectSortBy}
-									sort={'Cycles'}
-								>
-									Cycles
 								</Button>
 							</td>
 

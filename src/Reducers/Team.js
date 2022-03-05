@@ -71,13 +71,11 @@ class Team {
 		this.organizedDataSets = data.organizedDataSets;
 	};
 	appendData = (set) => {
-		// console.log(set.);
+		console.log('this is the comment');
+		console.log(set.comments);
 		console.log(set);
-		// set.map((num) => {
-		// 	return { value: num };
-		// });
 		console.warn(set);
-		this.comments.push(set.comment);
+		this.comments.push(set.comments);
 		this.autoData.push(set.auto);
 		this.teleopData.push(set.teleop);
 		this.endgameData.push(set.endgame);

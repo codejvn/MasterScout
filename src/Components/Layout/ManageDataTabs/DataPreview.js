@@ -51,14 +51,15 @@ export class DataPreviewRaw extends Component {
 							<Accordion.Collapse eventKey='0'>
 								<Card.Body>
 									{(() => {
+										console.log('this is the auto preview: ');
 										console.log(this.props.data);
 									})()}
 									{
 										//JSON.stringify(this.props.data.data.auto)
-										this.props.data.auto.map((data) => {
+										this.props.data.auto.map((data, index) => {
 											return (
 												<div>
-													{autoHeaders[data.id]}
+													{autoHeaders[index]}
 													{this.state.editable ? (
 														<Input
 															type='text'
@@ -84,10 +85,10 @@ export class DataPreviewRaw extends Component {
 							</Accordion.Toggle>
 							<Accordion.Collapse eventKey='1'>
 								<Card.Body>
-									{this.props.data.teleop.map((data) => {
+									{this.props.data.teleop.map((data, index) => {
 										return (
 											<div>
-												{teleopHeaders[data.id]}
+												{teleopHeaders[index]}
 												{this.state.editable ? (
 													<Input
 														type='text'
@@ -112,11 +113,11 @@ export class DataPreviewRaw extends Component {
 							</Accordion.Toggle>
 							<Accordion.Collapse eventKey='2'>
 								<Card.Body>
-									{this.props.data.endgame.map((data) => {
+									{this.props.data.endgame.map((data, index) => {
 										console.log(data);
 										return (
 											<div>
-												{endgameHeaders[data.id - 9]}
+												{endgameHeaders[index]}
 												{this.state.editable ? (
 													<Input
 														type='text'
@@ -133,7 +134,7 @@ export class DataPreviewRaw extends Component {
 										);
 									})}
 									Comments:
-									{JSON.stringify(this.props.data.comment)}
+									{JSON.stringify(this.props.data.comments)}
 								</Card.Body>
 							</Accordion.Collapse>
 						</Card>
