@@ -17,25 +17,45 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			console.log('from import reducer');
 			console.log(action.payload);
 			let parsedData = action.payload;
-			// forgive me father for this utter garbage
-			switch (parsedData.endgame[1].value) {
-				case 'NA':
-					parsedData.endgame[1].value = 0;
+			const climbLevelIndex = 0;
+			switch (parsedData.teleop[7].value) {
+				case 'Awful':
+					parsedData.teleop[7].value = 0;
 					break;
-				case 'L':
-					parsedData.endgame[1].value = 1;
+				case 'Ok':
+					parsedData.teleop[7].value = 1;
 					break;
-				case 'M':
-					parsedData.endgame[1].value = 2;
+				case 'Good':
+					parsedData.teleop[7].value = 2;
 					break;
-				case 'H':
-					parsedData.endgame[1].value = 3;
-					break;
-				case 'T':
-					parsedData.endgame[1].value = 4;
+				case 'Great':
+					parsedData.teleop[7].value = 3;
 					break;
 			}
-			parsedData.endgame[2].value = JSON.parse(parsedData.endgame[2].value);
+			// forgive me father for this utter garbage
+			switch (parsedData.endgame[climbLevelIndex].value) {
+				case 'NA':
+					parsedData.endgame[climbLevelIndex].value = 0;
+					break;
+				case 'Fail':
+					parsedData.endgame[climbLevelIndex].value = 0;
+					break;
+				case 'L':
+					parsedData.endgame[climbLevelIndex].value = 1;
+					break;
+				case 'M':
+					parsedData.endgame[climbLevelIndex].value = 2;
+					break;
+				case 'H':
+					parsedData.endgame[climbLevelIndex].value = 3;
+					break;
+				case 'T':
+					parsedData.endgame[climbLevelIndex].value = 4;
+					break;
+			}
+			parsedData.endgame[climbLevelIndex + 1].value = JSON.parse(
+				parsedData.endgame[climbLevelIndex + 1].value
+			);
 			parsedData.key = state.data.length;
 			newData.unshift(parsedData);
 			console.log('ADDING THAT DATA!');

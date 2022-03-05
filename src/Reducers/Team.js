@@ -5,25 +5,24 @@ export const autoDataProps = [
 	{ aggre: 'boolavg', name: 'Cross Tarmac', id: 1 },
 	{ aggre: 'avg', name: 'Upper Port', id: 2 },
 	{ aggre: 'avg', name: 'Lower Port', id: 3 },
-	{ aggre: 'avg', name: 'Inside Tarmac', id: 4 },
-	{ aggre: 'avg', name: 'Outside Tarmac', id: 5 },
-	{ aggre: 'avg', name: 'Fender', id: 6 },
+	{ aggre: 'avg', name: 'Upper Port Missed', id: 4 },
+	{ aggre: 'avg', name: 'Lower Port Missed', id: 5 },
 ];
 export const teleopDataProps = [
 	{ aggre: 'avg', name: 'Upper', id: 0 },
 	{ aggre: 'avg', name: 'Missed Upper', id: 1 },
 	{ aggre: 'avg', name: 'Lower', id: 2 },
 	{ aggre: 'avg', name: 'Missed Lower', id: 3 },
-	{ aggre: 'boolavg', name: 'Shoot From Tarmac', id: 4 },
-	{ aggre: 'boolavg', name: 'Shoot From Launch Pad', id: 5 },
-	{ aggre: 'boolavg', name: 'Shoot From Fender', id: 6 },
-	{ aggre: 'avg', name: 'Cycles', id: 7 },
-	{ aggre: 'avg', name: 'Defense', id: 8 },
+	{ aggre: 'avg', name: 'Shoot From Tarmac', id: 4 },
+	{ aggre: 'avg', name: 'Shoot From Launch Pad', id: 5 },
+	{ aggre: 'avg', name: 'Shoot From Fender', id: 6 },
+	{ aggre: 'avg', name: 'Defense Quality', id: 7 },
+	{ aggre: 'avg', name: 'Defense Quantity', id: 8 },
 ];
 export const endgameDataProps = [
-	{ aggre: 'boolavg', name: 'Climbed?', id: 0 },
-	{ aggre: 'avg', name: 'Climb Level', id: 1 },
-	{ aggre: 'avg', name: 'Time of Climb Start', id: 2 },
+	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },
+	{ aggre: 'avg', name: 'Climb Level', id: 0 },
+	{ aggre: 'avg', name: 'Time of Climb Start', id: 1 },
 ];
 /*
 	Aggregation Types:
@@ -143,6 +142,8 @@ class Team {
 					// console.log('Mode lol');
 					return this.mode(organizedSet[prop.id]).value;
 				case 'avg':
+					console.log(prop.name);
+					//["11","2590","Nice","T",false,3,1,3,1,2,1,1,1,1,1,2,"Good",50,"H",30]
 					return this.average(organizedSet[prop.id]);
 				case 'boolavg':
 					return this.boolAverage(organizedSet[prop.id]);
@@ -164,6 +165,7 @@ class Team {
 	};
 
 	average = (data) => {
+		console.log(data);
 		return data.reduce((a, b) => a + b.value, 0) / data.length;
 	};
 	boolAverage = (data) => {
