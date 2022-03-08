@@ -4,22 +4,17 @@ import { connect, useSelector, useStore, shallowEqual } from 'react-redux';
 import { AutoChart } from './AutoChart.js';
 import EndgameChart from './EndgameChart.js';
 import TeleopChart from './TeleopChart.js';
-import CommentBox from './CommentBox.js';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Center } from '@chakra-ui/react';
 import { Heading, Text } from '@chakra-ui/layout';
 import { Grid, GridItem } from '@chakra-ui/react';
-import {
-	Table,
-	Thead,
-	Tbody,
-	Tfoot,
-	Tr,
-	Th,
-	Td,
-	TableCaption,
-} from '@chakra-ui/react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import { aggreProps } from '../../../Reducers/Team';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import { autoDataProps } from '../../../Reducers/Team';
 import { teleopDataProps } from '../../../Reducers/Team';
 import { endgameDataProps } from '../../../Reducers/Team';
@@ -64,6 +59,59 @@ export default function TeamBreakdown2(props) {
 	const [team, setTeam] = useState(null);
 	const [searchedOnce, setSearchedOnce] = useState(false);
 	const [renderCount, setRenderCount] = useState(0);
+	let doCharts = (teams) => {
+		let charts = [];
+		let headers = ['Auto', 'Teleop', 'Endgame'];
+		if (teams.length > 0) {
+			// loop through all the entries in organized data set and then access the team data
+			for (let i = 0; i < teams[0].organizedDataSets.length; i++) {
+				let sectionCharts = [[<Col></Col>, <Col></Col>, <Col></Col>]];
+				// loops through auto teleop and endgame
+				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
+					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
+					let dataSets = [];
+					for (const team of teams) {
+						dataSets.push({
+							data: team.organizedDataSets[i][j],
+							teamNumber: team.teamNumber,
+						});
+					}
+					if (j % 3 == 0) {
+						sectionCharts.push([<Col></Col>, <Col></Col>, <Col></Col>]);
+					}
+					sectionCharts[sectionCharts.length - 1][j % 3] = (
+						<Col>
+							<LineGraph title={aggreProps[i][j].name} dataSets={dataSets} />
+						</Col>
+					);
+				}
+				charts.push(
+					// <Accordion style={formWidth}>
+					<Card style={collapseStyling}>
+						{/* <Accordion.Toggle as={Card.Header} eventKey={JSON.stringify(i)}>
+								{headers[i]}
+							</Accordion.Toggle>
+							<Accordion.Collapse eventKey={JSON.stringify(i)}> */}
+						<Center>
+							<Heading size='lg' p='1%'>
+								{headers[i]}
+							</Heading>
+						</Center>
+						<Card.Body style={makeWhite}>
+							<Container>
+								{sectionCharts.map((row) => {
+									return <Row>{row}</Row>;
+								})}
+							</Container>
+						</Card.Body>
+						{/* </Accordion.Collapse> */}
+					</Card>
+					// </Accordion>
+				);
+			}
+		}
+		return charts;
+	};
 	console.log(team);
 	console.log(teamSearched);
 	if (teamSearched != '' && team == null) {
@@ -242,14 +290,15 @@ export default function TeamBreakdown2(props) {
 						))}
 					</Center>
 				</GridItem>
-				<GridItem w='100%' colSpan={2}>
+				<GridItem colSpan={2}>{doCharts([team])}</GridItem>
+				{/* <GridItem w='100%' colSpan={2}>
 					<Center w='100%'>
 						<Heading w='100%' textAlign='center'>
 							Score Breakdown
 						</Heading>
 					</Center>
-				</GridItem>
-				<GridItem w='100%' colSpan={2}>
+				</GridItem> */}
+				{/* <GridItem w='100%' colSpan={2}>
 					<Center w='100%'>
 						<Table w='100%' textAlign='center'>
 							<Thead>
@@ -274,11 +323,22 @@ export default function TeamBreakdown2(props) {
 							</Tbody>
 						</Table>
 					</Center>
-				</GridItem>
+				</GridItem> */}
 			</Grid>
 		</Center>
 	);
 }
 const lineWidth = {
 	width: '26%',
+};
+const formWidth = {
+	width: '100%',
+};
+const makeWhite = {
+	backgroundColor: 'white',
+};
+const collapseStyling = {
+	width: '100%',
+	marginTop: '2vh',
+	backgroundColor: 'rgba(75, 192, 192, 0.2)',
 };

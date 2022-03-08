@@ -45,75 +45,105 @@ export class AnalyzedTable extends Component {
 				}
 			}
 			return (
-				<Table style={center} responsive striped={stripes}>
-					<thead>
-						<tr>
-							<td>Team</td>
-							<td>Start Position</td>
-							<td>Cross Tarmac</td>
-							<td>Upper Auto</td>
-							<td>Lower Auto</td>
-							<td>Upper Missed Auto</td>
-							<td>Lower Missed Auto</td>
-							<td>Upper Teleop</td>
-							<td>Missed Upper Teleop</td>
-							<td>Lower Teleop</td>
-							<td>Missed Lower Teleop</td>
-							<td>Shoot From Tarmac</td>
-							<td>Shoot From Launch Pad</td>
-							<td>Shoot From Fender'</td>
-							<td>Defense Quality</td>
-							<td>Defense Quantity</td>
-							<td>Climb Level</td>
-							<td>Time of Climb Start</td>
-						</tr>
-					</thead>
-					<tbody>
-						{/* loop through teams, within teams loop through aggregate */}
+				<div style={center}>
+					<div style={{ paddingTop: 75 }}></div>
+					<Table style={center} responsive striped={stripes}>
+						<thead
+							// className='sticky-top'
+							style={{
+								backgroundColor: 'white',
+								position: 'fixed',
+								marginTop: -40,
+								zIndex: 20,
+								// paddingTop: 40,
+							}}
+						>
+							<tr
+								style={{
+									backgroundColor: 'white',
+									position: 'fixed',
+									marginTop: -410,
+									paddingTop: 300,
+								}}
+							>
+								<th
+								// style={{
+								// 	backgroundColor: 'white',
+								// 	position: 'fixed',
+								// 	top: 50,
+								// }}
+								>
+									Team
+								</th>
+								<th>Start Position</th>
+								<th>Cross Tarmac</th>
+								<th>Lower Auto</th>
+								<th>Lower Auto Missed</th>
+								<th>Upper Auto</th>
+								<th>Upper Missed Auto</th>
+								<th>Upper Teleop</th>
+								<th>Missed Upper Teleop</th>
+								<th>Lower Teleop</th>
+								<th>Missed Lower Teleop</th>
+								<th>Shoot From Fender</th>
+								<th>Shoot From Tarmac</th>
+								<th>Shoot From Launch Pad</th>
+								<th>Shoot From Outside Tarmac</th>
+								<th>Defense Quality</th>
+								<th>Defense Quantity</th>
+								<th>Climb Level</th>
+								<th>Time of Climb Start</th>
+							</tr>
+						</thead>
+						<div style={{ padding: 20 }}></div>
 
-						{this.props.teams.map((team) => {
-							let highlight;
-							// hard coded for now
-							try {
-								highlight = this.props.highlight;
-							} catch (err) {
-								highlight = false;
-							}
-							return (
-								<tr>
-									<td>{team.teamNumber}</td>
-									{/**maps all auto datas */}
-									{team.aggregated[0].map((data, index) => {
-										return (
-											<td style={this.getStyle(data, 0, index, highlight)}>
-												{data}
-											</td>
-										);
-									})}
-									{/**maps all teleop datas */}
-									{team.aggregated[1].map((data, index) => {
-										return (
-											<td style={this.getStyle(data, 1, index, highlight)}>
-												{data}
-											</td>
-										);
-									})}
-									{/**maps all endgame datas */}
-									{team.aggregated[2].map((data, index) => {
-										return (
-											<td style={this.getStyle(data, 2, index, highlight)}>
-												{data}
-											</td>
-										);
-									})}
-								</tr>
-							);
-						})}
-						{/* {this.props.dataReducer.teams.map((team) => {
+						<tbody>
+							{/* loop through teams, within teams loop through aggregate */}
+
+							{this.props.teams.map((team) => {
+								let highlight;
+								// hard coded for now
+								try {
+									highlight = this.props.highlight;
+								} catch (err) {
+									highlight = false;
+								}
+								return (
+									<tr>
+										<td>{team.teamNumber}</td>
+										{/**maps all auto datas */}
+										{team.aggregated[0].map((data, index) => {
+											return (
+												<td style={this.getStyle(data, 0, index, highlight)}>
+													{data}
+												</td>
+											);
+										})}
+										{/**maps all teleop datas */}
+										{team.aggregated[1].map((data, index) => {
+											return (
+												<td style={this.getStyle(data, 1, index, highlight)}>
+													{data}
+												</td>
+											);
+										})}
+										{/**maps all endgame datas */}
+										{team.aggregated[2].map((data, index) => {
+											return (
+												<td style={this.getStyle(data, 2, index, highlight)}>
+													{data}
+												</td>
+											);
+										})}
+									</tr>
+								);
+							})}
+							{/* {this.props.dataReducer.teams.map((team) => {
                   return <tr>{team.aggregated}</tr>;
                 })} */}
-					</tbody>
-				</Table>
+						</tbody>
+					</Table>
+				</div>
 			);
 		} else {
 			return (
@@ -126,6 +156,7 @@ export class AnalyzedTable extends Component {
 }
 const center = {
 	textAlign: 'center',
+	width: '100%',
 };
 const defaultHeader = {
 	color: 'gray',

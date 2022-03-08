@@ -40,9 +40,9 @@ export class SidebarContents extends Component {
 					<Tab.Pane eventKey='5'>
 						<MatchPlanning />
 					</Tab.Pane>
-					<Tab.Pane eventKey='6'>
+					{/* <Tab.Pane eventKey='6'>
 						<Export />
-					</Tab.Pane>
+					</Tab.Pane> */}
 					<Tab.Pane eventKey='7'>
 						<Rankings data={this.props.data} />
 					</Tab.Pane>

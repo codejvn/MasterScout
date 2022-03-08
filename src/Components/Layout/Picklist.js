@@ -18,6 +18,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { searchTeam } from '../../Actions/searchTeam';
+import PositionChanger from './PositionChanger';
 
 export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 	const [listOrder, setListOrder] = useState([]);
@@ -137,11 +138,11 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 												<ButtonGroup
 													isAttached
 													variant='ghost'
-													w='100%'
+													w='60%'
 													h='100%'
 												>
 													<Button
-														w='100%'
+														w='50%'
 														p='9%'
 														colorScheme='black'
 														onClick={() => {
@@ -159,7 +160,7 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														<Heading size='lg'>-</Heading>
 													</Button>
 													<Button
-														w='100%'
+														w='50%'
 														p='10%'
 														colorScheme='black'
 														onClick={() => {
@@ -180,9 +181,7 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														<Heading size='md'>+</Heading>
 													</Button>
 												</ButtonGroup>
-												{/* <NumberInput w="20%" value={rank}>
-														<NumberInputField />
-													</NumberInput> */}
+												<PositionChanger rank={rank} />
 											</Center>
 										</Td>
 									</Tr>
