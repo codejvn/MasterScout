@@ -164,6 +164,7 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														p='10%'
 														colorScheme='black'
 														onClick={() => {
+															// swap
 															//[ list[x], list[y] ] = [ list[y], list[x] ];
 															let newArray = listOrder;
 															if (index == 0) return;
@@ -181,7 +182,20 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 														<Heading size='md'>+</Heading>
 													</Button>
 												</ButtonGroup>
-												<PositionChanger rank={rank} />
+												<PositionChanger
+													rank={rank}
+													// swap={(newRank) => {
+													// 	let newArray = listOrder;
+													// 	newArray[index].rank = rank + 1;
+													// 	newArray[index + 1].rank = rank;
+													// 	[newArray[index], newArray[index + 1]] = [
+													// 		newArray[index + 1],
+													// 		newArray[index],
+													// 	];
+													// 	setListOrder([...newArray]);
+													// 	setRankChange([rank + 1]);
+													// }}
+												/>
 											</Center>
 										</Td>
 									</Tr>

@@ -127,7 +127,7 @@ export class ImportRaw extends Component {
 						<div style={spacer}></div>
 					</Row>
 					<Row>
-						<CameraReader />
+						{/* <CameraReader /> */}
 						{/* <Button onClick={() => {
               this.updateData()
               console.log(this.props.dataReducer.data)

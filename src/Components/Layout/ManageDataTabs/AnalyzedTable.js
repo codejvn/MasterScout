@@ -48,23 +48,16 @@ export class AnalyzedTable extends Component {
 				<div style={center}>
 					<div style={{ paddingTop: 75 }}></div>
 					<Table style={center} responsive striped={stripes}>
-						<thead
-							// className='sticky-top'
-							style={{
-								backgroundColor: 'white',
-								position: 'fixed',
-								marginTop: -40,
-								zIndex: 20,
-								// paddingTop: 40,
-							}}
-						>
+						<thead>
 							<tr
-								style={{
-									backgroundColor: 'white',
-									position: 'fixed',
-									marginTop: -410,
-									paddingTop: 300,
-								}}
+								style={
+									{
+										// backgroundColor: 'white',
+										// position: 'fixed',
+										// marginTop: -410,
+										// paddingTop: 300,
+									}
+								}
 							>
 								<th
 								// style={{

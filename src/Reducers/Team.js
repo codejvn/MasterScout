@@ -78,7 +78,7 @@ class Team {
 		this.autoData.push(set.auto);
 		this.teleopData.push(set.teleop);
 		this.endgameData.push(set.endgame);
-		this.matchNums.push(set.matchNum);
+		this.matchNums.push(set.matchNums);
 	};
 	getMatchData = (matchNum) => {
 		let matchIndex = this.matchNums.findIndex((match) => match == matchNum);

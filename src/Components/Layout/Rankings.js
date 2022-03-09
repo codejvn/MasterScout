@@ -43,13 +43,13 @@ export class RankingsRaw extends Component {
 				);
 				break;
 			case 'Defense Quality':
-				sorted.sort((a, b) => b.aggregated[1][7] - a.aggregated[1][7]);
+				sorted.sort((a, b) => b.aggregated[1][8] - a.aggregated[1][8]);
 				break;
 			case 'Climb Level':
-				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
+				sorted.sort((a, b) => b.aggregated[2][0] - a.aggregated[2][0]);
 				break;
 			case 'Time of Climb Start':
-				sorted.sort((a, b) => b.aggregated[2][2] - a.aggregated[2][2]);
+				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
 				break;
 		}
 		return sorted;

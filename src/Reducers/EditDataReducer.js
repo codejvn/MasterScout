@@ -34,13 +34,25 @@ const editDataReducer = (state = modRawDataInit, action = {}) => {
 			// console.log(copy);
 			switch (action.section) {
 				case 0:
-					copy.data.auto[action.dataId].value = action.value;
+					try {
+						copy.data.auto[action.dataId].value = JSON.parse(action.value);
+					} catch (e) {
+						console.log(e);
+					}
 					break;
 				case 1:
-					copy.data.teleop[action.dataId].value = action.value;
+					try {
+						copy.data.teleop[action.dataId].value = JSON.parse(action.value);
+					} catch (e) {
+						console.log(e);
+					}
 					break;
 				case 2:
-					copy.data.endgame[action.dataId].value = action.value;
+					try {
+						copy.data.endgame[action.dataId].value = JSON.parse(action.value);
+					} catch (e) {
+						console.log(e);
+					}
 					break;
 			}
 			// console.log(original);

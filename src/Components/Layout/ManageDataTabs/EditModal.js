@@ -102,26 +102,33 @@ export class EditModalRaw extends Component {
 						{this.props.edit.editedData != null && (
 							<div>
 								<h5>Auto</h5>
-								{this.props.edit.editedData.data.auto.map((dataObj) => (
+								{console.log(this.props.edit)}
+								{this.props.edit.editedData.data.auto.map((dataObj, index) => (
 									<div>
-										{aggreProps[0][dataObj.id].name}:
-										{this.parseData(dataObj.value, dataObj.id, 0)}
+										{console.log(dataObj)}
+										{console.log(aggreProps[0][index])}
+										{aggreProps[0][index].name}:
+										{this.parseData(dataObj.value, index, 0)}
 									</div>
 								))}
 								<h5>Teleop</h5>{' '}
-								{this.props.edit.editedData.data.teleop.map((dataObj) => (
-									<div>
-										{aggreProps[1][dataObj.id].name}:
-										{this.parseData(dataObj.value, dataObj.id, 1)}
-									</div>
-								))}
+								{this.props.edit.editedData.data.teleop.map(
+									(dataObj, index) => (
+										<div>
+											{aggreProps[1][index].name}:
+											{this.parseData(dataObj.value, index, 1)}
+										</div>
+									)
+								)}
 								<h5>Endgame</h5>{' '}
-								{this.props.edit.editedData.data.endgame.map((dataObj) => (
-									<div>
-										{aggreProps[2][dataObj.id - 9].name}:
-										{this.parseData(dataObj.value, dataObj.id, 2)}
-									</div>
-								))}
+								{this.props.edit.editedData.data.endgame.map(
+									(dataObj, index) => (
+										<div>
+											{aggreProps[2][index].name}:
+											{this.parseData(dataObj.value, index, 2)}
+										</div>
+									)
+								)}
 							</div>
 						)}
 					</Modal.Body>
