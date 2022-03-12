@@ -18,20 +18,20 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			console.log(action.payload);
 			let parsedData = action.payload;
 			const climbLevelIndex = 0;
-			switch (parsedData.teleop[7].value) {
+			switch (parsedData.teleop[8].value) {
 				case 'NA':
-					parsedData.teleop[7].value = 0;
+					parsedData.teleop[8].value = 0;
 				case 'Awful':
-					parsedData.teleop[7].value = 0;
+					parsedData.teleop[8].value = 0;
 					break;
 				case 'Ok':
-					parsedData.teleop[7].value = 1;
+					parsedData.teleop[8].value = 1;
 					break;
 				case 'Good':
-					parsedData.teleop[7].value = 2;
+					parsedData.teleop[8].value = 2;
 					break;
 				case 'Great':
-					parsedData.teleop[7].value = 3;
+					parsedData.teleop[8].value = 3;
 					break;
 			}
 			// forgive me father for this utter garbage
