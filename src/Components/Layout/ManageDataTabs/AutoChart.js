@@ -7,7 +7,7 @@ export class AutoChartRaw extends Component {
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[0].length > 0) {
-				for (let i = 2; i < 6; i++) {
+				for (let i = 1; i < 4; i++) {
 					console.log('SOME CHART DATA: ' + this.props.team.aggregated[0][i]);
 					chartData.push(this.props.team.aggregated[0][i]);
 				}
@@ -20,7 +20,13 @@ export class AutoChartRaw extends Component {
 	getChartInfo = () => {
 		return {
 			data: {
-				labels: ['UPPER', 'LOWER', 'IN TARMAC', 'OUT TARMAC', 'FENDER'],
+				labels: [
+					'Cross Tarmac',
+					'Lower port',
+					'Lower Missed',
+					'Upper Port',
+					'Upper Missed',
+				],
 				datasets: [
 					{
 						data: this.getChartData(),
