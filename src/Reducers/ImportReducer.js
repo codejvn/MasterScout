@@ -55,6 +55,7 @@ const importReducer = (state = matchesInitState, action = {}) => {
 					parsedData.endgame[climbLevelIndex].value = 4;
 					break;
 			}
+			parsedData.teleop[9].value = JSON.parse(parsedData.teleop[9].value);
 			parsedData.endgame[climbLevelIndex + 1].value = JSON.parse(
 				parsedData.endgame[climbLevelIndex + 1].value
 			);
