@@ -70,10 +70,10 @@ export class AnalyzedTable extends Component {
 								</th>
 								<th>Start Position</th>
 								<th>Cross Tarmac</th>
+								<th>Lower Missed Auto</th>
+								<th>Upper Auto Missed</th>
 								<th>Lower Auto</th>
-								<th>Lower Auto Missed</th>
 								<th>Upper Auto</th>
-								<th>Upper Missed Auto</th>
 								<th>Upper Teleop</th>
 								<th>Missed Upper Teleop</th>
 								<th>Lower Teleop</th>
