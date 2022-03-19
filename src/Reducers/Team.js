@@ -124,8 +124,10 @@ class Team {
 	 *
 	 */
 	organizeSet = (set, numOfDataPoints) => {
+		console.log(set);
+		console.log('DOING ORGANIZATION ' + numOfDataPoints);
 		let ret = [];
-		// console.log(set);
+		// ret.push(this.organizeIntoSet)
 		for (let i = 0; i < numOfDataPoints; i++) {
 			ret.push(this.organizeIntoSet(set, i));
 		}
@@ -134,14 +136,13 @@ class Team {
 	aggregateSet = (organizedSet, dataProps) => {
 		// loop over all the organized data and condense them into a funciton
 		return dataProps.map((prop) => {
-			let operation;
 			switch (prop.aggre) {
 				case 'mode':
 					// console.log(organizedSet[prop.id]);
 					// console.log('Mode lol');
 					return this.mode(organizedSet[prop.id]).value;
 				case 'avg':
-					console.log(prop.name);
+					// console.log(prop.name);
 					//["11","2590","Nice","T",false,3,1,3,1,2,1,1,1,1,1,2,"Good",50,"H",30]
 					return this.average(organizedSet[prop.id]);
 				case 'boolavg':
@@ -153,7 +154,8 @@ class Team {
 	};
 
 	aggregate = () => {
-		// console.log('AGGERGATING TEAM ' + this.teamNumber);
+		console.log('AGGERGATING TEAM ' + this.teamNumber);
+		this.totaldata = [this.autoData, this.teleopData, this.endgameData];
 		this.totaldata.forEach((set, i, a) => {
 			this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);
 			this.aggregated[i] = this.aggregateSet(
@@ -164,8 +166,8 @@ class Team {
 	};
 
 	average = (data) => {
-		console.log(data);
-		return data.reduce((a, b) => a + b.value, 0) / data.length;
+		// console.log(data);
+		return (data.reduce((a, b) => a + b.value, 0) / data.length).toFixed(3);
 	};
 	// average;
 	boolAverage = (data) => {
@@ -174,7 +176,7 @@ class Team {
 				b = b.value ? 1 : 0;
 				return a + b;
 			}, 0) / data.length
-		);
+		).toFixed(3);
 	};
 	max = (data) => (data) => Math.max(...data.value);
 

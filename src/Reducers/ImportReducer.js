@@ -18,6 +18,7 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			console.log(action.payload);
 			let parsedData = action.payload;
 			const climbLevelIndex = 0;
+			console.log(parsedData.teleop);
 			switch (parsedData.teleop[8].value) {
 				case 'NA':
 					parsedData.teleop[8].value = 0;

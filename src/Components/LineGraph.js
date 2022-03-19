@@ -16,7 +16,7 @@ export class LineGraph extends Component {
 		let data = [];
 		for (const dataSet of this.props.dataSets) {
 			let dataValues = [];
-			// console.log(dataSet);
+			console.log(this.props);
 			try {
 				dataValues = dataSet.data.map((thing) => thing.value);
 			} catch (err) {
