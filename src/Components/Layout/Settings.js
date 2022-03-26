@@ -11,6 +11,7 @@ import { setCompData } from '../../Actions/DataActions/setCompData';
 import { setTBA } from '../../Actions/TBAactions/setTBA';
 import { setTeams } from '../../Actions/TBAactions/setTeams';
 import axios from 'axios';
+import { parse } from 'path';
 
 export class SettingsRaw extends Component {
 	constructor(props) {
@@ -71,6 +72,7 @@ export class SettingsRaw extends Component {
 			console.log('SETTING DATA');
 			setTimeout(() => {
 				this.props.setCompData(parsed.teams);
+				this.props.setTBA(parsed.tba);
 			}, 5000);
 			//resolve("yay");
 			// }).then((res, rej) => {

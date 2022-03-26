@@ -62,21 +62,26 @@ const dataReducer = (state = dataInitState, action = {}) => {
 
 		case SET_COMPDATA:
 			let teamsRaw = state.teams;
-			// console.log(teamsRaw);
-			// console.log(action.payload);
-			for (const team of teamsRaw) {
-				let teamFromImport = action.payload.find(
-					(teamFromImport) => teamFromImport.teamNumber == team.teamNumber
-				);
+			console.log('RUNNIGN SET COMP DATA');
+			console.log(action.payload);
+			let teamsFromPayload = action.payload;
+			let newTeamsImport = [];
+			// for (const teamNum of action.payload) {
+			// newTeamsImport.push(new Team(teamNum, newTeamsImport.length));
+			// }
+			for (const team of teamsFromPayload) {
+				console.log(newTeamsImport.length);
+				let newTeam = new Team(team.teamNumber, newTeamsImport.length);
+				newTeamsImport.push(newTeam);
 				console.log('FROM IMPORT');
-				console.log(teamFromImport);
+				console.log(newTeam);
 				console.log('RAW');
 				console.log(team);
-				team.setData(teamFromImport);
+				newTeam.setData(team);
 			}
 			return {
 				...state,
-				teams: teamsRaw,
+				teams: newTeamsImport,
 			};
 		default:
 			return state;

@@ -6,7 +6,7 @@ import EndgameChart from './EndgameChart.js';
 import TeleopChart from './TeleopChart.js';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { Center } from '@chakra-ui/react';
+import { Center, UnorderedList, ListItem, Box } from '@chakra-ui/react';
 import { Heading, Text } from '@chakra-ui/layout';
 import { Grid, GridItem } from '@chakra-ui/react';
 import Row from 'react-bootstrap/Row';
@@ -280,14 +280,28 @@ export default function TeamBreakdown2(props) {
 						</Heading>
 					</Center>
 				</GridItem>
-				<GridItem w='100%' colSpan={2}>
+				<GridItem w='100%' colSpan={2} rowSpan={3}>
 					<Center w='100%'>
 						{/** araash */}
-						{team.comments.map((comment) => (
-							<Center w='100%'>
-								<Text>{comment}</Text>
-							</Center>
-						))}
+						<Grid templateColumns='repeat(3, 1fr)'>
+							{team.comments.map((comment) => (
+								<GridItem>
+									<Box
+										maxW='sm'
+										borderWidth='1px'
+										borderRadius='lg'
+										overflow='hidden'
+										p={6}
+									>
+										<Center w='100%'>
+											<Text>
+												{comment != '' ? comment : 'No Comment Given'}
+											</Text>
+										</Center>
+									</Box>
+								</GridItem>
+							))}
+						</Grid>
 					</Center>
 				</GridItem>
 				<GridItem colSpan={2}>{doCharts([team])}</GridItem>
