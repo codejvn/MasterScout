@@ -11,12 +11,19 @@ export class RankRow extends Component {
 				{/* <td style={center}><Button onClick={this.deleteRow} style={deleteButton}>X</Button></td> */}
 				<td style={teamRanking}>{this.props.row + 1}</td>
 				<td style={center}>{team.teamNumber}</td>
-				<td style={center}>{team.aggregated[0][2] + team.aggregated[1][0]}</td>
-				<td style={center}>{team.aggregated[0][3] + team.aggregated[1][2]}</td>
 				<td style={center}>
-					{(team.aggregated[1][0] / team.aggregated[1][0] +
-						team.aggregated[1][1]) *
-						100}
+					{parseFloat(team.aggregated[0][2]) +
+						parseFloat(team.aggregated[1][0])}
+				</td>
+				<td style={center}>
+					{parseFloat(team.aggregated[0][3]) +
+						parseFloat(team.aggregated[1][2])}
+				</td>
+				<td style={center}>
+					{(parseFloat(team.aggregated[1][0]) /
+						parseFloat(team.aggregated[1][0]) +
+						parseFloat(team.aggregated[1][1])) *
+						10}
 				</td>
 				<td style={center}>{team.aggregated[1][8]}</td>
 				<td style={center}>{team.aggregated[2][0]}</td>
