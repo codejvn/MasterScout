@@ -21,17 +21,17 @@ export class RankingsRaw extends Component {
 			case 'Upper Port':
 				sorted.sort(
 					(a, b) =>
-						b.aggregated[0][2] +
-						b.aggregated[1][0] -
-						(a.aggregated[0][2] + a.aggregated[1][0])
+						parseFloat(b.aggregated[0][2]) +
+						parseFloat(b.aggregated[1][0]) -
+						(parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[1][0]))
 				);
 				break;
 			case 'Lower Port':
 				sorted.sort(
 					(a, b) =>
-						b.aggregated[0][3] +
-						b.aggregated[1][2] -
-						(a.aggregated[0][3] + a.aggregated[1][2])
+						parseFloat(b.aggregated[0][3]) +
+						parseFloat(b.aggregated[1][2]) -
+						(parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[1][2]))
 				);
 				break;
 			case 'Accuracy':
