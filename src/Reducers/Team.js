@@ -165,6 +165,14 @@ class Team {
 		});
 	};
 
+	highestClimb = () => {
+		if (this.organizedDataSets[2].length > 0) {
+			return this.organizedDataSets[2][0].sort((a, b) => b.value - a.value)[0];
+		} else {
+			return { value: 1 };
+		}
+	};
+
 	average = (data) => {
 		// console.log(data);
 		return (data.reduce((a, b) => a + b.value, 0) / data.length).toFixed(3);

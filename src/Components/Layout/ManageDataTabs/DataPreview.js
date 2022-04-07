@@ -16,8 +16,11 @@ export class DataPreviewRaw extends Component {
 	};
 	modifyData = (e) => {
 		let input = e.currentTarget;
+		console.log('from element');
+		console.log(input);
+		console.log(input.getAttribute('section'));
 		this.props.modifyData({
-			section: 'auto',
+			section: input.getAttribute('section'),
 			dataId: input.id,
 			data: input.value,
 			num: this.props.data.key,
@@ -29,12 +32,24 @@ export class DataPreviewRaw extends Component {
 		});
 	};
 	render() {
+		console.log('data');
+		console.log(this.props.data);
 		return (
 			<Row style={topMargin}>
 				<Card style={formWidth}>
 					<Card.Title>
-						{this.props.data.teamNum}
-
+						{this.state.editable ? (
+							<Input
+								type='text'
+								className='mr-sm-2'
+								section='teamnum'
+								value={this.props.data.teamNum}
+								onChange={this.modifyData}
+								id={0}
+							/>
+						) : (
+							this.props.data.teamNum
+						)}
 						<Button style={buttonStyle} size='small' onClick={this.toggleEdit}>
 							{this.state.editable ? 'Save' : 'Edit'}
 						</Button>
@@ -67,7 +82,7 @@ export class DataPreviewRaw extends Component {
 															section='auto'
 															value={JSON.stringify(data.value)}
 															onChange={this.modifyData}
-															id={data.id}
+															id={index}
 														/>
 													) : (
 														JSON.stringify(data.value)

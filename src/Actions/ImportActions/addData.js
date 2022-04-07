@@ -16,6 +16,7 @@ export const addData = (data) => {
 	parsedData.endgame = newData.slice(19, 21);
 	// parsedData.matchNums = JSON.parse(d ata)[0];
 	parsedData.matchNums = newData[matchNumIndex].value;
+	parsedData.scout = newData[newData.length - 1].value;
 	console.warn(parsedData);
 	return (dispatch) => {
 		dispatch({

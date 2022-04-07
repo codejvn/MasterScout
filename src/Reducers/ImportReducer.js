@@ -67,22 +67,33 @@ const importReducer = (state = matchesInitState, action = {}) => {
 				data: newData,
 			};
 		case MODIFY_DATA:
+			console.log(action);
 			let newDataSet = state.data;
 			keyToLookFor = action.num;
 			let index = newDataSet.findIndex(findData);
 			let id = parseInt(action.dataId);
+			if (action.data == '') {
+				return {
+					data: newDataSet,
+				};
+			}
 			let data = JSON.parse(action.data);
+			console.warn(newDataSet);
+			console.log(id);
 			switch (action.section) {
 				case 'auto':
 					//newDataSet[index].data.auto[id] = { id: id, value: action.data };
-					newDataSet[index].data.auto[id].value = data;
+					newDataSet[index].auto[id].value = data;
 					break;
 				case 'teleop':
-					newDataSet[index].data.teleop[id].value = data;
+					newDataSet[index].teleop[id].value = data;
 					break;
 				case 'endgame':
-					newDataSet[index].data.endgame[id].value = data;
+					newDataSet[index].endgame[id].value = data;
 					break;
+				case 'teamnum':
+					console.log('UPDATING THE TAEM NUMBER');
+					newDataSet[index].teamNum = data;
 				default:
 					break;
 			}

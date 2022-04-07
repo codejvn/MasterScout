@@ -49,7 +49,7 @@ export class RankingsRaw extends Component {
 				sorted.sort((a, b) => b.aggregated[2][0] - a.aggregated[2][0]);
 				break;
 			case 'Time of Climb Start':
-				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
+				sorted.sort((a, b) => a.aggregated[2][1] - b.aggregated[2][1]);
 				break;
 		}
 		return sorted;
@@ -117,7 +117,7 @@ export class RankingsRaw extends Component {
 									onClick={this.selectSortBy}
 									sort={'Defense'}
 								>
-									Defense
+									Defense Quality
 								</Button>
 							</td>
 

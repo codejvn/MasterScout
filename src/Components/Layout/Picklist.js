@@ -25,6 +25,7 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 	const [rankChange, setRankChange] = useState([]);
 	const [filledTeams, setFilledTeams] = useState(false);
 	let { teams } = dataReducer;
+	let colors = ['white', 'red.100', 'blue.100', 'green.100'];
 	// let { teamSearched } = searchReducer;
 
 	useEffect(() => {
@@ -74,7 +75,11 @@ export function Picklist({ dataReducer, searchReducer, searchTeam }) {
 								// console.log(team);
 								return (
 									<Tr
-										backgroundColor={rank == rankChange ? 'red.100' : 'red.200'}
+										backgroundColor={
+											rank == rankChange
+												? 'red.200'
+												: colors[team.highestClimb().value - 1]
+										}
 									>
 										<Td>
 											<Heading size='md' textAlign='center'>
