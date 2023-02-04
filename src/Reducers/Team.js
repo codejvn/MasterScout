@@ -1,27 +1,35 @@
 export const autoDataProps = [
 	{ aggre: 'mode', name: 'Starting Position', id: 0 },
-	{ aggre: 'boolavg', name: 'Cross Tarmac', id: 1 },
-	{ aggre: 'avg', name: 'Lower Port', id: 3 },
-	{ aggre: 'avg', name: 'Lower Port Missed', id: 5 },
-	{ aggre: 'avg', name: 'Upper Port', id: 2 },
-	{ aggre: 'avg', name: 'Upper Port Missed', id: 4 },
+	{ aggre: 'boolavg', name: 'Cross Community', id: 1 },
+	{ aggre: 'avg', name: 'Cones High', id: 2 },
+	{ aggre: 'avg', name: 'Cones Mid', id: 3},
+	{ aggre: 'avg', name: 'Cones Low', id: 4 },
+	{ aggre: 'avg', name: 'Cones Missed', id: 5 },
+	{ aggre: 'avg', name: 'Cubes High', id: 6 },
+	{ aggre: 'avg', name: 'Cubes Mid', id: 7 },
+	{ aggre: 'avg', name: 'Cubes Low', id: 8 },
+	{ aggre: 'avg', name: 'Cubes Missed', id: 9 },
+	{ aggre: 'avg', name: 'Charging Station', id: 10 },
+
 ];
 export const teleopDataProps = [
-	{ aggre: 'avg', name: 'Upper', id: 0 },
-	{ aggre: 'avg', name: 'Missed Upper', id: 1 },
-	{ aggre: 'avg', name: 'Lower', id: 2 },
-	{ aggre: 'avg', name: 'Missed Lower', id: 3 },
-	{ aggre: 'avg', name: 'Shoot From Fender', id: 4 },
-	{ aggre: 'avg', name: 'Shoot From Tarmac', id: 5 },
-	{ aggre: 'avg', name: 'Shoot From Launch Pad', id: 6 },
-	{ aggre: 'avg', name: 'Shoot From Outside Fender', id: 7 },
-	{ aggre: 'avg', name: 'Defense Quality', id: 8 },
-	{ aggre: 'avg', name: 'Defense Quantity', id: 9 },
+	{ aggre: 'avg', name: 'Cones High', id: 0 },
+	{ aggre: 'avg', name: 'Cones Mid', id: 1 },
+	{ aggre: 'avg', name: 'Cones Low', id: 2 },
+	{ aggre: 'avg', name: 'Cones Missed', id: 3 },
+	{ aggre: 'avg', name: 'Cubes High', id: 4 },
+	{ aggre: 'avg', name: 'Cubes Mid', id: 5 },
+	{ aggre: 'avg', name: 'Cubes Low', id: 6 },
+	{ aggre: 'avg', name: 'Cubes Missed', id: 7 },
+	{ aggre: 'mode', name: 'Intake From', id: 8 },
+	{ aggre: 'avg', name: 'Defense', id: 9 },
 ];
 export const endgameDataProps = [
 	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },
-	{ aggre: 'avg', name: 'Climb Level', id: 0 },
-	{ aggre: 'avg', name: 'Time of Climb Start', id: 1 },
+	{ aggre: 'boolavg', name: 'Attempted Charge Station', id: 0 },
+	{ aggre: 'avg', name: 'Charge Station', id: 1 },
+	{ aggre: 'avg', name: 'Climb Efficiency/Stability', id: 2 },
+	{ aggre: 'avg', name: 'Time Left', id: 3 },
 ];
 /*
 	Aggregation Types:

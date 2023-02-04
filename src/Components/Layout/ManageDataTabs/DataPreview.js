@@ -74,7 +74,7 @@ export class DataPreviewRaw extends Component {
 										this.props.data.auto.map((data, index) => {
 											return (
 												<div>
-													{autoHeaders[index]}
+													{defAutoHeaders[index]}
 													{this.state.editable ? (
 														<Input
 															type='text'
@@ -103,7 +103,7 @@ export class DataPreviewRaw extends Component {
 									{this.props.data.teleop.map((data, index) => {
 										return (
 											<div>
-												{teleopHeaders[index]}
+												{defTeleopHeaders[index]}
 												{this.state.editable ? (
 													<Input
 														type='text'
@@ -132,7 +132,7 @@ export class DataPreviewRaw extends Component {
 										console.log(data);
 										return (
 											<div>
-												{endgameHeaders[index]}
+												{defEndgameHeaders[index]}
 												{this.state.editable ? (
 													<Input
 														type='text'
@@ -178,6 +178,10 @@ const buttonStyle = {
 const autoHeaders = autoDataProps.map((prop) => prop.name + ': ');
 const teleopHeaders = teleopDataProps.map((prop) => prop.name + ': ');
 const endgameHeaders = endgameDataProps.map((prop) => prop.name + ': ');
+
+const defAutoHeaders = ["Starting Position: ", "Left Community: ", "Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Charging Station: "];
+const defTeleopHeaders = ["Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Intake From: ", "Defense: "];
+const defEndgameHeaders = ["Attempted Charge Station: ", "Charging Station: ", "Climb Efficiency: ", "Time Left: "];
 const formWidth = {
 	width: '100%',
 	textAlign: 'center',

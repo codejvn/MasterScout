@@ -7,16 +7,23 @@ export const addData = (data) => {
 	});
 	const commentIndex = 2;
 	const matchNumIndex = 0;
+	const autoBegin = 3;
+	const autoEnd = 14;
+	const teleopBegin = 14;
+	const teleopEnd = 24;
+	const endgameBegin = 24;
+	const endgameEnd = 28;
 	console.warn(newData);
 	let parsedData = {};
 	parsedData.comments = newData[commentIndex].value;
 	parsedData.teamNum = JSON.parse(data)[1];
-	parsedData.auto = newData.slice(3, 9);
-	parsedData.teleop = newData.slice(9, 19);
-	parsedData.endgame = newData.slice(19, 21);
+	parsedData.auto = newData.slice(autoBegin, autoEnd);
+	parsedData.teleop = newData.slice(teleopBegin, teleopEnd);
+	parsedData.endgame = newData.slice(endgameBegin, endgameEnd);
 	// parsedData.matchNums = JSON.parse(d ata)[0];
 	parsedData.matchNums = newData[matchNumIndex].value;
 	parsedData.scout = newData[newData.length - 1].value;
+	console.log("parsedData");
 	console.warn(parsedData);
 	return (dispatch) => {
 		dispatch({

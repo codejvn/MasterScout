@@ -15,6 +15,7 @@
     "framer-motion": "^4.1.17",
     "fs": "0.0.1-security",
     "hide-scrollbar-react": "^1.1.6",
+    "path": "^0.12.7",
     "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -26,11 +27,12 @@
     "react-remove-scroll-bar": "^2.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^5.0.1",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "stream": "^0.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,5 +54,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
