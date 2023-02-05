@@ -20,6 +20,12 @@ export class RawDataTableRaw extends Component {
 		this.props.editTeam(this.props.team.teamNumber);
 	};
 	render() {
+		console.log("teleop data props from team");
+		console.log(teleopDataProps);
+		console.log("autodataprops from team");
+		console.log(autoDataProps);
+		console.log("endgamedataprops from team");
+		console.log(endgameDataProps);
 		let validTeam = true;
 		let team;
 		try {
@@ -64,10 +70,12 @@ export class RawDataTableRaw extends Component {
 									</Table>
 									<Table hover borderless style={noTop} striped>
 										<thead>
-											<th>#</th>
-											{teleopDataProps.map((prop) => (
-												<th>{prop.name}</th>
-											))}
+											<tr>
+												<th>#</th>
+												{teleopDataProps.map((prop) => (
+													<th>{prop.name}</th>
+												))}
+											</tr>
 										</thead>
 										<tbody>
 											{team.teleopData.map((match) => (
@@ -84,10 +92,12 @@ export class RawDataTableRaw extends Component {
 									</Table>
 									<Table hover borderless style={noTop} striped>
 										<thead>
-											<th>#</th>
-											{endgameDataProps.map((prop) => (
-												<th>{prop.name}</th>
-											))}
+											<tr>
+												<th>#</th>
+												{endgameDataProps.map((prop) => (
+													<th>{prop.name}</th>
+												))}
+											</tr>
 										</thead>
 										<tbody>
 											{team.endgameData.map((match) => (
