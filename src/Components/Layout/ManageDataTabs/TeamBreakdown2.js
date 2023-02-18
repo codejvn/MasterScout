@@ -20,40 +20,40 @@ import { teleopDataProps } from '../../../Reducers/Team';
 import { endgameDataProps } from '../../../Reducers/Team';
 
 export default function TeamBreakdown2(props) {
-	const autoScoreData = [
-		{
-			name: 'Cross Tarmac',
-			point: 5,
-			aggreIndex: 1,
-		},
-		{
-			name: 'Upper Hub',
-			point: 4,
-			aggreIndex: 2,
-		},
-		{
-			name: 'Lower Hub',
-			point: 2,
-			aggreIndex: 3,
-		},
-	];
-	const teleopScoreData = [
-		{
-			name: 'Upper Hub',
-			point: 2,
-			aggreIndex: 0,
-		},
-		{
-			name: 'Lower Hub',
-			point: 1,
-			aggreIndex: 2,
-		},
-	];
-	const endgameScoreData = [
-		{
-			name: 'Climb',
-		},
-	];
+	// const autoScoreData = [
+	// 	{
+	// 		name: 'Cross Tarmac',
+	// 		point: 5,
+	// 		aggreIndex: 1,
+	// 	},
+	// 	{
+	// 		name: 'Upper Hub',
+	// 		point: 4,
+	// 		aggreIndex: 2,
+	// 	},
+	// 	{
+	// 		name: 'Lower Hub',
+	// 		point: 2,
+	// 		aggreIndex: 3,
+	// 	},
+	// ];
+	// const teleopScoreData = [
+	// 	{
+	// 		name: 'Upper Hub',
+	// 		point: 2,
+	// 		aggreIndex: 0,
+	// 	},
+	// 	{
+	// 		name: 'Lower Hub',
+	// 		point: 1,
+	// 		aggreIndex: 2,
+	// 	},
+	// ];
+	// const endgameScoreData = [
+	// 	{
+	// 		name: 'Climb',
+	// 	},
+	// ];
 	const { teamSearched } = useSelector((state) => state.search, shallowEqual);
 	const dataReducer = useSelector((state) => state.dataReducer, shallowEqual);
 	const [team, setTeam] = useState(null);
@@ -69,6 +69,7 @@ export default function TeamBreakdown2(props) {
 				// loops through auto teleop and endgame
 				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
 					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
+					console.log(teams[0].organizedDataSets[i]);
 					let dataSets = [];
 					for (const team of teams) {
 						dataSets.push({
@@ -165,7 +166,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const autoIndices = [1, 2, 3]; // indexes of the datapoints you want to adjust
+								const autoIndices = [2, 3, 4, 5, 6, 7, 8, 9, 10]; // indexes of the datapoints you want to adjust, was 1,2,3
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {
@@ -175,11 +176,13 @@ export default function TeamBreakdown2(props) {
 											Add More Data To Produce a Breakdown For This Team
 										</Text>
 									);
-								} else {
+								} else {//data: team.organizedDataSets[0][index],
 									const dataSet = autoIndices.map((index) => ({
 										data: team.organizedDataSets[0][index],
 										teamNumber: autoDataProps[index].name,
 									}));
+									console.log("dataset");
+									console.log(dataSet);
 									return (
 										// <h2>nana</h2>
 										<LineGraph
@@ -206,7 +209,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const teleopIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // indexes of the datapoints you want to adjust
+								const teleopIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // indexes of the datapoints you want to adjust
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {
@@ -246,7 +249,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const endgameIndicies = [1]; // indexes of the datapoints you want to adjust
+								const endgameIndicies = [0,1,2,3]; // indexes of the datapoints you want to adjust
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {

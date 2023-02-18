@@ -7,7 +7,7 @@ export default class TeleopChart extends Component {
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[1].length > 0) {
-				for (let i = 0; i < 8; i++) {
+				for (let i = 0; i < 10; i++) {
 					chartData.push(this.props.team.aggregated[1][i]);
 				}
 			}
@@ -31,6 +31,10 @@ export default class TeleopChart extends Component {
 							'rgba(75, 192, 192, 0.2)',
 							'rgba(153, 102, 255, 0.2)',
 							'rgba(255, 159, 64, 0.2)',
+							'rgba(255, 153, 255, 0.2)',
+							'rgba(102, 102, 255, 0.2)',
+							'rgba(255, 120, 51, 0.2)',
+							'rgba(51, 204, 51, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -39,6 +43,10 @@ export default class TeleopChart extends Component {
 							'rgba(75, 192, 192, 1)',
 							'rgba(153, 102, 255, 1)',
 							'rgba(255, 159, 64, 1)',
+							'rgba(255, 153, 255, 1)',
+							'rgba(102, 102, 255, 1)',
+							'rgba(255, 120, 51, 1)',
+							'rgba(51, 204, 51, 1)',
 						],
 						borderWidth: 1,
 					},

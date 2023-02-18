@@ -7,7 +7,7 @@ export class AutoChartRaw extends Component {
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[0].length > 0) {
-				for (let i = 1; i < 4; i++) {
+				for (let i = 2; i < 11; i++) {
 					console.log('SOME CHART DATA: ' + this.props.team.aggregated[0][i]);
 					chartData.push(this.props.team.aggregated[0][i]);
 				}
@@ -21,11 +21,15 @@ export class AutoChartRaw extends Component {
 		return {
 			data: {
 				labels: [
-					'Cross Tarmac',
-					'Lower port',
-					'Lower Missed',
-					'Upper Port',
-					'Upper Missed',
+					'Cones High',
+					'Cones Mid',
+					'Cones Low',
+					'Cones Missed',
+					'Cubes High',
+					'Cubes Mid',
+					'Cubes Low',
+					'Cubes Missed',
+					'Charge Station',
 				],
 				datasets: [
 					{
@@ -38,6 +42,9 @@ export class AutoChartRaw extends Component {
 							'rgba(75, 192, 192, 0.2)',
 							'rgba(153, 102, 255, 0.2)',
 							'rgba(255, 159, 64, 0.2)',
+							'rgba(255, 153, 255, 0.2)',
+							'rgba(102, 102, 255, 0.2)',
+							'rgba(255, 120, 51, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -46,6 +53,9 @@ export class AutoChartRaw extends Component {
 							'rgba(75, 192, 192, 1)',
 							'rgba(153, 102, 255, 1)',
 							'rgba(255, 159, 64, 1)',
+							'rgba(255, 153, 255, 1)',
+							'rgba(102, 102, 255, 1)',
+							'rgba(255, 120, 51, 1)',
 						],
 						borderWidth: 1,
 					},
