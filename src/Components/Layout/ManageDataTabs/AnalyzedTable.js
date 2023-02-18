@@ -69,23 +69,30 @@ export class AnalyzedTable extends Component {
 									Team
 								</th>
 								<th>Start Position</th>
-								<th>Cross Tarmac</th>
-								<th>Lower Missed Auto</th>
-								<th>Upper Auto Missed</th>
-								<th>Lower Auto</th>
-								<th>Upper Auto</th>
-								<th>Upper Teleop</th>
-								<th>Missed Upper Teleop</th>
-								<th>Lower Teleop</th>
-								<th>Missed Lower Teleop</th>
-								<th>Shoot From Fender</th>
-								<th>Shoot From Tarmac</th>
-								<th>Shoot From Launch Pad</th>
-								<th>Shoot From Outside Tarmac</th>
-								<th>Defense Quality</th>
-								<th>Defense Quantity</th>
-								<th>Climb Level</th>
-								<th>Time of Climb Start</th>
+								<th>Left Community</th>
+								<th>Cones High</th>
+								<th>Cones Mid</th>
+								<th>Cones Low</th>
+								<th>Cones Missed</th>
+								<th>Cubes High</th>
+								<th>Cubes Mid</th>
+								<th>Cubes Low</th>
+								<th>Cubes Missed</th>
+								<th>Charging Station</th>
+								<th>Cones High</th>
+								<th>Cones Mid</th>
+								<th>Cones Low</th>
+								<th>Cones Missed</th>
+								<th>Cubes High</th>
+								<th>Cubes Mid</th>
+								<th>Cubes Low</th>
+								<th>Cubes Missed</th>
+								<th>Intake From</th>
+								<th>Defense</th>
+								<th>Attempted Charge Station</th>
+								<th>Charging Station</th>
+								<th>Climb Efficiency</th>
+								<th>Time Left</th>
 							</tr>
 						</thead>
 						<div style={{ padding: 20 }}></div>
