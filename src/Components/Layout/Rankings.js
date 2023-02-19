@@ -18,38 +18,60 @@ export class RankingsRaw extends Component {
 	getSortedTeams = (sortby) => {
 		let sorted = this.props.dataReducer.teams;
 		switch (sortby) {
-			case 'Upper Port':
+			case 'Cubes Scored':
+				// sorted.sort(
+				// 	(a, b) =>
+				// 		parseFloat(b.aggregated[0][2]) +
+				// 		parseFloat(b.aggregated[1][0]) -
+				// 		(parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[1][0]))
+				// );
 				sorted.sort(
 					(a, b) =>
-						parseFloat(b.aggregated[0][2]) +
-						parseFloat(b.aggregated[1][0]) -
-						(parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[1][0]))
+						(parseFloat(b.aggregated[0][6]) + parseFloat(b.aggregated[0][7]) + parseFloat(b.aggregated[0][8])+parseFloat(b.aggregated[1][4])+parseFloat(b.aggregated[1][5])+parseFloat(b.aggregated[1][6]))
+						-
+						(parseFloat(a.aggregated[0][6]) + parseFloat(a.aggregated[0][7]) + parseFloat(a.aggregated[0][8])+parseFloat(a.aggregated[1][4])+parseFloat(a.aggregated[1][5])+parseFloat(a.aggregated[1][6]))
 				);
 				break;
-			case 'Lower Port':
+			case 'Cones Scored':
+				// sorted.sort(
+				// 	(a, b) =>
+				// 		parseFloat(b.aggregated[0][3]) +
+				// 		parseFloat(b.aggregated[1][2]) -
+				// 		(parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[1][2]))
+				// );
+				sorted.sort(
+					(a, b) => 
+					(parseFloat(b.aggregated[0][2]) + parseFloat(b.aggregated[0][3]) + parseFloat(b.aggregated[0][4])+parseFloat(b.aggregated[1][0])+parseFloat(b.aggregated[1][1])+parseFloat(b.aggregated[1][2]))
+					-
+					(parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[0][4])+parseFloat(a.aggregated[1][0])+parseFloat(a.aggregated[1][1])+parseFloat(a.aggregated[1][2]))
+				);
+				break;
+			case 'Cones Accuracy':
+				// let conesScoredA = parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[0][4])+parseFloat(a.aggregated[1][0])+parseFloat(a.aggregated[1][1])+parseFloat(a.aggregated[1][2]);
+				// let conesScoredB = parseFloat(b.aggregated[0][2]) + parseFloat(b.aggregated[0][3]) + parseFloat(b.aggregated[0][4])+parseFloat(b.aggregated[1][0])+parseFloat(b.aggregated[1][1])+parseFloat(b.aggregated[1][2]);
 				sorted.sort(
 					(a, b) =>
-						parseFloat(b.aggregated[0][3]) +
-						parseFloat(b.aggregated[1][2]) -
-						(parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[1][2]))
+						((parseFloat(b.aggregated[0][2]) + parseFloat(b.aggregated[0][3]) + parseFloat(b.aggregated[0][4])+parseFloat(b.aggregated[1][0])+parseFloat(b.aggregated[1][1])+parseFloat(b.aggregated[1][2]))/((parseFloat(b.aggregated[0][2]) + parseFloat(b.aggregated[0][3]) + parseFloat(b.aggregated[0][4])+parseFloat(b.aggregated[1][0])+parseFloat(b.aggregated[1][1])+parseFloat(b.aggregated[1][2]))+parseFloat(b.aggregated[0][5])+parseFloat(b.aggregated[1][3]))) 
+						-
+						(parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[0][4])+parseFloat(a.aggregated[1][0])+parseFloat(a.aggregated[1][1])+parseFloat(a.aggregated[1][2]))/((parseFloat(a.aggregated[0][2]) + parseFloat(a.aggregated[0][3]) + parseFloat(a.aggregated[0][4])+parseFloat(a.aggregated[1][0])+parseFloat(a.aggregated[1][1])+parseFloat(a.aggregated[1][2]))+parseFloat(a.aggregated[0][5])+parseFloat(a.aggregated[1][3]))
 				);
 				break;
-			case 'Accuracy':
-				sorted.sort(
-					(a, b) =>
-						(b.aggregated[1][0] / b.aggregated[1][0] + b.aggregated[1][1]) *
-							100 -
-						(a.aggregated[1][0] / a.aggregated[1][0] + a.aggregated[1][1]) * 100
-				);
+			case 'Cubes Accuracy':
+					sorted.sort(
+						(a,b) => 
+						((parseFloat(b.aggregated[0][6]) + parseFloat(b.aggregated[0][7]) + parseFloat(b.aggregated[0][8])+parseFloat(b.aggregated[1][4])+parseFloat(b.aggregated[1][5])+parseFloat(b.aggregated[1][6]))/(parseFloat(b.aggregated[0][6]) + parseFloat(b.aggregated[0][7]) + parseFloat(b.aggregated[0][8])+parseFloat(b.aggregated[1][4])+parseFloat(b.aggregated[1][5])+parseFloat(b.aggregated[1][6])+ parseFloat(b.aggregated[0][9]) + parseFloat(b.aggregated[1][7])))
+						-
+						((parseFloat(a.aggregated[0][6]) + parseFloat(a.aggregated[0][7]) + parseFloat(a.aggregated[0][8])+parseFloat(a.aggregated[1][4])+parseFloat(a.aggregated[1][5])+parseFloat(a.aggregated[1][6]))/(parseFloat(a.aggregated[0][6]) + parseFloat(a.aggregated[0][7]) + parseFloat(a.aggregated[0][8])+parseFloat(a.aggregated[1][4])+parseFloat(a.aggregated[1][5])+parseFloat(a.aggregated[1][6])+ parseFloat(a.aggregated[0][9]) + parseFloat(a.aggregated[1][7])))
+					);
+					break;
+			case 'Defense':
+				sorted.sort((a, b) => b.aggregated[1][9] - a.aggregated[1][9]);
 				break;
-			case 'Defense Quality':
-				sorted.sort((a, b) => b.aggregated[1][8] - a.aggregated[1][8]);
+			case 'Charge Station':
+				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
 				break;
-			case 'Climb Level':
-				sorted.sort((a, b) => b.aggregated[2][0] - a.aggregated[2][0]);
-				break;
-			case 'Time of Climb Start':
-				sorted.sort((a, b) => a.aggregated[2][1] - b.aggregated[2][1]);
+			case 'Time of CS Start':
+				sorted.sort((a, b) => b.aggregated[2][3] - a.aggregated[2][3]);
 				break;
 		}
 		return sorted;
@@ -85,9 +107,9 @@ export class RankingsRaw extends Component {
 									variant='outline-dark'
 									style={fullWidthDynamic}
 									onClick={this.selectSortBy}
-									sort={'Upper Port'}
+									sort={'Cones Scored'}
 								>
-									Upper Port
+									Cones Scored
 								</Button>
 							</td>
 							<td>
@@ -95,9 +117,9 @@ export class RankingsRaw extends Component {
 									variant='outline-dark'
 									style={fullWidthDynamic}
 									onClick={this.selectSortBy}
-									sort={'Lower Port'}
+									sort={'Cubes Scored'}
 								>
-									Lower Port
+									Cubes Scored
 								</Button>
 							</td>
 							<td>
@@ -105,11 +127,22 @@ export class RankingsRaw extends Component {
 									variant='outline-dark'
 									style={fullWidthDynamic}
 									onClick={this.selectSortBy}
-									sort={'Accuracy'}
+									sort={'Cones Accuracy'}
 								>
-									Accuracy
+									Cones Accuracy
 								</Button>
 							</td>
+							<td>
+								<Button
+									variant='outline-dark'
+									style={fullWidthDynamic}
+									onClick={this.selectSortBy}
+									sort={'Cubes Accuracy'}
+								>
+									Cubes Accuracy
+								</Button>
+							</td>
+
 							<td>
 								<Button
 									variant='outline-dark'
@@ -120,15 +153,13 @@ export class RankingsRaw extends Component {
 									Defense Quality
 								</Button>
 							</td>
-
 							<td>
 								<Button
-									variant='outline-dark'
-									style={fullWidthDynamic}
-									onClick={this.selectSortBy}
-									sort={'Climb Level'}
-								>
-									Climb Level
+								variant='outline-dark'
+								style={fullWidthDynamic}
+								onClick={this.selectSortBy}
+								sort={'Charge Station'}>
+								Charging Station
 								</Button>
 							</td>
 							<td>
@@ -136,9 +167,9 @@ export class RankingsRaw extends Component {
 									variant='outline-dark'
 									style={fullWidthDynamic}
 									onClick={this.selectSortBy}
-									sort={'Time of Climb Start'}
+									sort={'Time of CS Start'}
 								>
-									Time of Climb Start
+									Time of CS Start
 								</Button>
 							</td>
 						</tr>
