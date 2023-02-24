@@ -32,7 +32,7 @@ export const endgameDataProps = [
 	{ aggre: 'avg', name: 'Charge Station', id: 0 },
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
 	{ aggre: 'avg', name: 'Time Left', id: 2 },
-	{ aggre: 'boolavg', name: 'Slow or Fast', id: 3 },
+	{ aggre: 'avg', name: 'Slow or Fast', id: 3 },
 	{ aggre: 'boolavg', name: 'Adjusted Pieces', id: 4 },
 	{ aggre: 'boolavg', name: 'Intake From Floor', id: 5 },
 	{ aggre: 'boolavg', name: 'Long Intake Time', id: 6 },
