@@ -180,8 +180,8 @@ const teleopHeaders = teleopDataProps.map((prop) => prop.name + ': ');
 const endgameHeaders = endgameDataProps.map((prop) => prop.name + ': ');
 
 const defAutoHeaders = ["Starting Position: ", "Left Community: ", "Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Charging Station: "];
-const defTeleopHeaders = ["Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Intake From: ", "Defense: "];
-const defEndgameHeaders = ["Attempted Charge Station: ", "Charging Station: ", "Climb Efficiency: ", "Time Left: "];
+const defTeleopHeaders = ["Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Intake From Floor: ", "Intake From Shelf: ", "Intake From Substation: ", "Defense Quantity (%): ", "Defense Quality: "];
+const defEndgameHeaders = ["Charging Station: ", "Time Left: ", "Fast or Slow: ", "Adjusted Game Pieces: ", "Dropped Pieces?: ", "Long Intake Time: "];
 const formWidth = {
 	width: '100%',
 	textAlign: 'center',
