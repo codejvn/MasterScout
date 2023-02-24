@@ -34,9 +34,9 @@ export const endgameDataProps = [
 	{ aggre: 'avg', name: 'Time Left', id: 2 },
 	{ aggre: 'avg', name: 'Slow or Fast', id: 3 },
 	{ aggre: 'boolavg', name: 'Adjusted Pieces', id: 4 },
-	{ aggre: 'boolavg', name: 'Intake From Floor', id: 5 },
+	{ aggre: 'boolavg', name: 'Dropped Pieces', id: 5 },
 	{ aggre: 'boolavg', name: 'Long Intake Time', id: 6 },
-];
+];//consider making slow or fast a mode, since it shouldnt change throughout a match
 /*
 	Aggregation Types:
 	* mode: Finds the most common occurence  
