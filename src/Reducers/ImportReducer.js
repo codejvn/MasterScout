@@ -21,10 +21,11 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			console.log("orig teleop data");
 			console.log(parsedData.teleop);
 			const csAutoIndex = 10;
-			const csEndgameIndex = 1;
-			const timeLeftIndex = 3;
-			const intakeFromIndex = 8;
+			const csEndgameIndex = 0;
+			const timeLeftIndex = 2;
+			// const intakeFromIndex = 8;
 			const startingPosIndex = 0;
+			const slowFastIndex = 3;
 			// switch (parsedData.teleop[8].value) {
 			// 	case 'NA':
 			// 		parsedData.teleop[8].value = 0;
@@ -82,17 +83,23 @@ const importReducer = (state = matchesInitState, action = {}) => {
 				case 'Engaged':
 					parsedData.endgame[csEndgameIndex].value = 2;
 			}
-			switch (parsedData.teleop[intakeFromIndex].value){
-				case 'Floor':
-					parsedData.teleop[intakeFromIndex].value = 1;
-				case 'Shelf':
-					parsedData.teleop[intakeFromIndex].value = 1;
-				case 'Both':
-					parsedData.teleop[intakeFromIndex].value = 2;
+			// switch (parsedData.teleop[intakeFromIndex].value){
+			// 	case 'Floor':
+			// 		parsedData.teleop[intakeFromIndex].value = 1;
+			// 	case 'Shelf':
+			// 		parsedData.teleop[intakeFromIndex].value = 1;
+			// 	case 'Both':
+			// 		parsedData.teleop[intakeFromIndex].value = 2;
+			// }
+			switch(parsedData.teleop[slowFastIndex].value){
+				case 'Slow':
+					parsedData.teleop[slowFastIndex].value = 0;
+				case 'Fast':
+					parsedData.teleop[slowFastIndex].value = 1;
 			}
 			console.log(parsedData.teleop[9].value);
 			
-			parsedData.teleop[9].value = JSON.parse(parsedData.teleop[9].value);
+			parsedData.teleop[9].value = JSON.parse(parsedData.teleop[9].value);//are these next two lines really necessary?
 			console.log(parsedData.endgame[climbLevelIndex + 1].value);
 			parsedData.endgame[timeLeftIndex].value = JSON.parse(
 				parsedData.endgame[timeLeftIndex].value
@@ -135,7 +142,7 @@ const importReducer = (state = matchesInitState, action = {}) => {
 					newDataSet[index].endgame[id].value = data;
 					break;
 				case 'teamnum':
-					console.log('UPDATING THE TAEM NUMBER');
+					console.log('UPDATING THE TEAM NUMBER');
 					newDataSet[index].teamNum = data;
 				default:
 					break;
