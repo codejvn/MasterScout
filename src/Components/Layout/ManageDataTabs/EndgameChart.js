@@ -10,7 +10,7 @@ export default class EndgameChart extends Component {
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[2].length > 0) {
-				for (let i = 0; i < 4; i++) {
+				for (let i = 0; i < 6; i++) {
 					chartData.push(this.props.team.aggregated[2][i]);
 				}
 			}
@@ -22,10 +22,13 @@ export default class EndgameChart extends Component {
 	getChartInfo = () => {
 		return {
 			data: {
-				labels: ['Attempted CS', 
-				'Charging Station',
-				'Climb Efficiency',
-				'Time at CS Start'],
+				labels: ['Charging Station', 
+				'Additional Robots',
+				'Time at CS Start',
+				'Slow/Fast',
+				'Adjusted Pieces?',
+				'Dropped?',
+				'Long Intake?'],
 				datasets: [
 					{
 						data: this.getChartData(),
