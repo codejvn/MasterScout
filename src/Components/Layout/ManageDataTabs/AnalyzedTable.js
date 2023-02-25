@@ -87,12 +87,18 @@ export class AnalyzedTable extends Component {
 								<th>Cubes Mid</th>
 								<th>Cubes Low</th>
 								<th>Cubes Missed</th>
-								<th>Intake From</th>
-								<th>Defense</th>
-								<th>Attempted Charge Station</th>
+								<th>Intake From Floor</th>
+								<th>Intake From Shelf</th>
+								<th>Intake From Substation</th>
+								<th>Defense Quantity</th>
+								<th>Defense Quality</th>
 								<th>Charging Station</th>
-								<th>Climb Efficiency</th>
+								<th>Additional Robots</th>
 								<th>Time Left</th>
+								<th>Speed</th>
+								<th>Adjust?</th>
+								<th>Dropped?</th>
+								<th>Long Intake?</th>
 							</tr>
 						</thead>
 						<div style={{ padding: 20 }}></div>

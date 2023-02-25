@@ -7,7 +7,10 @@ export default class TeleopChart extends Component {
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[1].length > 0) {
-				for (let i = 0; i < 10; i++) {
+				for (let i = 0; i < 13; i++) {
+					if(i == 11){
+						i++;
+					}
 					chartData.push(this.props.team.aggregated[1][i]);
 				}
 			}
@@ -16,10 +19,30 @@ export default class TeleopChart extends Component {
 			return [];
 		}
 	};
-	getChartInfo = () => {
+	getHeaders = () => {//literally just to skip rendering the defense quantity on teh bar graphs since it just messes up the scaling 
+		try {
+		console.log("teleopdataprops");
+		console.log(teleopDataProps);
+		let headers = [];
+		for (let i = 0; i < teleopDataProps.length; i++){
+			if(i == 11){
+				i++;
+			}
+			headers.push(teleopDataProps[i].name);
+		}
+		console.log("new headers minus defense quantity");
+		console.log(headers);
+		return headers;
+	} catch(err){
+		console.warn(err);
+		return [];
+	}
+
+	};
+	getChartInfo = () => {//teleopDataProps.map((prop) => prop.name)
 		return {
 			data: {
-				labels: teleopDataProps.map((prop) => prop.name),
+				labels: this.getHeaders(),
 				datasets: [
 					{
 						data: this.getChartData(),
@@ -35,6 +58,8 @@ export default class TeleopChart extends Component {
 							'rgba(102, 102, 255, 0.2)',
 							'rgba(255, 120, 51, 0.2)',
 							'rgba(51, 204, 51, 0.2)',
+							'rgba(172, 88, 214, 0.2)',
+							'rgba(178, 235, 108, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -47,6 +72,8 @@ export default class TeleopChart extends Component {
 							'rgba(102, 102, 255, 1)',
 							'rgba(255, 120, 51, 1)',
 							'rgba(51, 204, 51, 1)',
+							'rgba(172, 88, 214, 1)',
+							'rgba(178, 235, 108, 2)',
 						],
 						borderWidth: 1,
 					},

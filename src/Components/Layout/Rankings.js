@@ -64,8 +64,11 @@ export class RankingsRaw extends Component {
 						((parseFloat(a.aggregated[0][6]) + parseFloat(a.aggregated[0][7]) + parseFloat(a.aggregated[0][8])+parseFloat(a.aggregated[1][4])+parseFloat(a.aggregated[1][5])+parseFloat(a.aggregated[1][6]))/(parseFloat(a.aggregated[0][6]) + parseFloat(a.aggregated[0][7]) + parseFloat(a.aggregated[0][8])+parseFloat(a.aggregated[1][4])+parseFloat(a.aggregated[1][5])+parseFloat(a.aggregated[1][6])+ parseFloat(a.aggregated[0][9]) + parseFloat(a.aggregated[1][7])))
 					);
 					break;
-			case 'Defense':
-				sorted.sort((a, b) => b.aggregated[1][9] - a.aggregated[1][9]);
+			case 'Defense Quantity':
+				sorted.sort((a, b) => b.aggregated[1][11] - a.aggregated[1][11]);
+				break;
+			case 'Defense Quality':
+				sorted.sort((a, b) => b.aggregated[1][12] - a.aggregated[1][12]);
 				break;
 			case 'Charge Station':
 				sorted.sort((a, b) => b.aggregated[2][1] - a.aggregated[2][1]);
@@ -148,7 +151,17 @@ export class RankingsRaw extends Component {
 									variant='outline-dark'
 									style={fullWidthDynamic}
 									onClick={this.selectSortBy}
-									sort={'Defense'}
+									sort={'Defense Quantity'}
+								>
+									Defense Quantity
+								</Button>
+							</td>
+							<td>
+								<Button
+									variant='outline-dark'
+									style={fullWidthDynamic}
+									onClick={this.selectSortBy}
+									sort={'Defense Quality'}
 								>
 									Defense Quality
 								</Button>

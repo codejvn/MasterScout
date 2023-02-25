@@ -42,9 +42,10 @@ export class RankRow extends Component {
 					{coneAcc.toFixed(2)}{/**accuracy for cones*/}
 				</td>
 				<td style={center}>{cubeAcc}</td> {/**accuracy for cubes */}
-				<td style={center}>{team.aggregated[1][9]}</td>{/**defense quality */}
-				<td style={center}>{team.aggregated[2][1]}</td>{/**climb level */}
-				<td style={center}>{team.aggregated[2][3]}</td>{/**time of climb start */}
+				<td style={center}>{team.aggregated[1][11]}</td>{/**defense quantity */}
+				<td style={center}>{team.aggregated[1][12]}</td>{/**defense quality */}
+				<td style={center}>{team.aggregated[2][0]}</td>{/**climb level */}
+				<td style={center}>{team.aggregated[2][2]}</td>{/**time of climb start */}
 			</tr>
 		);
 	}
