@@ -181,7 +181,7 @@ const endgameHeaders = endgameDataProps.map((prop) => prop.name + ': ');
 
 const defAutoHeaders = ["Starting Position: ", "Left Community: ", "Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Charging Station: "];
 const defTeleopHeaders = ["Cones High: ", "Cones Mid: ", "Cones Low: ", "Cones Missed: ", "Cubes High: ", "Cubes Mid: ", "Cubes Low: ", "Cubes Missed: ", "Intake From Floor: ", "Intake From Shelf: ", "Intake From Substation: ", "Defense Quantity (%): ", "Defense Quality: "];
-const defEndgameHeaders = ["Charging Station: ", "Time Left: ", "Fast or Slow: ", "Adjusted Game Pieces: ", "Dropped Pieces?: ", "Long Intake Time: "];
+const defEndgameHeaders = ["Charging Station: ", "Additional Robots: ", "Time Left: ", "Fast or Slow: ", "Adjusted Game Pieces: ", "Dropped Pieces?: ", "Long Intake Time?: "];
 const formWidth = {
 	width: '100%',
 	textAlign: 'center',
