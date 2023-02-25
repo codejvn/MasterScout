@@ -58,6 +58,8 @@ export default class TeleopChart extends Component {
 							'rgba(102, 102, 255, 0.2)',
 							'rgba(255, 120, 51, 0.2)',
 							'rgba(51, 204, 51, 0.2)',
+							'rgba(172, 88, 214, 0.2)',
+							'rgba(178, 235, 108, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -70,6 +72,8 @@ export default class TeleopChart extends Component {
 							'rgba(102, 102, 255, 1)',
 							'rgba(255, 120, 51, 1)',
 							'rgba(51, 204, 51, 1)',
+							'rgba(172, 88, 214, 1)',
+							'rgba(178, 235, 108, 2)',
 						],
 						borderWidth: 1,
 					},
