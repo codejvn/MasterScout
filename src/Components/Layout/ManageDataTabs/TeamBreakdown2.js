@@ -59,7 +59,7 @@ export default function TeamBreakdown2(props) {
 	const [team, setTeam] = useState(null);
 	const [searchedOnce, setSearchedOnce] = useState(false);
 	const [renderCount, setRenderCount] = useState(0);
-	let doCharts = (teams) => {
+	let doCharts = (teams) => {//method for all of the line graphs at the bottom
 		let charts = [];
 		let headers = ['Auto', 'Teleop', 'Endgame'];
 		if (teams.length > 0) {
@@ -69,6 +69,9 @@ export default function TeamBreakdown2(props) {
 				// loops through auto teleop and endgame
 				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
 					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
+					if(i == 2 && j == 3){
+						break;
+					}
 					console.log(teams[0].organizedDataSets[i]);
 					let dataSets = [];
 					for (const team of teams) {
@@ -166,7 +169,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const autoIndices = [2, 3, 4, 5, 6, 7, 8, 9, 10]; // indexes of the datapoints you want to adjust, was 1,2,3
+								const autoIndices = [2, 3, 4, 5, 6, 7, 8, 9, 10]; // indexes of the datapoints you want to have in the line hraph tab
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {
@@ -209,7 +212,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const teleopIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // indexes of the datapoints you want to adjust
+								const teleopIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12]; // indexes of the datapoints you want in the line graph tab top of bar graphs
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {
@@ -249,7 +252,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 						<Tab eventKey='line' title='Line'>
 							{(() => {
-								const endgameIndicies = [0,1,2,3]; // indexes of the datapoints you want to adjust
+								const endgameIndicies = [0,1,2]; // indexes of the datapoints you want to adjust
 								console.log('logging from component');
 								console.log(team);
 								if (team.organizedDataSets[0].length < 1) {
@@ -264,6 +267,8 @@ export default function TeamBreakdown2(props) {
 										data: team.organizedDataSets[2][index],
 										teamNumber: endgameDataProps[index].name,
 									}));
+									console.log("dataset when rendering line graphs");
+									console.log(dataSet);
 									return (
 										<LineGraph
 											style={lineWidth}
@@ -281,6 +286,26 @@ export default function TeamBreakdown2(props) {
 						<Heading w='100%' textAlign='center'>
 							Comments
 						</Heading>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Slow/Fast: {team.aggregated[2][3]}</h3>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Adjusted Pieces?: {team.aggregated[2][4]}</h3>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Dropped Many Pieces?: {team.aggregated[2][5]}</h3>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Long Time to Intake?: {team.aggregated[2][6]}</h3>
 					</Center>
 				</GridItem>
 				<GridItem w='100%' colSpan={2} rowSpan={3}>
