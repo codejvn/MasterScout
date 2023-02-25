@@ -32,7 +32,7 @@ export const endgameDataProps = [
 	{ aggre: 'avg', name: 'Charge Station', id: 0 },
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
 	{ aggre: 'avg', name: 'Time Left', id: 2 },
-	{ aggre: 'avg', name: 'Slow or Fast', id: 3 },
+	{ aggre: 'speed', name: 'Slow or Fast', id: 3 },
 	{ aggre: 'boolavg', name: 'Adjusted Pieces', id: 4 },
 	{ aggre: 'boolavg', name: 'Dropped Pieces', id: 5 },
 	{ aggre: 'boolavg', name: 'Long Intake Time', id: 6 },
@@ -98,7 +98,8 @@ class Team {
 	};
 	getMatchData = (matchNum) => {
 		let matchIndex = this.matchNums.findIndex((match) => match == matchNum);
-
+		console.log("this is what endgameData looks like");
+		console.log(this.endgameData);
 		let data = {
 			comment: this.comments[matchIndex],
 			data: {
@@ -107,6 +108,8 @@ class Team {
 				endgame: this.endgameData[matchIndex],
 			},
 		};
+		console.log("getMatchData in team.js");
+		console.log(data);
 		return data;
 	};
 	deleteData = (matchNum) => {
@@ -163,6 +166,8 @@ class Team {
 					return this.boolAverage(organizedSet[prop.id]);
 				case 'max':
 					return this.max(organizedSet[prop.id]);
+				case 'speed':
+					return this.speed();
 			}
 		});
 	};
@@ -201,6 +206,35 @@ class Team {
 		).toFixed(3);
 	};
 	max = (data) => (data) => Math.max(...data.value);
+
+	speed = () => {
+		console.log("this is matchNums");
+		console.log(this.matchNums)
+		let dataSpeed = {};
+		let slow = 0;
+		let fast = 0;
+		for(let i = 0; i < this.matchNums.length; i++){
+			dataSpeed = this.endgameData[i];
+			console.log("speed go vroom");
+			console.log(dataSpeed);
+			console.log(dataSpeed[3]);
+			if(dataSpeed[3].value === 'Slow') {
+				console.log("adding to slow");
+				slow++;
+			}
+			else{
+				console.log("adding to fast");
+				fast++;
+			}
+		}
+		if (slow > fast){
+			return 'Slow';
+		}
+		else{
+			return 'Fast';
+		}
+	};
+		
 
 	mode = (data) =>
 		data.reduce(
