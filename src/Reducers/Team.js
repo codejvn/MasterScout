@@ -1,3 +1,5 @@
+import { isCompositeComponent } from "react-dom/test-utils";
+
 export const autoDataProps = [
 	{ aggre: 'mode', name: 'Starting Position', id: 0 },
 	{ aggre: 'boolavg', name: 'Cross Community', id: 1 },
@@ -33,9 +35,9 @@ export const endgameDataProps = [
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
 	{ aggre: 'avg', name: 'Time Left', id: 2 },
 	{ aggre: 'speed', name: 'Slow or Fast', id: 3 },
-	{ aggre: 'boolavg', name: 'Adjusted Pieces', id: 4 },
-	{ aggre: 'boolavg', name: 'Dropped Pieces', id: 5 },
-	{ aggre: 'boolavg', name: 'Long Intake Time', id: 6 },
+	{ aggre: 'option', name: 'Adjusted Pieces', id: 4 },
+	{ aggre: 'option', name: 'Dropped Pieces', id: 5 },
+	{ aggre: 'option', name: 'Long Intake Time', id: 6 },
 ];//consider making slow or fast a mode, since it shouldnt change throughout a match
 /*
 	Aggregation Types:
@@ -153,6 +155,9 @@ class Team {
 	aggregateSet = (organizedSet, dataProps) => {
 		// loop over all the organized data and condense them into a funciton
 		return dataProps.map((prop) => {
+			console.log("what the inputs to aggregate set are")
+			console.log(organizedSet);
+			console.log(prop.id);
 			switch (prop.aggre) {
 				case 'mode':
 					// console.log(organizedSet[prop.id]);
@@ -168,6 +173,8 @@ class Team {
 					return this.max(organizedSet[prop.id]);
 				case 'speed':
 					return this.speed();
+				case 'option':
+					return this.option(prop.id);
 			}
 		});
 	};
@@ -206,6 +213,40 @@ class Team {
 		).toFixed(3);
 	};
 	max = (data) => (data) => Math.max(...data.value);
+
+	option = (data) => {
+		console.log("what data looks like");
+		console.log(data);
+		let dataSpeed = {};
+		let yes = 0;
+		let no = 0;
+		for(let i = 0; i < this.matchNums.length; i++){
+			dataSpeed = this.endgameData[i];
+			console.log("option");
+			console.log(dataSpeed);
+			console.log(dataSpeed[data]);
+			if(dataSpeed[data].value === true) {
+				console.log("adding to yes");
+				yes++;
+			}
+			else if (dataSpeed[data].value === false){
+				console.log("adding to no");
+				no++;
+			}
+		}
+		if (yes > no){
+			return 'Yes';
+		}
+		else if (no > yes){
+			return 'No';
+		}
+		else if (yes == 0 && no == 0){
+			return 'N/A';
+		}
+		else if (yes == no){
+			return 'Yes/No';
+		}
+	}
 
 	speed = () => {
 		console.log("this is matchNums");
