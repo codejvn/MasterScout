@@ -71,7 +71,7 @@ export class RankingsRaw extends Component {
 				sorted.sort((a, b) => b.aggregated[1][12] - a.aggregated[1][12]);
 				break;
 			case 'Charge Station':
-				sorted.sort((a, b) => ((b.aggregated[2][0] + b.aggregated[0][10]) - (a.aggregated[2][0]+a.aggregated[0][10])));
+				sorted.sort((a, b) => ((parseFloat(b.aggregated[2][0]) + parseFloat(b.aggregated[0][10])) - (parseFloat(a.aggregated[2][0])+parseFloat(a.aggregated[0][10]))));
 				break;
 			case 'Time of CS Start':
 				sorted.sort((a, b) => b.aggregated[2][3] - a.aggregated[2][3]);
