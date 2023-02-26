@@ -222,7 +222,7 @@ class Team {
 				console.log("adding to slow");
 				slow++;
 			}
-			else{
+			else if (dataSpeed[3].value === 'Fast'){
 				console.log("adding to fast");
 				fast++;
 			}
@@ -230,9 +230,16 @@ class Team {
 		if (slow > fast){
 			return 'Slow';
 		}
-		else{
+		else if (fast > slow){
 			return 'Fast';
 		}
+		else if (fast == 0 && slow == 0){
+			return 'N/A';
+		}
+		else if (fast == slow){
+			return 'Both';
+		}
+
 	};
 		
 
