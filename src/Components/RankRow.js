@@ -16,6 +16,7 @@ export class RankRow extends Component {
 		var totCubes = cubesScored+cubesMissed;
 		var coneAcc = Number((conesScored/totCones).toFixed(3));
 		var cubeAcc = Number((cubesScored/totCubes).toFixed(3));
+		var totCS = parseFloat(team.aggregated[2][0]) + parseFloat(team.aggregated[0][10]);
 		// if(conesScored>0){
 		// 	console.log("cones scored");
 		// 	console.log(conesScored);
@@ -44,7 +45,7 @@ export class RankRow extends Component {
 				<td style={center}>{cubeAcc}</td> {/**accuracy for cubes */}
 				<td style={center}>{team.aggregated[1][11]}</td>{/**defense quantity */}
 				<td style={center}>{team.aggregated[1][12]}</td>{/**defense quality */}
-				<td style={center}>{team.aggregated[2][0]}</td>{/**climb level */}
+				<td style={center}>{totCS}</td>{/**charging station */}
 				<td style={center}>{team.aggregated[2][2]}</td>{/**time of climb start */}
 			</tr>
 		);
