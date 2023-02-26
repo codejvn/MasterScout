@@ -112,6 +112,8 @@ const importReducer = (state = matchesInitState, action = {}) => {
 				case 'Fast':
 					parsedData.teleop[slowFastIndex].value = 2;
 					break;
+				default:
+					parsedData.teleop[slowFastIndex].value = 0;
 			}
 			// console.log(parsedData.teleop[9].value);
 			
