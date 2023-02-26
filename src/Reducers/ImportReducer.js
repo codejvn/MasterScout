@@ -69,28 +69,32 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			switch (parsedData.auto[csAutoIndex].value){
 				case 'N/A':
 					parsedData.auto[csAutoIndex].value = 0;
+					break;
 				case 'None':
 					parsedData.auto[csAutoIndex].value = 0;
+					break;
 				case 'Docked':
-					parsedData.auto[csAutoIndex].value = 2;
+					parsedData.auto[csAutoIndex].value = 8;
+					break;
 				case 'Engaged':
-					parsedData.auto[csAutoIndex].value = 3;
+					parsedData.auto[csAutoIndex].value = 12;
+					break;
 			}
 			console.log("original csendgameindex value")
 			console.log(parsedData.endgame[csEndgameIndex].value);
 			switch (parsedData.endgame[csEndgameIndex].value){
 				case 'Parked':
-					parsedData.endgame[csEndgameIndex].value = 1;
+					parsedData.endgame[csEndgameIndex].value = 2;
 					console.log("in parked");
 					break;
 				case 'None':
 					parsedData.endgame[csEndgameIndex].value = 0;
 					break;
 				case 'Docked':
-					parsedData.endgame[csEndgameIndex].value = 2;
+					parsedData.endgame[csEndgameIndex].value = 6;
 					break;
 				case 'Engaged':
-					parsedData.endgame[csEndgameIndex].value = 3;
+					parsedData.endgame[csEndgameIndex].value = 10	;
 					break;
 			}
 			// switch (parsedData.teleop[intakeFromIndex].value){
@@ -104,8 +108,10 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			switch(parsedData.teleop[slowFastIndex].value){
 				case 'Slow':
 					parsedData.teleop[slowFastIndex].value = 1;
+					break;
 				case 'Fast':
 					parsedData.teleop[slowFastIndex].value = 2;
+					break;
 			}
 			// console.log(parsedData.teleop[9].value);
 			
