@@ -36,7 +36,8 @@ export default class EndgameChart extends Component {
 		return count.toFixed(3) + "";
 	}
 	countNone = () => {
-		let didSmth = this.countDocked() + this.countEngaged();
+		let didSmth = parseInt(this.countDocked()) + parseInt(this.countEngaged());
+		console.log("num of matches" + this.props.team.matchNums.length + ", didsmth: " + didSmth);
 		return this.props.team.matchNums.length - didSmth;
 	}
 	getChartData = () => {
@@ -47,6 +48,7 @@ export default class EndgameChart extends Component {
 				console.log("new funcs");
 				console.log(this.countDocked());
 				console.log(this.countEngaged());
+				console.log(this.countNone());
 				chartData.push(this.countDocked());
 				chartData.push(this.countEngaged());
 				chartData.push(this.countNone());

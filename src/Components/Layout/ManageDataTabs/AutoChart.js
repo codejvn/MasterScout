@@ -34,7 +34,7 @@ export class AutoChartRaw extends Component {
 		return count.toFixed(3) + "";
 	}
 	countNone = () => {
-		let didSmth = this.countDocked() + this.countEngaged();
+		let didSmth = parseInt(this.countDocked()) + parseInt(this.countEngaged());
 		return this.props.team.matchNums.length - didSmth;
 	}
 	getChartData = () => {
@@ -51,6 +51,7 @@ export class AutoChartRaw extends Component {
 				console.log("the new functions wooo");
 				console.log(this.countDocked());
 				console.log(this.countEngaged());
+				console.log(this.countNone());
 				console.log("did anything print?");
 				chartData.push(this.countDocked());
 				chartData.push(this.countEngaged());
