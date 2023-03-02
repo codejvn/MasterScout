@@ -5,12 +5,54 @@ import Team from '../../../Reducers/Team.js';
 import Button from 'react-bootstrap/Button';
 
 export default class EndgameChart extends Component {
+	countDocked = () => {
+		let matches = this.props.team.matchNums.length;
+		// let input = "";
+		let count = 0;
+		let data = {};
+		for(let i = 0; i < matches; i++){
+			data = this.props.team.endgameData[i];
+			if(data[0].value == 6){
+				count++
+			}
+			// console.log("count val");
+			// console.log(count);
+		}
+		return count.toFixed(3) + "";
+	}
+	countEngaged = () => {
+		let matches = this.props.team.matchNums.length;
+		// let input = "";
+		let count = 0;
+		let data = {};
+		for(let i = 0; i < matches; i++){
+			data = this.props.team.endgameData[i];
+			if(data[0].value == 10){
+				count++
+			}
+		}
+		// console.log("count val");
+		// 	console.log(count);
+		return count.toFixed(3) + "";
+	}
+	countNone = () => {
+		let didSmth = parseInt(this.countDocked()) + parseInt(this.countEngaged());
+		console.log("num of matches" + this.props.team.matchNums.length + ", didsmth: " + didSmth);
+		return this.props.team.matchNums.length - didSmth;
+	}
 	getChartData = () => {
 		// this is hard coded for now, import auto props from team.js later
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[2].length > 0) {
-				for (let i = 0; i < 3; i++) {
+				console.log("new funcs");
+				console.log(this.countDocked());
+				console.log(this.countEngaged());
+				console.log(this.countNone());
+				chartData.push(this.countDocked());
+				chartData.push(this.countEngaged());
+				chartData.push(this.countNone());
+				for (let i = 1; i < 3; i++) {
 					chartData.push(this.props.team.aggregated[2][i]);
 				}
 			}
@@ -22,7 +64,9 @@ export default class EndgameChart extends Component {
 	getChartInfo = () => {
 		return {
 			data: {
-				labels: ['Charging Station', 
+				labels: ['Docked', 
+				'Engaged', 
+				'None',
 				'Additional Robots',
 				'Time at CS Start',],
 				datasets: [
@@ -33,17 +77,17 @@ export default class EndgameChart extends Component {
 							'rgba(255, 99, 132, 0.2)',
 							'rgba(54, 162, 235, 0.2)',
 							'rgba(255, 206, 86, 0.2)',
-							// 'rgba(75, 192, 192, 0.2)',
-							// 'rgba(153, 102, 255, 0.2)',
-							// 'rgba(255, 159, 64, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
 							'rgba(54, 162, 235, 1)',
 							'rgba(255, 206, 86, 1)',
-							// 'rgba(75, 192, 192, 1)',
-							// 'rgba(153, 102, 255, 1)',
-							// 'rgba(255, 159, 64, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)',
 						],
 						borderWidth: 1,
 					},

@@ -105,16 +105,16 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			// 	case 'Both':
 			// 		parsedData.teleop[intakeFromIndex].value = 2;
 			// }
-			switch(parsedData.teleop[slowFastIndex].value){
-				case 'Slow':
-					parsedData.teleop[slowFastIndex].value = 1;
-					break;
-				case 'Fast':
-					parsedData.teleop[slowFastIndex].value = 2;
-					break;
-				default:
-					parsedData.teleop[slowFastIndex].value = 0;
-			}
+			// switch(parsedData.teleop[slowFastIndex].value){
+			// 	case 'Slow':
+			// 		parsedData.teleop[slowFastIndex].value = 1;
+			// 		break;
+			// 	case 'Fast':
+			// 		parsedData.teleop[slowFastIndex].value = 2;
+			// 		break;
+			// 	default:
+			// 		parsedData.teleop[slowFastIndex].value = 0;
+			// }
 			// console.log(parsedData.teleop[9].value);
 			
 			// parsedData.teleop[9].value = JSON.parse(parsedData.teleop[9].value);//are these next two lines really necessary?

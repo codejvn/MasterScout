@@ -2,16 +2,63 @@ import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 export class AutoChartRaw extends Component {
+
+	countDocked = () => {
+		let matches = this.props.team.matchNums.length;
+		// let input = "";
+		let count = 0;
+		let data = {};
+		for(let i = 0; i < matches; i++){
+			data = this.props.team.autoData[i];
+			if(data[10].value == 8){
+				count++
+			}
+			// console.log("count val");
+			// console.log(count);
+		}
+		return count.toFixed(3) + "";
+	}
+	countEngaged = () => {
+		let matches = this.props.team.matchNums.length;
+		// let input = "";
+		let count = 0;
+		let data = {};
+		for(let i = 0; i < matches; i++){
+			data = this.props.team.autoData[i];
+			if(data[10].value == 12){
+				count++
+			}
+		}
+		// console.log("count val");
+		// 	console.log(count);
+		return count.toFixed(3) + "";
+	}
+	countNone = () => {
+		let didSmth = parseInt(this.countDocked()) + parseInt(this.countEngaged());
+		return this.props.team.matchNums.length - didSmth;
+	}
 	getChartData = () => {
 		// this is hard coded for now, import auto props from team.js later
 		try {
+			console.log("what team looks like in get chart data");
+			console.log(this.props.team);
 			let chartData = [];
 			if (this.props.team.aggregated[0].length > 0) {
-				for (let i = 2; i < 11; i++) {
-					console.log('SOME CHART DATA: ' + this.props.team.aggregated[0][i]);
+				for (let i = 2; i < 10; i++) {
+					console.log('SOME CHART DATA: ' + this.props.team.aggregated[0][i] + "type: " + this.props.team.aggregated[0][i].constructor);
 					chartData.push(this.props.team.aggregated[0][i]);
 				}
+				console.log("the new functions wooo");
+				console.log(this.countDocked());
+				console.log(this.countEngaged());
+				console.log(this.countNone());
+				console.log("did anything print?");
+				chartData.push(this.countDocked());
+				chartData.push(this.countEngaged());
+				chartData.push(this.countNone());
 			}
+			console.log("fejifoe");
+			console.log(chartData);
 			return chartData;
 		} catch (err) {
 			return [];
@@ -29,7 +76,9 @@ export class AutoChartRaw extends Component {
 					'Cubes Mid',
 					'Cubes Low',
 					'Cubes Missed',
-					'Charge Station',
+					'Docked',
+					'Engaged',
+					'None'
 				],
 				datasets: [
 					{
@@ -45,6 +94,8 @@ export class AutoChartRaw extends Component {
 							'rgba(255, 153, 255, 0.2)',
 							'rgba(102, 102, 255, 0.2)',
 							'rgba(255, 120, 51, 0.2)',
+							'rgba(51, 204, 51, 0.2)',
+							'rgba(172, 88, 214, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -56,6 +107,8 @@ export class AutoChartRaw extends Component {
 							'rgba(255, 153, 255, 1)',
 							'rgba(102, 102, 255, 1)',
 							'rgba(255, 120, 51, 1)',
+							'rgba(51, 204, 51, 1)',
+							'rgba(172, 88, 214, 1)',
 						],
 						borderWidth: 1,
 					},

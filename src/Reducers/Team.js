@@ -76,7 +76,7 @@ class Team {
 		this.organizedDataSets = [[], [], []];
 	}
 	setData = (data) => {
-		console.log('data:');
+		console.log('data in setData:');
 		console.log(data);
 		this.autoData = data.autoData;
 		this.teleopData = data.teleopData;
