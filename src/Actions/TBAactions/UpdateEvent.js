@@ -2,7 +2,7 @@ import { SET_EVENTS } from '../types';
 import requestTBA from '../../TBACode';
 export const setEvents = (teamNum) => {
 	return function (dispatch) {
-		let request = requestTBA('/team/frc' + teamNum + '/events/2022');
+		let request = requestTBA('/team/frc' + teamNum + '/events/2023');
 		request
 			.then((res) => res.json())
 			.then((event) => {
