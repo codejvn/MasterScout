@@ -68,8 +68,7 @@ export default class EndgameChart extends Component {
 				labels: ['Docked', 
 				'Engaged', 
 				'None',
-				'Additional Robots',
-				'Time at CS Start',],
+				'Additional Robots'],
 				datasets: [
 					{
 						data: this.getChartData(),
