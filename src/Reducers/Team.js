@@ -1,7 +1,7 @@
 import { isCompositeComponent } from "react-dom/test-utils";
 
 export const autoDataProps = [
-	{ aggre: 'mode', name: 'Starting Position', id: 0 },
+	{ aggre: 'startingPosAggre', name: 'Starting Position', id: 0 },
 	{ aggre: 'boolavg', name: 'Cross Community', id: 1 },
 	{ aggre: 'avg', name: 'Cones High', id: 2 },
 	{ aggre: 'avg', name: 'Cones Mid', id: 3},
@@ -183,6 +183,8 @@ class Team {
 					return this.option(prop.id);
 				case 'defQualAvg':
 					return this.defAverage(prop.id);
+				case 'startingPosAggre':
+					return this.startingPos(prop.id);
 			}
 		});
 	};
@@ -222,6 +224,83 @@ class Team {
 		}
 	}
 
+	startingPos = (dataID) => {//possibly the most disgusting function ever written in the history of javascript
+		console.log("what data looks like");
+		console.log(dataID);
+		let dataSpeed = {};
+		let countA = 0;
+		let countB = 0;
+		let countC = 0;
+		let countD = 0;
+		let tot = [];
+		let biggest = 0;
+		let ans = [];
+		let finalString = '';
+		for(let i = 0; i < this.matchNums.length; i++){
+			dataSpeed = this.autoData[i];
+			console.log("startingpos");
+			console.log(dataSpeed);
+			console.log(dataSpeed[dataID]);
+			if(dataSpeed[dataID].value === 'A') {
+				console.log("adding to a");
+				countA++;
+			}
+			else if (dataSpeed[dataID].value === 'B'){
+				console.log("adding to b");
+				countB++;
+			}
+			else if (dataSpeed[dataID].value === 'C'){
+				console.log("adding to c");
+				countC++;
+			}
+			else if (dataSpeed[dataID].value === 'D'){
+				console.log("adding to d");
+				countD++;
+			}
+		}
+		console.log("countA: " + countA);
+		console.log("countB: " + countB);
+		console.log("countC: " + countC);
+		console.log("countD: " + countD);
+		tot.push(countA);
+		tot.push(countB);
+		tot.push(countC);
+		tot.push(countD);
+		biggest = Math.max(countA, countB,countC,countD);
+		console.log("biggest");
+		console.log(biggest);
+		// switch(biggest){
+		// 	case countA:
+		// 		ans.push('A');
+		// 	case countB:
+		// 		ans.push('B');
+		// 	case countC:
+		// 		ans.push('C');
+		// 	case countD:
+		// 		ans.push('D');
+		// }
+		if(countA == biggest){
+			ans.push('A');
+		}
+		if (countB == biggest){
+			ans.push('B');
+		}
+		if(countC == biggest){
+			ans.push('C');
+		}
+		if(countD == biggest){
+			ans.push('D');
+		}
+		console.log("ans in team.js: ");
+		console.log(ans);
+		finalString += ans[0];
+		for (let y = 1; y < ans.length; y++){
+			console.log("accessing ans --> "+ ans[y]);
+			finalString += ", " + ans[y];
+		}
+		console.log("finalString: " + finalString);
+		return finalString;
+	}
 	highestClimb = () => {
 		if (this.organizedDataSets[2].length > 0) {
 			return this.organizedDataSets[2][0].sort((a, b) => b.value - a.value)[0];

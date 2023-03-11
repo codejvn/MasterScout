@@ -70,6 +70,9 @@ export default function TeamBreakdown2(props) {
 				// loops through auto teleop and endgame
 				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
 					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
+					if(i == 0 && j == 0){
+						j++;
+					}
 					if(i == 2 && j == preMadeIndexStart){
 						break;
 					}
@@ -154,6 +157,11 @@ export default function TeamBreakdown2(props) {
 						<Heading w='100%' textAlign='center'>
 							Team {teamSearched} Breakdown
 						</Heading>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Most Common Starting Position: {team.aggregated[0][0]}</h3>
 					</Center>
 				</GridItem>
 
