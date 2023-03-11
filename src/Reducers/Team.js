@@ -23,21 +23,24 @@ export const teleopDataProps = [
 	{ aggre: 'avg', name: 'Cubes Mid', id: 5 },
 	{ aggre: 'avg', name: 'Cubes Low', id: 6 },
 	{ aggre: 'avg', name: 'Cubes Missed', id: 7 },
-	{ aggre: 'avg', name: 'Intake From Floor', id: 8 },
-	{ aggre: 'avg', name: 'Intake From Shelf', id: 9 },
-	{ aggre: 'avg', name: 'Intake From Substation', id: 10 },
-	{ aggre: 'avg', name: 'Defense Quantity', id: 11 },
-	{ aggre: 'avg', name: 'Defense Quality', id: 12 },
+	{ aggre: 'avg', name: 'Intake From Floor Comm', id: 8 },
+	{ aggre: 'avg', name: 'Intake From Floor Gen', id: 9 },
+	{ aggre: 'avg', name: 'Intake From Shelf', id: 10 },
+	{ aggre: 'avg', name: 'Intake From Substation', id: 11 },
+	{ aggre: 'avg', name: 'Defense Quantity', id: 12 },
+	{ aggre: 'defQualAvg', name: 'Defense Quality', id: 13 },
 ];
 export const endgameDataProps = [
 	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },
 	{ aggre: 'avg', name: 'Charge Station', id: 0 },
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
-	{ aggre: 'avg', name: 'Time Left', id: 2 },
-	{ aggre: 'speed', name: 'Slow or Fast', id: 3 },
-	{ aggre: 'option', name: 'Adjusted Pieces', id: 4 },
-	{ aggre: 'option', name: 'Dropped Pieces', id: 5 },
-	{ aggre: 'option', name: 'Long Intake Time', id: 6 },
+	// { aggre: 'avg', name: 'Time Left', id: 2 },
+	{ aggre: 'speed', name: 'Slow or Fast', id: 2 },
+	{ aggre: 'option', name: 'Adjusted Pieces', id: 3 },
+	{ aggre: 'option', name: 'Dropped Pieces While Cycling', id: 4 },
+	{ aggre: 'option', name: 'Long Intake Time', id: 5 },
+	{ aggre: 'option', name: 'Dropped When Hit', id: 6 },
+	{ aggre: 'option', name: 'Triple Climb', id: 7 },
 ];//consider making slow or fast a mode, since it shouldnt change throughout a match
 /*
 	Aggregation Types:
@@ -45,6 +48,9 @@ export const endgameDataProps = [
 	* avg: Averages the values among the set
 	* boolavg: Create a percent based off of true or false values 
 	* max: The maximum among a set
+	* defQualAvg: new in 2023: calculates defense quality avg based on the matches where they actually played defense instead of all matches
+	* speed: special for 2023, special kind of mode which does option, except for not just yes/no question
+	* option: for premade comment, counts num of true+false, accounts for no input, and for equal num for both
 */
 export const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
 class Team {
@@ -172,9 +178,11 @@ class Team {
 				case 'max':
 					return this.max(organizedSet[prop.id]);
 				case 'speed':
-					return this.speed();
+					return this.speed(prop.id);
 				case 'option':
 					return this.option(prop.id);
+				case 'defQualAvg':
+					return this.defAverage(prop.id);
 			}
 		});
 	};
@@ -190,6 +198,29 @@ class Team {
 			);
 		});
 	};
+
+	defAverage = (data) => {
+		let total = 0.0;
+		let matches = 0;
+		let dataSpeed = {};
+		for(let i = 0; i < this.matchNums.length; i++){
+			console.log()
+			dataSpeed = this.teleopData[i];
+			console.log("option");
+			console.log(dataSpeed);
+			console.log(dataSpeed[data]);
+			if(dataSpeed[data].value !== 0) {
+				total += dataSpeed[data].value
+				matches++;
+			}
+		}
+		if(matches > 0){
+			return total/matches;
+		}
+		else{
+			return 0;
+		}
+	}
 
 	highestClimb = () => {
 		if (this.organizedDataSets[2].length > 0) {
@@ -248,7 +279,7 @@ class Team {
 		}
 	}
 
-	speed = () => {
+	speed = (dataID) => {
 		console.log("this is matchNums");
 		console.log(this.matchNums)
 		let dataSpeed = {};
@@ -258,12 +289,12 @@ class Team {
 			dataSpeed = this.endgameData[i];
 			console.log("speed go vroom");
 			console.log(dataSpeed);
-			console.log(dataSpeed[3]);
-			if(dataSpeed[3].value === 'Slow') {
+			console.log(dataSpeed[dataID]);
+			if(dataSpeed[dataID].value === 'Slow') {
 				console.log("adding to slow");
 				slow++;
 			}
-			else if (dataSpeed[3].value === 'Fast'){
+			else if (dataSpeed[dataID].value === 'Fast'){
 				console.log("adding to fast");
 				fast++;
 			}

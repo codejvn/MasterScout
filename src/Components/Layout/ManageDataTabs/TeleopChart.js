@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { teleopDataProps } from '../../../Reducers/Team';
+
+const defenseQuantIndex = 12;
+
 export default class TeleopChart extends Component {
+	
 	getChartData = () => {
 		// this is hard coded for now, import auto props from team.js later
 		try {
 			let chartData = [];
 			if (this.props.team.aggregated[1].length > 0) {
-				for (let i = 0; i < 13; i++) {
-					if(i == 11){
+				for (let i = 0; i < teleopDataProps.length; i++) {
+					if(i == defenseQuantIndex){
 						i++;
 					}
 					chartData.push(this.props.team.aggregated[1][i]);
@@ -25,7 +29,7 @@ export default class TeleopChart extends Component {
 		console.log(teleopDataProps);
 		let headers = [];
 		for (let i = 0; i < teleopDataProps.length; i++){
-			if(i == 11){
+			if(i == defenseQuantIndex){//the number is the index of defense quatity 
 				i++;
 			}
 			headers.push(teleopDataProps[i].name);
@@ -40,7 +44,7 @@ export default class TeleopChart extends Component {
 
 	};
 	getChartInfo = () => {//teleopDataProps.map((prop) => prop.name)
-		return {
+		return {//add extra color for intake from communtiy/outside community
 			data: {
 				labels: this.getHeaders(),
 				datasets: [
@@ -60,6 +64,7 @@ export default class TeleopChart extends Component {
 							'rgba(51, 204, 51, 0.2)',
 							'rgba(172, 88, 214, 0.2)',
 							'rgba(178, 235, 108, 0.2)',
+							'rgba(57, 234, 237, 0.2)',
 						],
 						borderColor: [
 							'rgba(255, 99, 132, 1)',
@@ -73,7 +78,8 @@ export default class TeleopChart extends Component {
 							'rgba(255, 120, 51, 1)',
 							'rgba(51, 204, 51, 1)',
 							'rgba(172, 88, 214, 1)',
-							'rgba(178, 235, 108, 2)',
+							'rgba(178, 235, 108, 1)',
+							'rgba(57, 234, 237, 1)'
 						],
 						borderWidth: 1,
 					},
