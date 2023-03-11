@@ -65,17 +65,17 @@ export class RankingsRaw extends Component {
 					);
 					break;
 			case 'Defense Quantity':
-				sorted.sort((a, b) => b.aggregated[1][11] - a.aggregated[1][11]);
+				sorted.sort((a, b) => b.aggregated[1][12] - a.aggregated[1][12]);
 				break;
 			case 'Defense Quality':
-				sorted.sort((a, b) => b.aggregated[1][12] - a.aggregated[1][12]);
+				sorted.sort((a, b) => b.aggregated[1][13] - a.aggregated[1][13]);
 				break;
 			case 'Charge Station':
 				sorted.sort((a, b) => ((parseFloat(b.aggregated[2][0]) + parseFloat(b.aggregated[0][10])) - (parseFloat(a.aggregated[2][0])+parseFloat(a.aggregated[0][10]))));
 				break;
-			case 'Time of CS Start':
-				sorted.sort((a, b) => b.aggregated[2][2] - a.aggregated[2][2]);
-				break;
+			// case 'Time of CS Start':
+			// 	sorted.sort((a, b) => b.aggregated[2][2] - a.aggregated[2][2]);
+			// 	break;
 		}
 		return sorted;
 	};
@@ -175,7 +175,7 @@ export class RankingsRaw extends Component {
 								Charging Station
 								</Button>
 							</td>
-							<td>
+							{/* <td>
 								<Button
 									variant='outline-dark'
 									style={fullWidthDynamic}
@@ -184,7 +184,7 @@ export class RankingsRaw extends Component {
 								>
 									Time of CS Start
 								</Button>
-							</td>
+							</td> */}
 						</tr>
 					</thead>
 					<tbody>
