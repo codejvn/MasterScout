@@ -59,6 +59,7 @@ export default function TeamBreakdown2(props) {
 	const [team, setTeam] = useState(null);
 	const [searchedOnce, setSearchedOnce] = useState(false);
 	const [renderCount, setRenderCount] = useState(0);
+	const preMadeIndexStart = 2;
 	let doCharts = (teams) => {//method for all of the line graphs at the bottom
 		let charts = [];
 		let headers = ['Auto', 'Teleop', 'Endgame'];
@@ -69,7 +70,10 @@ export default function TeamBreakdown2(props) {
 				// loops through auto teleop and endgame
 				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
 					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
-					if(i == 2 && j == 3){
+					if(i == 0 && j == 0){
+						j++;
+					}
+					if(i == 2 && j == preMadeIndexStart){
 						break;
 					}
 					console.log(teams[0].organizedDataSets[i]);
@@ -153,6 +157,11 @@ export default function TeamBreakdown2(props) {
 						<Heading w='100%' textAlign='center'>
 							Team {teamSearched} Breakdown
 						</Heading>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Most Common Starting Position: {team.aggregated[0][0]}</h3>
 					</Center>
 				</GridItem>
 
@@ -281,6 +290,7 @@ export default function TeamBreakdown2(props) {
 						</Tab>
 					</Tabs>
 				</GridItem>
+				{/**make the following a) dynamic and b) in its own class */}
 				<GridItem colSpan={2}>
 					<Center w='100%'>
 						<Heading w='100%' textAlign='center'>
@@ -290,22 +300,32 @@ export default function TeamBreakdown2(props) {
 				</GridItem>
 				<GridItem colSpan={2}>
 					<Center w='100%'>
-						<h3>Slow/Fast: {team.aggregated[2][3]}</h3>
+						<h3>Slow/Fast: {team.aggregated[2][2]}</h3>
 					</Center>
 				</GridItem>
 				<GridItem colSpan={2}>
 					<Center w='100%'>
-						<h3>Adjusted Pieces?: {team.aggregated[2][4]}</h3>
+						<h3>Adjusted Pieces?: {team.aggregated[2][3]}</h3>
 					</Center>
 				</GridItem>
 				<GridItem colSpan={2}>
 					<Center w='100%'>
-						<h3>Dropped Many Pieces?: {team.aggregated[2][5]}</h3>
+						<h3>Dropped Many Pieces While Cycling?: {team.aggregated[2][4]}</h3>
 					</Center>
 				</GridItem>
 				<GridItem colSpan={2}>
 					<Center w='100%'>
-						<h3>Long Time to Intake?: {team.aggregated[2][6]}</h3>
+						<h3>Long Time to Intake?: {team.aggregated[2][5]}</h3>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Dropped When Hit?: {team.aggregated[2][6]}</h3>
+					</Center>
+				</GridItem>
+				<GridItem colSpan={2}>
+					<Center w='100%'>
+						<h3>Triple Climb?: {team.aggregated[2][7]}</h3>
 					</Center>
 				</GridItem>
 				<GridItem w='100%' colSpan={2} rowSpan={3}>

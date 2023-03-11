@@ -87,18 +87,21 @@ export class AnalyzedTable extends Component {
 								<th>Cubes Mid</th>
 								<th>Cubes Low</th>
 								<th>Cubes Missed</th>
-								<th>Intake From Floor</th>
+								<th>Intake From Community</th>
+								<th>Intake From Outside Comm</th>
 								<th>Intake From Shelf</th>
 								<th>Intake From Substation</th>
 								<th>Defense Quantity</th>
 								<th>Defense Quality</th>
 								<th>Charging Station</th>
 								<th>Additional Robots</th>
-								<th>Time Left</th>
+								{/* <th>Time Left</th> */}
 								<th>Speed</th>
 								<th>Adjust?</th>
-								<th>Dropped?</th>
+								<th>Dropped When Cycling?</th>
 								<th>Long Intake?</th>
+								<th>Dropped When Hit?</th>
+								<th>Triple Climb?</th>
 							</tr>
 						</thead>
 						<div style={{ padding: 20 }}></div>
@@ -114,6 +117,9 @@ export class AnalyzedTable extends Component {
 								} catch (err) {
 									highlight = false;
 								}
+								if(team.aggregated[1][0] != 0){
+								console.log("the aggregated for slow/fast/endgame");
+								console.log(team.aggregated[2]);}
 								return (
 									<tr>
 										<td>{team.teamNumber}</td>
