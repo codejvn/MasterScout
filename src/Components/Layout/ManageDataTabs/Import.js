@@ -12,6 +12,7 @@ import { DupDataPopup } from '../../../Components/DupDataPopup';
 import { zeroRightClassName } from 'react-remove-scroll-bar';
 import axios from 'axios';
 import CameraReader from './CameraReader';
+import { Col } from 'react-bootstrap';
 
 export class ImportRaw extends Component {
 	componentWillMount() {}
@@ -98,6 +99,10 @@ export class ImportRaw extends Component {
 				<Container>
 					<Row className='border-bottom'>
 						<h2>Import Data</h2>
+					</Row>
+					<Row style={spacer}>
+					<Col><h1><strong>THIS VERSION ONLY WORKS WITH HATBORO 2023 DATA.</strong></h1></Col>
+					<a href='https://masterscout2590.netlify.app/'><strong>CLICK ON THIS TEXT FOR THE UPDATED VERSION</strong></a>
 					</Row>
 					{this.state.showSuccess && (
 						<Alert

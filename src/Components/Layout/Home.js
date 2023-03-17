@@ -66,6 +66,9 @@ export class Home extends Component {
 						</Col>
 					</Row>
 					<Row style={spacer}></Row>
+					<h1><strong>THIS VERSION ONLY WORKS WITH HATBORO 2023 DATA.</strong></h1>
+					<a href='https://masterscout2590.netlify.app/' style={center}><strong>CLICK ON THIS TEXT FOR THE UPDATED VERSION</strong></a>
+					<Row style={spacer}></Row>
 					<Row>
 						<MatchNum matchNum={matches.currentMatch} />
 					</Row>

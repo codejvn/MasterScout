@@ -94,6 +94,13 @@ export class SettingsRaw extends Component {
 							<h2 style={settingsHeader}>Settings</h2>
 						</Col>
 					</Row>
+					<Row style={spacer}/>
+					<Row>
+					<Col>
+					<h1><strong>THIS VERSION ONLY WORKS WITH HATBORO 2023 DATA.</strong></h1>
+					<a href='https://masterscout2590.netlify.app/'><strong>CLICK ON THIS TEXT FOR THE UPDATED VERSION</strong></a>
+					</Col>
+					</Row>
 					<Row>
 						<div style={encap}>
 							<Row style={spacer}>
