@@ -175,11 +175,6 @@ class Team {
 					return this.speed();
 				case 'option':
 					return this.option(prop.id);
-<<<<<<< HEAD
-=======
-				case 'defQualAvg':
-					return this.defAverage(prop.id);
->>>>>>> parent of ef211cc (updating starting pos to work w ABCD)
 			}
 		});
 	};
@@ -196,32 +191,6 @@ class Team {
 		});
 	};
 
-<<<<<<< HEAD
-=======
-	defAverage = (data) => {
-		let total = 0.0;
-		let matches = 0;
-		let dataSpeed = {};
-		for(let i = 0; i < this.matchNums.length; i++){
-			console.log()
-			dataSpeed = this.teleopData[i];
-			console.log("option");
-			console.log(dataSpeed);
-			console.log(dataSpeed[data]);
-			if(dataSpeed[data].value !== 0) {
-				total += dataSpeed[data].value
-				matches++;
-			}
-		}
-		if(matches > 0){
-			return total/matches;
-		}
-		else{
-			return 0;
-		}
-	}
-
->>>>>>> parent of ef211cc (updating starting pos to work w ABCD)
 	highestClimb = () => {
 		if (this.organizedDataSets[2].length > 0) {
 			return this.organizedDataSets[2][0].sort((a, b) => b.value - a.value)[0];

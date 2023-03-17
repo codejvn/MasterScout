@@ -69,11 +69,7 @@ export default function TeamBreakdown2(props) {
 				// loops through auto teleop and endgame
 				for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
 					// loops through each part of the game like auto inner scored, auto outer scored over all matches played
-<<<<<<< HEAD
 					if(i == 2 && j == 3){
-=======
-					if(i == 2 && j == preMadeIndexStart){
->>>>>>> parent of ef211cc (updating starting pos to work w ABCD)
 						break;
 					}
 					console.log(teams[0].organizedDataSets[i]);
