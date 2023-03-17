@@ -52,10 +52,9 @@ export default class EndgameChart extends Component {
 				chartData.push(this.countDocked());
 				chartData.push(this.countEngaged());
 				chartData.push(this.countNone());
-				// for (let i = 1; i < 3; i++) {
-				// 	chartData.push(this.props.team.aggregated[2][i]);
-				// }
-				chartData.push(this.props.team.aggregated[2][1]);
+				for (let i = 1; i < 3; i++) {
+					chartData.push(this.props.team.aggregated[2][i]);
+				}
 			}
 			return chartData;
 		} catch (err) {

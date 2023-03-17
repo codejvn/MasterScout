@@ -26,8 +26,8 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			// const intakeFromIndex = 8;
 			const startingPosIndex = 0;
 			const slowFastIndex = 3;
-			const defenseQuant = 12;//11
-			const defenseQual = 13;//12
+			const defenseQuant = 11;
+			const defenseQual = 12;
 			const additionalRobots = 1;
 			// switch (parsedData.teleop[8].value) {
 			// 	case 'NA':
@@ -119,10 +119,9 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			
 			// parsedData.teleop[9].value = JSON.parse(parsedData.teleop[9].value);//are these next two lines really necessary?
 			// console.log(parsedData.endgame[climbLevelIndex + 1].value);
-			// parsedData.endgame[timeLeftIndex].value = JSON.parse(
-			// 	parsedData.endgame[timeLeftIndex].value
-			// );//making the time left an integer
-			console.log(parsedData);
+			parsedData.endgame[timeLeftIndex].value = JSON.parse(
+				parsedData.endgame[timeLeftIndex].value
+			);//making the time left an integer
 			parsedData.endgame[startingPosIndex].value = JSON.parse(
 				parsedData.endgame[startingPosIndex].value
 			);//making the starting position an integer
@@ -132,7 +131,6 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			parsedData.teleop[defenseQuant].value = JSON.parse(
 				parsedData.teleop[defenseQuant].value
 			);//making the defense quantity an integer
-			console.log(parsedData.endgame);
 			parsedData.endgame[additionalRobots].value = JSON.parse(
 				parsedData.endgame[additionalRobots].value
 			);//making the starting position an integer

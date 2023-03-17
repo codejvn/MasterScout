@@ -1,7 +1,7 @@
 import { isCompositeComponent } from "react-dom/test-utils";
 
 export const autoDataProps = [
-	{ aggre: 'startingPosAggre', name: 'Starting Position', id: 0 },
+	{ aggre: 'mode', name: 'Starting Position', id: 0 },
 	{ aggre: 'boolavg', name: 'Cross Community', id: 1 },
 	{ aggre: 'avg', name: 'Cones High', id: 2 },
 	{ aggre: 'avg', name: 'Cones Mid', id: 3},
@@ -23,24 +23,21 @@ export const teleopDataProps = [
 	{ aggre: 'avg', name: 'Cubes Mid', id: 5 },
 	{ aggre: 'avg', name: 'Cubes Low', id: 6 },
 	{ aggre: 'avg', name: 'Cubes Missed', id: 7 },
-	{ aggre: 'avg', name: 'Intake From Floor Comm', id: 8 },
-	{ aggre: 'avg', name: 'Intake From Floor Gen', id: 9 },
-	{ aggre: 'avg', name: 'Intake From Shelf', id: 10 },
-	{ aggre: 'avg', name: 'Intake From Substation', id: 11 },
-	{ aggre: 'avg', name: 'Defense Quantity', id: 12 },
-	{ aggre: 'defQualAvg', name: 'Defense Quality', id: 13 },
+	{ aggre: 'avg', name: 'Intake From Floor', id: 8 },
+	{ aggre: 'avg', name: 'Intake From Shelf', id: 9 },
+	{ aggre: 'avg', name: 'Intake From Substation', id: 10 },
+	{ aggre: 'avg', name: 'Defense Quantity', id: 11 },
+	{ aggre: 'avg', name: 'Defense Quality', id: 12 },
 ];
 export const endgameDataProps = [
 	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },
 	{ aggre: 'avg', name: 'Charge Station', id: 0 },
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
-	// { aggre: 'avg', name: 'Time Left', id: 2 },
-	{ aggre: 'speed', name: 'Slow or Fast', id: 2 },
-	{ aggre: 'option', name: 'Adjusted Pieces', id: 3 },
-	{ aggre: 'option', name: 'Dropped Pieces While Cycling', id: 4 },
-	{ aggre: 'option', name: 'Long Intake Time', id: 5 },
-	{ aggre: 'option', name: 'Dropped When Hit', id: 6 },
-	{ aggre: 'option', name: 'Triple Climb', id: 7 },
+	{ aggre: 'avg', name: 'Time Left', id: 2 },
+	{ aggre: 'speed', name: 'Slow or Fast', id: 3 },
+	{ aggre: 'option', name: 'Adjusted Pieces', id: 4 },
+	{ aggre: 'option', name: 'Dropped Pieces', id: 5 },
+	{ aggre: 'option', name: 'Long Intake Time', id: 6 },
 ];//consider making slow or fast a mode, since it shouldnt change throughout a match
 /*
 	Aggregation Types:
@@ -48,9 +45,6 @@ export const endgameDataProps = [
 	* avg: Averages the values among the set
 	* boolavg: Create a percent based off of true or false values 
 	* max: The maximum among a set
-	* defQualAvg: new in 2023: calculates defense quality avg based on the matches where they actually played defense instead of all matches
-	* speed: special for 2023, special kind of mode which does option, except for not just yes/no question
-	* option: for premade comment, counts num of true+false, accounts for no input, and for equal num for both
 */
 export const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
 class Team {
@@ -178,13 +172,14 @@ class Team {
 				case 'max':
 					return this.max(organizedSet[prop.id]);
 				case 'speed':
-					return this.speed(prop.id);
+					return this.speed();
 				case 'option':
 					return this.option(prop.id);
+<<<<<<< HEAD
+=======
 				case 'defQualAvg':
 					return this.defAverage(prop.id);
-				case 'startingPosAggre':
-					return this.startingPos(prop.id);
+>>>>>>> parent of ef211cc (updating starting pos to work w ABCD)
 			}
 		});
 	};
@@ -201,6 +196,8 @@ class Team {
 		});
 	};
 
+<<<<<<< HEAD
+=======
 	defAverage = (data) => {
 		let total = 0.0;
 		let matches = 0;
@@ -224,83 +221,7 @@ class Team {
 		}
 	}
 
-	startingPos = (dataID) => {//possibly the most disgusting function ever written in the history of javascript
-		console.log("what data looks like");
-		console.log(dataID);
-		let dataSpeed = {};
-		let countA = 0;
-		let countB = 0;
-		let countC = 0;
-		let countD = 0;
-		let tot = [];
-		let biggest = 0;
-		let ans = [];
-		let finalString = '';
-		for(let i = 0; i < this.matchNums.length; i++){
-			dataSpeed = this.autoData[i];
-			console.log("startingpos");
-			console.log(dataSpeed);
-			console.log(dataSpeed[dataID]);
-			if(dataSpeed[dataID].value === 'A') {
-				console.log("adding to a");
-				countA++;
-			}
-			else if (dataSpeed[dataID].value === 'B'){
-				console.log("adding to b");
-				countB++;
-			}
-			else if (dataSpeed[dataID].value === 'C'){
-				console.log("adding to c");
-				countC++;
-			}
-			else if (dataSpeed[dataID].value === 'D'){
-				console.log("adding to d");
-				countD++;
-			}
-		}
-		console.log("countA: " + countA);
-		console.log("countB: " + countB);
-		console.log("countC: " + countC);
-		console.log("countD: " + countD);
-		tot.push(countA);
-		tot.push(countB);
-		tot.push(countC);
-		tot.push(countD);
-		biggest = Math.max(countA, countB,countC,countD);
-		console.log("biggest");
-		console.log(biggest);
-		// switch(biggest){
-		// 	case countA:
-		// 		ans.push('A');
-		// 	case countB:
-		// 		ans.push('B');
-		// 	case countC:
-		// 		ans.push('C');
-		// 	case countD:
-		// 		ans.push('D');
-		// }
-		if(countA == biggest){
-			ans.push('A');
-		}
-		if (countB == biggest){
-			ans.push('B');
-		}
-		if(countC == biggest){
-			ans.push('C');
-		}
-		if(countD == biggest){
-			ans.push('D');
-		}
-		console.log("ans in team.js: ");
-		console.log(ans);
-		finalString += ans[0];
-		for (let y = 1; y < ans.length; y++){
-			console.log("accessing ans --> "+ ans[y]);
-			finalString += ", " + ans[y];
-		}
-		console.log("finalString: " + finalString);
-		return finalString;
-	}
+>>>>>>> parent of ef211cc (updating starting pos to work w ABCD)
 	highestClimb = () => {
 		if (this.organizedDataSets[2].length > 0) {
 			return this.organizedDataSets[2][0].sort((a, b) => b.value - a.value)[0];
@@ -358,7 +279,7 @@ class Team {
 		}
 	}
 
-	speed = (dataID) => {
+	speed = () => {
 		console.log("this is matchNums");
 		console.log(this.matchNums)
 		let dataSpeed = {};
@@ -368,12 +289,12 @@ class Team {
 			dataSpeed = this.endgameData[i];
 			console.log("speed go vroom");
 			console.log(dataSpeed);
-			console.log(dataSpeed[dataID]);
-			if(dataSpeed[dataID].value === 'Slow') {
+			console.log(dataSpeed[3]);
+			if(dataSpeed[3].value === 'Slow') {
 				console.log("adding to slow");
 				slow++;
 			}
-			else if (dataSpeed[dataID].value === 'Fast'){
+			else if (dataSpeed[3].value === 'Fast'){
 				console.log("adding to fast");
 				fast++;
 			}

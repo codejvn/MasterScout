@@ -5,18 +5,18 @@ export const addData = (data) => {
 	let newData = JSON.parse(data).map((num) => {
 		return { value: num };
 	});
-	//all the end indexes are NOT inclusive, so one extra than the actual index 
+	//all the end indexes are NOT inclusive
 	const commentIndex = 2;
 	const matchNumIndex = 0;
 	const autoBegin = 3;
 	const autoEnd = 14;
 	const teleopBegin = 14;
-	const teleopEnd = 28;
-	const endgameBegin = 28;
-	const endgameEnd = 36;
+	const teleopEnd = 27;
+	const endgameBegin = 27;
+	const endgameEnd = 34;
 	console.warn(newData);
 	console.log("what's supposed to be CS")
-	console.log(newData[29]);
+	console.log(newData[27]);
 	let parsedData = {};
 	parsedData.comments = newData[commentIndex].value;
 	parsedData.teamNum = JSON.parse(data)[1];
