@@ -50,7 +50,6 @@ export class RawDataTableRaw extends Component {
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Scout</th>
 												{autoDataProps.map((prop) => (
 													<th>{prop.name}</th>
 												))}
@@ -61,9 +60,6 @@ export class RawDataTableRaw extends Component {
 												<tr>
 													<td>
 														{team.matchNums[team.autoData.indexOf(match)]}
-													</td>
-													<td>
-														{team.scouts[team.autoData.indexOf(match)]}
 													</td>
 													{match.map((matchData) => (
 														<td>{JSON.stringify(matchData.value)}</td>
