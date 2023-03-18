@@ -18,9 +18,12 @@ import { selectTeam } from "../../Actions/CompareActions/selectTeam";
 import { connect } from "react-redux";
 import { aggreProps } from "../../Reducers/Team";
 
+let tba;
+
 export class CompareRaw extends Component {
   submitHandle = (e) => {
     e.preventDefault();
+
     this.props.selectTeam(this._input.value);
     this._input.value = "";
   };
@@ -78,13 +81,23 @@ export class CompareRaw extends Component {
     }
     return charts;
   };
+  findTeam = (num) =>{//num is the team num
+   
+    return this.props.data.teams.find((team) => team.teamNumber == num)
+  };
   render() {
     let selectedTeams = [];
+    let findingTeam = {};
     for (const teamNum of this.props.compare.selectedTeams) {
+      findingTeam = this.findTeam(teamNum);
+      if(findingTeam !== undefined){
       selectedTeams.push(
-        this.props.data.teams.find((team) => team.teamNumber == teamNum)
+       this.findTeam(teamNum)
       );
+      }
     }
+    console.log("teams in compare.js");
+    console.log(this.props.data.teams);
     return (
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
         <Container>
