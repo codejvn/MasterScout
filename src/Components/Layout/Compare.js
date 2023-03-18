@@ -43,6 +43,12 @@ export class CompareRaw extends Component {
         // loops through auto teleop and endgame
         for (let j = 0; j < teams[0].organizedDataSets[i].length; j++) {
           // loops through each part of the game like auto inner scored, auto outer scored over all matches played
+          if(i == 0 && j == 0){
+						j++;
+					}
+          if(i == 2 && j == 2){
+						break;
+					}
           let dataSets = [];
           for (const team of teams) {
             dataSets.push({

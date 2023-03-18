@@ -62,6 +62,7 @@ class Team {
 		this.teleopData = [];
 		this.endgameData = [];
 		this.comments = [];
+		this.scouts = [];
 
 		// this.aggregated = [
 		// 	[0, 0, 0, 0, 0, 0, 0], // equal to the length of auto data props
@@ -92,6 +93,7 @@ class Team {
 		this.matchNums = data.matchNums;
 		this.totaldata = data.totaldata;
 		this.organizedDataSets = data.organizedDataSets;
+		this.scouts = data.scouts;
 	};
 	appendData = (set) => {
 		console.log('this is the comment');
@@ -103,6 +105,11 @@ class Team {
 		this.teleopData.push(set.teleop);
 		this.endgameData.push(set.endgame);
 		this.matchNums.push(set.matchNums);
+		this.scouts.push(set.scout);
+		console.log("curent scouts");
+		console.log(set.scouts);
+		console.log("list of scouts");
+		console.log(this.scouts);
 	};
 	getMatchData = (matchNum) => {
 		let matchIndex = this.matchNums.findIndex((match) => match == matchNum);
@@ -128,6 +135,7 @@ class Team {
 		this.teleopData.splice(delIndex, 1);
 		this.endgameData.splice(delIndex, 1);
 		this.comments.splice(delIndex, 1);
+		this.scouts.splice(delIndex, 1);
 
 		this.aggregate();
 	};
