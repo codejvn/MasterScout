@@ -122,10 +122,15 @@ const importReducer = (state = matchesInitState, action = {}) => {
 			// parsedData.endgame[timeLeftIndex].value = JSON.parse(
 			// 	parsedData.endgame[timeLeftIndex].value
 			// );//making the time left an integer
+			// switch(parsedData.auto[startingPosIndex].value){
+			// 	case 'A':
+			// 		parsedData.auto[startingPosIndex].value = 1;
+
+			// }
 			console.log(parsedData);
-			parsedData.endgame[startingPosIndex].value = JSON.parse(
-				parsedData.endgame[startingPosIndex].value
-			);//making the starting position an integer
+			// parsedData.endgame[startingPosIndex].value = JSON.parse(
+			// 	parsedData.endgame[startingPosIndex].value
+			// );//making the starting position an integer
 			parsedData.teleop[defenseQual].value = JSON.parse(
 				parsedData.teleop[defenseQual].value
 			);//making the defense quality an integer
