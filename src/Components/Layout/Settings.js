@@ -12,12 +12,14 @@ import { setTBA } from '../../Actions/TBAactions/setTBA';
 import { setTeams } from '../../Actions/TBAactions/setTeams';
 import axios from 'axios';
 import { parse } from 'path';
+import Alert from 'react-bootstrap/Alert';
 
 export class SettingsRaw extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			data: [],
+			importSuccess: false,
 		};
 	}
 
@@ -54,6 +56,7 @@ export class SettingsRaw extends Component {
 	};
 	setTeams = (e) => {
 		console.log('ABOUT TO IMPORT');
+		this.setShow(true);
 		let file = this.props.settings.attachedFile;
 		const fs = require('fs');
 		const reader = new FileReader();
@@ -84,6 +87,13 @@ export class SettingsRaw extends Component {
 		//should add alert but doesn't something off with this function
 		// return <Alert variant="success">You successfully imported data!</Alert>;   this broke it lol, could add this later
 		reader.readAsText(file);
+	};
+
+	setShow = (success) => {
+		this.setState({
+			...this.state,
+			importSuccess: success,
+		});
 	};
 	render() {
 		return (
@@ -135,6 +145,16 @@ export class SettingsRaw extends Component {
 							</Row>
 						</div>
 					</Row>
+					{this.state.importSuccess && (
+								<Alert
+									variant='success'
+									onClose={() => this.setShow(false)}
+									dismissible
+									style={alertStyle}
+								>
+									Success! The data was successfully imported.
+								</Alert>
+							)}
 					<hr></hr>
 				</Container>
 			</div>
@@ -177,7 +197,10 @@ const spacer = {
 const settingsHeader = {
 	marginBottom: '2%',
 };
-
+const alertStyle = {
+	marginTop: '1%',
+	width: '100%',
+};	
 export const Settings = connect(
 	mapStateToProps,
 	mapDispatchToProps
