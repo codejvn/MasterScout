@@ -85,7 +85,8 @@ export class RankRow extends Component {
 				<td style={center}>{cubeAcc.toFixed(2)}</td> {/**accuracy for cubes */}
 				<td style={center}>{Number(team.aggregated[1][12]).toFixed(2)}</td>{/**defense quantity */}
 				<td style={center}>{Number(team.aggregated[1][13]).toFixed(2)}</td>{/**defense quality */}
-				<td style={center}>{totCS.toFixed(2)}</td>{/**charging station */}
+				<td style={center}>{Number(parseFloat(team.aggregated[0][10])).toFixed(2)}</td>{/**charging station  auto*/}
+				<td style={center}>{Number(parseFloat(team.aggregated[2][0])).toFixed(2)}</td>{/**charging station endgame*/}
 				{/* <td style={center}>{team.aggregated[2][2]}</td>*time of climb start */}
 			</tr>
 		);

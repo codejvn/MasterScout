@@ -156,6 +156,12 @@ export class RankingsRaw extends Component {
 			case 'Charge Station':
 				sorted.sort((a, b) => ((parseFloat(b.aggregated[2][0]) + parseFloat(b.aggregated[0][10])) - (parseFloat(a.aggregated[2][0])+parseFloat(a.aggregated[0][10]))));
 				break;
+			case 'Charge Station Auto':
+				sorted.sort((a, b) => (parseFloat(b.aggregated[0][10]) - parseFloat(a.aggregated[0][10])));
+				break;
+			case 'Charge Station Endgame':
+				sorted.sort((a, b) => (parseFloat(b.aggregated[2][0]) - parseFloat(a.aggregated[2][0])));
+				break;
 			
 			// case 'Time of CS Start':
 			// 	sorted.sort((a, b) => b.aggregated[2][2] - a.aggregated[2][2]);
@@ -300,11 +306,19 @@ export class RankingsRaw extends Component {
 								variant='outline-dark'
 								style={fullWidthDynamic}
 								onClick={this.selectSortBy}
-								sort={'Charge Station'}>
-								Charging Station
+								sort={'Charge Station Auto'}>
+								CS Auto
 								</Button>
 							</td>
-
+							<td>
+								<Button
+								variant='outline-dark'
+								style={fullWidthDynamic}
+								onClick={this.selectSortBy}
+								sort={'Charge Station Endgame'}>
+								CS Endgame
+								</Button>
+							</td>
 							{/* <td>
 								<Button
 									variant='outline-dark'

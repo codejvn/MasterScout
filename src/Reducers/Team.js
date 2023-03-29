@@ -11,7 +11,7 @@ export const autoDataProps = [
 	{ aggre: 'avg', name: 'Cubes Mid', id: 7 },
 	{ aggre: 'avg', name: 'Cubes Low', id: 8 },
 	{ aggre: 'avg', name: 'Cubes Missed', id: 9 },
-	{ aggre: 'avg', name: 'Charging Station', id: 10 },
+	{ aggre: 'cs', name: 'Charging Station', id: 10 },
 
 ];
 export const teleopDataProps = [
@@ -32,7 +32,7 @@ export const teleopDataProps = [
 ];
 export const endgameDataProps = [
 	// { aggre: 'boolavg', name: 'Climbed?', id: 0 },
-	{ aggre: 'avg', name: 'Charge Station', id: 0 },
+	{ aggre: 'cs', name: 'Charge Station', id: 0 },
 	{ aggre: 'avg', name: 'Additional Robots', id: 1 },
 	// { aggre: 'avg', name: 'Time Left', id: 2 },
 	{ aggre: 'speed', name: 'Slow or Fast', id: 2 },
@@ -50,6 +50,7 @@ export const endgameDataProps = [
 	* max: The maximum among a set
 	* defQualAvg: new in 2023: calculates defense quality avg based on the matches where they actually played defense instead of all matches
 	* speed: special for 2023, special kind of mode which does option, except for not just yes/no question
+	* cs: special for 2023, stands for charging station, calculates the percent of matches in which a robot engages/docks in endgame and the percent it enagages in auto
 	* option: for premade comment, counts num of true+false, accounts for no input, and for equal num for both
 */
 export const aggreProps = [autoDataProps, teleopDataProps, endgameDataProps];
@@ -171,6 +172,16 @@ class Team {
 		return dataProps.map((prop) => {
 			console.log("what the inputs to aggregate set are")
 			console.log(organizedSet);
+			/**
+			 * Basically, the thing being passed into this function a 2d array where the 
+			 * rows correspond to the index of the data items in a certain part (teleop,auton,endgame)
+			 * and the array in each row is basically all of the values for that one data value for all the matches
+			 * for example, the array for starting position is:
+			 * 0: {value: 'A'}
+			 * 1: {value: 'C'}
+			 * 2: {value: 'A'}
+			 * and etc. etc. showing how in the first match, this team started at A, and in match 2, they started at C
+			 */
 			console.log(prop.id);
 			switch (prop.aggre) {
 				case 'mode':
@@ -180,19 +191,21 @@ class Team {
 				case 'avg':
 					// console.log(prop.name);
 					//["11","2590","Nice","T",false,3,1,3,1,2,1,1,1,1,1,2,"Good",50,"H",30]
-					return this.average(organizedSet[prop.id]);
+					return this.average(organizedSet[prop.id]);//returns the particular array with all of the data for that id
 				case 'boolavg':
 					return this.boolAverage(organizedSet[prop.id]);
 				case 'max':
 					return this.max(organizedSet[prop.id]);
 				case 'speed':
-					return this.speed(prop.id);
+					return this.speed(prop.id);//just returns the id, leaves the accessing to the method
 				case 'option':
 					return this.option(prop.id);
 				case 'defQualAvg':
 					return this.defAverage(prop.id);
 				case 'startingPosAggre':
 					return this.startingPos(prop.id);
+				case 'cs':
+					return this.csPercent(prop.id, organizedSet);
 			}
 		});
 	};
@@ -230,6 +243,45 @@ class Team {
 		else{
 			return 0;
 		}
+	}
+
+	csPercent = (dataID, orgSet) => {
+		/**
+		 * basically this method finds the % of matches in which the robot docks/engages in endgame and engages in auto 
+		 */
+			let total = 0.0;
+			// let matches = 0;
+			let data = orgSet[dataID];
+			console.log("dataID in csPercent " + dataID);
+			console.log("orgSet: ");
+			console.log(orgSet);
+			console.log("data array in csPercent");
+			console.log(data);
+
+			for(let i = 0; i < data.length; i++){
+				// dataSpeed = this.teleopData[i];
+				// console.log("cs percent");
+				// console.log(dataSpeed);
+				// console.log(dataSpeed[dataID]);
+				if(orgSet.length == endgameDataProps.length){
+				if(data[i].value == 6 || data[i].value == 10) {
+					total++;
+				}
+			}
+			if(orgSet.length == autoDataProps.length){
+				if(data[i].value == 12) {
+					total++;
+				}
+			}
+			}
+			console.log("the total num of times the team docked/engaged: " + total + ", in " + this.matchNums.length + " matches");
+			if(data.length > 0){
+				return total/data.length;
+			}
+			else{
+				return 0;
+			}
+	
 	}
 
 	startingPos = (dataID) => {//possibly the most disgusting function ever written in the history of javascript
