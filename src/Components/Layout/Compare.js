@@ -17,6 +17,7 @@ import { removeTeam } from "../../Actions/CompareActions/removeTeam";
 import { selectTeam } from "../../Actions/CompareActions/selectTeam";
 import { connect } from "react-redux";
 import { aggreProps } from "../../Reducers/Team";
+import EnhancedCharts from "../EnhancedCharts";
 
 let tba;
 
@@ -84,6 +85,42 @@ export class CompareRaw extends Component {
           </Accordion>
         );
       }
+      // for(const team of teams){
+      // charts.push(
+      //   <Accordion style={formWidth}>
+      //       <Card style={collapseStyling}>
+      //         <Accordion.Toggle as={Card.Header} eventKey='6'>
+      //           {'Enhanced: ' + team.teamNumber}
+      //         </Accordion.Toggle>
+      //         <Accordion.Collapse eventKey='6'>
+      //           <Card.Body style={makeWhite}>
+      //             <Container>
+      //               <EnhancedCharts team={team}/>
+      //             </Container>
+      //           </Card.Body>
+      //         </Accordion.Collapse>
+      //       </Card>
+      //     </Accordion>
+      // );
+      // }
+      console.log("teams in compare");
+      console.log(teams);
+      charts.push(
+          <Accordion style={formWidth}>
+              <Card style={collapseStyling}>
+                <Accordion.Toggle as={Card.Header} eventKey='6'>
+                  {'Enhanced'}
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey='6'>
+                  <Card.Body style={makeWhite}>
+                    <Container>
+                      <EnhancedCharts team={teams} compare={true}/>
+                    </Container>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
+        );
     }
     return charts;
   };

@@ -18,6 +18,7 @@ import Card from 'react-bootstrap/Card';
 import { autoDataProps } from '../../../Reducers/Team';
 import { teleopDataProps } from '../../../Reducers/Team';
 import { endgameDataProps } from '../../../Reducers/Team';
+import EnhancedCharts from '../../EnhancedCharts';
 
 export default function TeamBreakdown2(props) {
 	// const autoScoreData = [
@@ -60,6 +61,16 @@ export default function TeamBreakdown2(props) {
 	const [searchedOnce, setSearchedOnce] = useState(false);
 	const [renderCount, setRenderCount] = useState(0);
 	const preMadeIndexStart = 2;
+	// let getTotalConesData = (teams) => {
+	// 	let data = [];
+	// 	for (let i = 0; i < teams[0].organizedDataSets.length; i++){
+	// 		for(let j = 0; j < teams[0].organizedDataSets[i].length; j++){
+
+	// 		}
+	// 	}
+	// }
+
+	
 	let doCharts = (teams) => {//method for all of the line graphs at the bottom
 		let charts = [];
 		let headers = ['Auto', 'Teleop', 'Endgame'];
@@ -117,6 +128,25 @@ export default function TeamBreakdown2(props) {
 					// </Accordion>
 				);
 			}
+			charts.push(
+			<Card style={collapseStyling}>
+						{/* <Accordion.Toggle as={Card.Header} eventKey={JSON.stringify(i)}>
+								{headers[i]}
+							</Accordion.Toggle>
+							<Accordion.Collapse eventKey={JSON.stringify(i)}> */}
+						<Center>
+							<Heading size='lg' p='1%'>
+								{"Enhanced"}
+							</Heading>
+						</Center>
+						<Card.Body style={makeWhite}>
+							<Container>
+								<EnhancedCharts team={teams} compare={false}/>
+							</Container>
+						</Card.Body>
+						{/* </Accordion.Collapse> */}
+					</Card>
+					);
 		}
 		return charts;
 	};

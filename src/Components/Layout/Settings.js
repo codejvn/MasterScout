@@ -56,7 +56,7 @@ export class SettingsRaw extends Component {
 	};
 	setTeams = (e) => {
 		console.log('ABOUT TO IMPORT');
-		this.setShow(true);
+		// this.setShow(true);
 		let file = this.props.settings.attachedFile;
 		const fs = require('fs');
 		const reader = new FileReader();
@@ -75,7 +75,12 @@ export class SettingsRaw extends Component {
 			console.log('SETTING DATA');
 			setTimeout(() => {
 				this.props.setCompData(parsed.teams);
+				try{
 				this.props.setTBA(parsed.tba);
+				}
+				catch{
+					console.log("setTBA didn't setTBA? :(");
+				}
 			}, 5000);
 			//resolve("yay");
 			// }).then((res, rej) => {
@@ -86,6 +91,7 @@ export class SettingsRaw extends Component {
 		});
 		//should add alert but doesn't something off with this function
 		// return <Alert variant="success">You successfully imported data!</Alert>;   this broke it lol, could add this later
+		this.setShow(true);
 		reader.readAsText(file);
 	};
 

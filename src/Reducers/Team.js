@@ -213,6 +213,11 @@ class Team {
 	aggregate = () => {
 		console.log('AGGERGATING TEAM ' + this.teamNumber);
 		this.totaldata = [this.autoData, this.teleopData, this.endgameData];
+		// var grubbs = require('grubbs');
+		// console.log('with outliers');
+		// console.log(this.autoData);
+		// console.log('without outliers');
+		// console.log(grubbs.test(this.autoData));
 		this.totaldata.forEach((set, i, a) => {
 			this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);
 			this.aggregated[i] = this.aggregateSet(
@@ -221,6 +226,18 @@ class Team {
 			);
 		});
 	};
+	// aggregateNoOutliers = () => {
+	// 	console.log('AGGERGATING TEAM ' + this.teamNumber);
+	// 	var grubbs = require('grubbs');
+	// 	this.totaldata = [this.autoData, this.teleopData, this.endgameData];
+	// 	this.totaldata.forEach((set, i, a) => {
+	// 		this.organizedDataSets[i] = this.organizeSet(set, aggreProps[i].length);
+	// 		this.aggregated[i] = this.aggregateSet(
+	// 			this.organizedDataSets[i],
+	// 			aggreProps[i]
+	// 		);
+	// 	});
+	// }
 
 	defAverage = (data) => {
 		let total = 0.0;
@@ -276,7 +293,7 @@ class Team {
 			}
 			console.log("the total num of times the team docked/engaged: " + total + ", in " + this.matchNums.length + " matches");
 			if(data.length > 0){
-				return total/data.length;
+				return Number((total/data.length)*100).toFixed(2);
 			}
 			else{
 				return 0;
