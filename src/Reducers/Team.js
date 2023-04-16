@@ -2,7 +2,7 @@ import { isCompositeComponent } from "react-dom/test-utils";
 
 export const autoDataProps = [
 	{ aggre: 'startingPosAggre', name: 'Starting Position', id: 0 },
-	{ aggre: 'boolavg', name: 'Cross Community', id: 1 },
+	{ aggre: 'boolavgadj', name: 'Cross Community', id: 1 },
 	{ aggre: 'avg', name: 'Cones High', id: 2 },
 	{ aggre: 'avg', name: 'Cones Mid', id: 3},
 	{ aggre: 'avg', name: 'Cones Low', id: 4 },
@@ -206,6 +206,8 @@ class Team {
 					return this.startingPos(prop.id);
 				case 'cs':
 					return this.csPercent(prop.id, organizedSet);
+				case 'boolavgadj':
+					return this.boolAverageAdj(organizedSet[prop.id]);
 			}
 		});
 	};
@@ -392,13 +394,26 @@ class Team {
 	};
 	// average;
 	boolAverage = (data) => {
+		console.log('data in bool avg');
+		console.log(data);
 		return (
 			data.reduce((a, b) => {
 				b = b.value ? 1 : 0;
 				return a + b;
 			}, 0) / data.length
 		).toFixed(3);
+
 	};
+	boolAverageAdj = (data) =>{//the only reason this exists is bc leave communtiy doesn't have a default val, so boolaverage normally doesn't acc for that?
+		let array = data.filter(a=> a!== '-1');
+		console.log('array in boolavgadj');
+		console.log(array);
+		let count = 0.0;
+		for(const s of array){
+			if(s.value==='true'){count+=1.0;}
+		}
+		return Number((count/array.length)*100).toFixed(3);
+	}
 	max = (data) => (data) => Math.max(...data.value);
 
 	option = (data) => {
